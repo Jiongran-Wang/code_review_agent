@@ -1,8 +1,7 @@
 # Priority review: assistant answers completed
 
-All six packets now contain assistant judgments and supporting evidence, filled
-at the user's request. The first three are particularly sensitive to semantic
-scoring. These are not independent human judgments.
+The six packets contain assistant judgments and supporting evidence. The first
+three are particularly sensitive to semantic scoring. These are not independent human judgments.
 
 For each packet, check the contract and source, then read the entire review:
 final findings, submitted body and inline comments. Apply the existing

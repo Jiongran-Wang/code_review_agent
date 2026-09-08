@@ -48,9 +48,9 @@ checks the 51 frozen inference/fixture/policy files. To write a score report:
 ## Publication provenance
 
 [publication-manifest.json](publication-manifest.json) records SHA-256 byte hashes
-for both the original files and the publication copies. Only the three
-`mapping.json` files were changed: their `run_path` fields use this repository's
-relative publication path instead of the original machine's absolute path.
+for both the original files and the publication copies. The three `mapping.json`
+files use a repository-relative `run_path`. Publication documentation edits are
+listed separately in the manifest.
 Inference outputs, judgments, labels, and saved scores are unchanged. The original
 local run remains separate. This README and the publication manifest are packaging
 additions, not historical experiment artifacts.

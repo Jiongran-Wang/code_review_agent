@@ -2,7 +2,8 @@
   "source_run": "gpt4omini-full-comparison-v3-v1",
   "publication_notes": [
     "Copied the completed synthetic-fixture run; no inference reruns or score changes.",
-    "Only mapping.json run_path fields were relocated to remove the author machine path and allow scoring from the project root.",
+    "Mapping run_path fields were relocated for portable score reproduction.",
+    "Publication documentation was condensed to describe the project and evaluation; original byte hashes are retained.",
     "Original human adjudication packets remain pending. Priority packet answers are explicitly assistant-only."
   ],
   "relocated_files": [
@@ -688,9 +689,9 @@
     "baseline/repeat-1/ebc8d8481ffc/requests.jsonl": "ae09cad820c21e778f2bb24a99495d733678c307f994735e9673c6b5d7d1b51b",
     "baseline/repeat-1/ebc8d8481ffc/review.json": "4499aa8c79499c509b7b5558265fffa6e8c9077430e9527bed896cecd0ef518d",
     "comparison.json": "e3666c41975ba856fce998e76da67f27ed26cbd16b0978d8852208e7aaed4365",
-    "comparison.md": "b576b2a60ea986cf72e61577b51a6df37fc75ae9da1d8ffdf9309ac1e2bccee9",
+    "comparison.md": "61d4363203b9d4dcbafcfbb762160e94f60b2135bb887fe0a44235872ebb5563",
     "execution_summary.json": "62261d57c2d977778bcb2746a56cc07f73c04d553ce731a737ce3d025657d65f",
-    "human-review-priority/START-HERE.md": "b24a5f6e4f797a3ad561d0020d70e232a6f14592c70fad1a9d82b7434b6f0221",
+    "human-review-priority/START-HERE.md": "2fab220c3bbddac0f94305a6908249b13a76a0f11d02eccf04b2378663d7fa6b",
     "human-review-priority/answers.json": "b5932065bc52413df90cb6486e02fc02b0c64ca6fb5452d7fc13e8096ff6516e",
     "human-review-priority/priority-01.md": "660b68312c2e5495a4ba212cef88aa9d572f52ad1759c283148c8a9e0050d0bc",
     "human-review-priority/priority-02.md": "20d9d95a2f4cb6c8bc3836df7501874766ef50ec602102be5ca7ea53ca40a6b5",
@@ -703,5 +704,9 @@
     "results.jsonl": "177bd1a94b3c629fc3f28eb97f2d6e7646cac1be0934f283164dd0f6dde6ad5a",
     "scoring-sensitivity-v1.json": "d29221947c1217d11720e3df481083e1ba9ee597467676b79da4a2113024dd8b",
     "scoring-strict-v1.json": "8237a4bf112e43bf8fa6e32e57f7b1d20364a6be05c7430255ab537f192fd9f0"
-  }
+  },
+  "documentation_edits": [
+    "comparison.md",
+    "human-review-priority/START-HERE.md"
+  ]
 }

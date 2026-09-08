@@ -74,8 +74,7 @@ violates explicit preconditions; SQL examples did not demonstrate injection;
 ownership examples used an invalid document mapping. Do not add case-specific
 answers to the prompt to remove these failures before this comparison.
 
-This remains a **development comparison**, not a held-out benchmark. One repeat
+This is a **development comparison**, not a held-out benchmark. One repeat
 does not estimate generation variability, and paired variants share source
-families. Before generalization or resume accuracy claims, collect new cases and
-independent human checks of labels and semantic matches. After examining this run,
-decide whether repetitions or new-case collection address the remaining uncertainty.
+families. Independent human validation and performance on unseen cases have
+not been established.

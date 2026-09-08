@@ -132,7 +132,7 @@ finalization prompts, not fewer calls. There were no rate-limit retries; all thr
 systems together took about 67.1 minutes including pacing. No dollar-cost estimate
 is inferred from token counts alone.
 
-## Provenance and next steps
+## Provenance and scope
 
 The frozen file hashes and run source hashes were verified. Baseline/original-agent
 prompts and v3 stage prompts match the frozen configuration. All 135 responses
@@ -146,11 +146,5 @@ contains paired cases, metrics, evidence assessments and provenance hashes;
 `assistant-assessment.json` contains the detailed provisional judgments. No
 inference code, original run result or gold label was changed during analysis.
 
-The next useful work is independent review of these judgments and new-case
-collection, rather than another paid rerun after tuning to these same fixtures.
-Future improvements should test whether the reviewer checks preconditions and
-uses base/head evidence to reject unsupported claims. New cases should include
-clean controls and meaningful test setup, especially for authorization and SQL.
-Keep development and new evaluation cases separate and freeze the next comparison
-before examining its results. Do not present this small development result as
-production accuracy or independently validated resume performance.
+These results describe a small synthetic development comparison. They do not
+establish production accuracy or performance on unseen repositories.
