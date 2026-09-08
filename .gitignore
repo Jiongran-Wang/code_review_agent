@@ -18,8 +18,8 @@ evaluation/runs/
 .vscode/
 
 # Review data from real repositories stays local
-trajectories/
-exports/
+/trajectories/
+/exports/
 review_memory.jsonl
 *.log
 
