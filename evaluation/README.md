@@ -60,6 +60,10 @@ Scores are provisional, non-blinded assistant judgments on development data.
 Independent human validation is pending. Fix correctness and memory benefits
 are not measured by this comparison.
 
+The published run used the original Chinese skill prompts, preserved in the
+artifact archive. The active skills are now English; their model performance
+has not been evaluated.
+
 Recompute the published scores without API calls, from the repository root:
 
 ```bash
@@ -83,17 +87,12 @@ Use Python 3.12 with the root `requirements.txt` installed in `.venv`.
 Scripted runs use no API key and test workflow behavior, not model quality.
 Output directories must be fresh.
 
-For a new live comparison:
-
-```bash
-bash evaluation/run_full_comparison_v3.sh evaluation/runs/my-full-comparison
-```
-
-The launcher verifies frozen source and fixture hashes, prompts for the API key
-without echoing it, and schedules 48 paid reviews with pacing and bounded retries.
-See the [experiment specification](full-comparison-v3.md) for model settings,
-iteration limits, and token budgets. Budgets are checked between calls and are
-not hard billing caps.
+To rerun the historical comparison, follow the separate-checkout instructions
+in the [experiment specification](full-comparison-v3.md). Its launcher verifies
+the original source and prompt hashes, prompts for an API key without echoing it,
+and schedules 48 paid reviews with pacing and bounded retries. It rejects the
+active English prompts because they differ from the original experiment.
+Budgets are checked between calls and are not hard billing caps.
 
 Interrupted runs can reuse successful outputs in a fresh directory:
 

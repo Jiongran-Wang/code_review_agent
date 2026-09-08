@@ -1,105 +1,105 @@
-# Coaching Guidelines — 开发者成长画像 Comment 风格规范
+# Coaching Guidelines — Comment Styles Based on Developer Profiles
 
-## 核心原则
+## Core principle
 
-Code Review 不仅是发现问题，更是帮助开发者成长。根据开发者的经验等级调整 comment 风格，
-让 review 更有教育意义，而不是简单的"找茬"。
+Code review identifies issues and helps developers improve. Adapt comments to the developer's experience
+so the review provides useful instruction rather than simply pointing out mistakes.
 
 ---
 
-## 经验等级划分
+## Experience levels
 
-| 等级 | 标准 | Comment 风格 |
+| Level | Criterion | Comment style |
 |------|------|-------------|
-| 新手 | `pr_count < 5` | 友善 + 详细解释 + 示例代码 |
-| 中级 | `5 ≤ pr_count < 20` | 简洁说明 + 修复方向 |
-| 资深 | `pr_count ≥ 20` | 直接指出问题，无冗余解释 |
+| Beginner | `pr_count < 5` | Friendly tone, detailed explanation, and sample code |
+| Intermediate | `5 ≤ pr_count < 20` | Brief explanation and direction for a fix |
+| Experienced | `pr_count ≥ 20` | Direct feedback without redundant explanation |
 
 ---
 
-## 新手风格示例
+## Beginner example
 
-**问题**：SQL 注入漏洞
+**Issue**: SQL injection vulnerability
 
 ```
-🔴 **安全漏洞：SQL 注入**
+🔴 **Security vulnerability: SQL injection**
 
-这里使用了字符串拼接构造 SQL 查询，攻击者可以通过构造特殊输入来执行任意 SQL 命令。
+This query is built by concatenating strings. An attacker can craft input that executes arbitrary SQL commands.
 
-**为什么危险？**
-如果 `user_id` 来自用户输入，攻击者可以输入 `1 OR 1=1` 来绕过权限检查。
+**Why is this dangerous?**
+If `user_id` comes from user input, an attacker could enter `1 OR 1=1` to bypass authorization checks.
 
-**修复方法**：使用参数化查询：
+**Fix**: use a parameterized query:
 ```python
-# ❌ 危险写法
+# ❌ Unsafe
 cursor.execute(f"SELECT * FROM users WHERE id={user_id}")
 
-# ✅ 安全写法
+# ✅ Safe
 cursor.execute("SELECT * FROM users WHERE id=%s", (user_id,))
 ```
 
-这是 Python DB-API 的标准做法，数据库驱动会自动处理转义。如果你用的是 SQLAlchemy，
-可以用 `session.query(User).filter(User.id == user_id)` 来避免手写 SQL。
+This is the standard Python DB-API approach; the database driver handles escaping. With SQLAlchemy,
+use `session.query(User).filter(User.id == user_id)` to avoid writing raw SQL.
 ```
 
 ---
 
-## 中级风格示例
+## Intermediate example
 
-**问题**：SQL 注入漏洞
-
-```
-🔴 **SQL 注入**：`cursor.execute(f"...{user_id}...")` 存在注入风险。
-
-改用参数化查询：`cursor.execute("...%s...", (user_id,))`
-```
-
----
-
-## 资深风格示例
-
-**问题**：SQL 注入漏洞
+**Issue**: SQL injection vulnerability
 
 ```
-🔴 SQL 注入 (L42)：使用参数化查询替换 f-string。
+🔴 **SQL injection**: `cursor.execute(f"...{user_id}...")` is vulnerable to injection.
+
+Use a parameterized query: `cursor.execute("...%s...", (user_id,))`
 ```
 
 ---
 
-## 历史问题追踪
+## Experienced-developer example
 
-当开发者在 `issue_history` 中某类别 `count > 3` 时，在 Review summary 末尾添加成长建议：
+**Issue**: SQL injection vulnerability
 
 ```
----
-📈 **成长建议**
-
-根据你最近几次 PR 的 review 记录，安全相关问题出现了 5 次（SQL 注入 3 次，硬编码密钥 2 次）。
-建议：
-1. 在提交 PR 前，用 `bandit` 扫描 Python 代码（`pip install bandit && bandit -r .`）
-2. 参考团队安全规范文档（链接）
-3. 考虑在本地配置 pre-commit hook 自动检查
-
-继续加油！这类问题修复后代码质量会有明显提升。
+🔴 SQL injection (L42): replace the f-string with a parameterized query.
 ```
 
 ---
 
-## 正向反馈
+## Recurring-issue tracking
 
-不要只指出问题，也要认可做得好的地方：
+When a category in the developer's `issue_history` has `count > 3`, add development suggestions at the end of the review summary:
 
-- 测试覆盖完整 → "👍 测试覆盖很全面，包括了边界条件"
-- 命名规范 → "命名清晰，符合团队规范"
-- 文档完善 → "文档注释写得很好，方便后续维护"
+```
+---
+📈 **Development suggestions**
 
-正向反馈帮助开发者了解哪些实践值得坚持，形成良好习惯。
+Your recent PR reviews include five security issues: three SQL injection findings and two hardcoded secrets.
+Suggestions:
+1. Scan Python code with `bandit` before submitting a PR (`pip install bandit && bandit -r .`)
+2. Consult the team's security guidelines (link)
+3. Consider a local pre-commit hook for automatic checks
+
+Keep going! Addressing these patterns will make a noticeable improvement in code quality.
+```
 
 ---
 
-## 语气原则
+## Positive feedback
 
-1. **就事论事**：评论代码，不评论人。用"这段代码..."而不是"你写的..."
-2. **提供方向**：每个问题都给出修复建议，不留悬念
-3. **适度鼓励**：对新手 PR 在结尾加一句整体评价
-4. **避免否定语气**：用"建议改为..."而不是"这样写是错的"
+Recognize good practices as well as issues:
+
+- Comprehensive tests → "👍 Thorough test coverage, including boundary conditions"
+- Consistent naming → "Clear names that follow team conventions"
+- Complete documentation → "Helpful docstrings that make future maintenance easier"
+
+Positive feedback helps developers identify practices worth continuing and build good habits.
+
+---
+
+## Tone
+
+1. **Focus on the code**: comment on the code, not the person. Say "This code..." instead of "You wrote..."
+2. **Provide direction**: include a suggested fix for every issue
+3. **Encourage appropriately**: end a beginner's PR review with a brief overall assessment
+4. **Avoid dismissive wording**: say "Consider changing this to..." instead of "This is wrong"

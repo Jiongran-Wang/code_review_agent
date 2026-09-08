@@ -1,86 +1,86 @@
 ---
 name: code-review-triage
 description: |
-  对 GitHub PR 进行分类，判断是否可以自动 Review 还是需要人工介入。
-  内部 skill，由 code-review 调用。也可单独触发：
+  Classify GitHub PRs to decide whether automatic review is appropriate or human intervention is required.
+  Internal skill called by code-review. Also triggered independently by:
   "classify this PR", "should this PR be auto-reviewed", "triage PR #N",
-  "判断这个 PR 是否需要人工 review", "PR 分类", "评估 PR 复杂度"。
+  "does this PR need human review", "classify a PR", "assess PR complexity".
   Make sure to use this skill whenever the user asks to classify, triage,
   or assess whether a PR needs human review.
 ---
 
 # Code Review Triage
 
-对 PR 进行快速分类，决定走自动 Review 路径还是需要人工介入。
+Quickly classify a PR and choose automatic review or human intervention.
 
-## 输入
+## Input
 
-- `owner/repo`：仓库标识
-- `pr_number`：PR 编号
-- Memory 规则摘要（可选，由 code-review-memory 提供）
+- `owner/repo`: repository identifier
+- `pr_number`: pull-request number
+- Memory-rule summary (optional, provided by code-review-memory)
 
-## 执行流程
+## Workflow
 
-### Step 1：获取 PR 基本信息（0 LLM 调用）
+### Step 1: Fetch PR metadata (0 LLM calls)
 
-并发调用：
-- `mcp__github__get_pull_request`：获取标题、描述、状态
-- `mcp__github__get_pull_request_files`：获取变更文件列表
+Call concurrently:
+- `mcp__github__get_pull_request`: fetch title, description, and status
+- `mcp__github__get_pull_request_files`: fetch the changed-file list
 
-### Step 2：硬规则检查（0 LLM 调用）
+### Step 2: Check hard rules (0 LLM calls)
 
-以下任一条件满足 → 立即返回 `human_required`，跳过 LLM 分类：
+If any condition below holds, immediately return `human_required` and skip LLM classification:
 
-| 规则 | 条件 | 原因 |
+| Rule | Condition | Reason |
 |------|------|------|
-| 超大 PR | 变更行数 > 500 | 自动 review 效果差 |
-| Breaking Change | 标题/描述含 "breaking change"、"BREAKING" | 影响范围大，需人工评估 |
-| RFC/设计文档 | 标题含 "RFC"、"[RFC]"、"design doc" | 需要架构讨论 |
-| 安全核心文件 | 涉及 3+ 个安全核心文件 | 安全变更需人工确认 |
-| Draft PR | PR 状态为 draft | 尚未完成 |
+| Oversized PR | Changed lines > 500 | Poor automatic-review effectiveness |
+| Breaking Change | Title/description contains "breaking change" or "BREAKING" | Broad impact requiring human assessment |
+| RFC/design document | Title contains "RFC", "[RFC]", or "design doc" | Requires architectural discussion |
+| Security-critical files | Changes involve 3+ security-critical files | Security changes require human confirmation |
+| Draft PR | PR is a draft | Work is incomplete |
 
-**安全核心文件判断**：按**文件**计数，每个匹配以下任意模式的文件算1个（不是按模式组计数）：
+**Counting security-critical files**: count **files**, not pattern groups. Each file matching any pattern below counts once:
 - `*/auth/*`、`*authentication*`、`*authorization*`
 - `*/security/*`、`*permission*`、`*access_control*`
-- `*secret*`、`*credential*`、`*password*`、`*token*`（排除路径含 `test` 或 `mock` 的文件）
+- `*secret*`, `*credential*`, `*password*`, `*token*` (exclude paths containing `test` or `mock`)
 
-例：`auth/login.py`（1个）+ `security/permissions.py`（1个）+ `utils/token_helper.py`（1个）= 3个 → 触发 human_required
+Example: `auth/login.py` (1) + `security/permissions.py` (1) + `utils/token_helper.py` (1) = 3 → human_required
 
-### Step 3：LLM 分类（1 次 LLM 调用）
+### Step 3: LLM classification (1 LLM call)
 
-若硬规则未触发，调用 LLM 进行语义分类。
+If no hard rule triggers, call the LLM for semantic classification.
 
-**Prompt 结构**：
+**Prompt structure**:
 ```
-你是一个代码 Review 分类器。根据以下 PR 信息，判断是否可以自动 Review。
+You are a code-review classifier. Decide whether the following PR can be reviewed automatically.
 
-PR 标题：{title}
-PR 描述：{description}
-变更文件：{file_list}
-团队规则摘要：{memory_rules_summary}
+PR title: {title}
+PR description: {description}
+Changed files: {file_list}
+Team-rule summary: {memory_rules_summary}
 
-请输出 JSON：
+Output JSON:
 {
   "review_type": "auto" | "human_required",
   "confidence": 0.0-1.0,
   "focus_areas": ["security", "style", "logic", "performance"],
-  "files_to_review": ["优先审查的文件路径列表"],
+  "files_to_review": ["prioritized file paths"],
   "estimated_complexity": "simple" | "moderate" | "complex",
-  "skip_reason": null | "原因说明"
+  "skip_reason": null | "reason"
 }
 
-human_required 的判断标准：
-- 涉及核心业务逻辑重构
-- 多个模块之间有复杂依赖变更
-- 变更影响数据库 schema
-- 涉及第三方集成变更
-- 置信度 < 0.6 时自动降级
+Criteria for human_required:
+- Refactoring core business logic
+- Complex dependency changes across modules
+- Changes affecting the database schema
+- Changes to third-party integrations
+- Automatically downgrade when confidence < 0.6
 ```
 
-**置信度处理**：
-- confidence < 0.6 → 强制设置 `review_type = "human_required"`，`skip_reason = "置信度不足，建议人工确认"`
+**Confidence handling**:
+- confidence < 0.6 → force `review_type = "human_required"` and `skip_reason = "Insufficient confidence; human confirmation recommended"`
 
-### Step 4：输出 ReviewPlan
+### Step 4: Output ReviewPlan
 
 ```json
 {
@@ -94,22 +94,22 @@ human_required 的判断标准：
 }
 ```
 
-## 输出格式
+## Output format
 
-向用户展示分类结果：
+Show the classification result:
 
 ```
-## PR Triage 结果
+## PR Triage Results
 
 **PR**: #{pr_number} - {title}
-**分类**: ✅ 自动 Review | ⚠️ 需要人工介入
-**复杂度**: simple/moderate/complex
-**关注领域**: security, style
-**优先审查文件**:
+**Classification**: ✅ Automatic review | ⚠️ Human intervention required
+**Complexity**: simple/moderate/complex
+**Focus areas**: security, style
+**Prioritized files**:
   - app/views.py
   - app/models.py
 
-{若 human_required: "跳过原因: {skip_reason}"}
+{If human_required: "Skip reason: {skip_reason}"}
 ```
 
-读取 `references/triage-rules.md` 了解详细的分类规则和边界情况。
+Read `references/triage-rules.md` for detailed rules and edge cases.

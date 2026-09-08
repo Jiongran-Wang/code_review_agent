@@ -1,35 +1,35 @@
-# Memory Schema — 知识图谱数据结构规范
+# Memory Schema — Knowledge Graph Data Structures
 
-## 存储格式
+## Storage format
 
-文件：`~/.claude/review_memory.jsonl`
-格式：每行一个 JSON 对象（JSONL）
-编码：UTF-8
+File: `~/.claude/review_memory.jsonl`
+Format: one JSON object per line (JSONL)
+Encoding: UTF-8
 
-## 通用字段
+## Common fields
 
-所有记录必须包含：
+Every record must include:
 
 ```json
 {
   "type": "review_rule|known_pattern|false_positive|fix_template",
-  "id": "string (唯一标识符)",
+  "id": "string (unique identifier)",
   "created_at": "ISO-8601 datetime",
   "updated_at": "ISO-8601 datetime",
   "content": { ... }
 }
 ```
 
-**ID 生成规则**：`{type}-{timestamp}-{random4chars}`
-例如：`review_rule-20260323-a1b2`
+**ID format**: `{type}-{timestamp}-{random4chars}`
+Example: `review_rule-20260323-a1b2`
 
 ---
 
-## 各类型 Content Schema
+## Content schemas by type
 
 ### type: developer_profile
 
-开发者成长画像，跨 PR 追踪每位开发者的问题模式。
+Developer profile tracking each developer's issue patterns across PRs.
 
 ```json
 {
@@ -43,22 +43,22 @@
       {"category": "security", "count": 3, "last_seen": "2026-04-01T00:00:00Z"},
       {"category": "style", "count": 8, "last_seen": "2026-04-15T00:00:00Z"}
     ],
-    "strengths": ["测试覆盖率高", "命名规范"],
-    "growth_areas": ["SQL 安全", "错误处理"],
+    "strengths": ["high test coverage", "consistent naming"],
+    "growth_areas": ["SQL security", "error handling"],
     "pr_count": 12,
     "last_updated": "2026-04-21T00:00:00Z"
   }
 }
 ```
 
-**用途**：review 前读取画像，调整 comment 语气（新手给详细解释，老手给简洁建议）。
-**工具**：`memory_get_developer_profile`, `memory_update_developer_profile`
+**Usage**: read the profile before reviewing and adapt comments: detailed explanations for beginners, concise suggestions for experienced developers.
+**Tools**: `memory_get_developer_profile`, `memory_update_developer_profile`
 
 ---
 
 ### type: repo_pattern
 
-跨 PR 发现的高频问题模式，用于生成仓库健康报告。
+Frequent issue patterns across PRs, used to generate repository health reports.
 
 ```json
 {
@@ -76,19 +76,19 @@
     "first_seen": "2026-03-01T00:00:00Z",
     "last_seen": "2026-04-20T00:00:00Z",
     "trend": "increasing",
-    "sample_description": "未处理异常"
+    "sample_description": "Unhandled exception"
   }
 }
 ```
 
-**用途**：`health-report` 命令读取后生成 markdown 健康报告。
-**工具**：`memory_aggregate_patterns`
+**Usage**: the `health-report` command reads these records to generate a Markdown health report.
+**Tool**: `memory_aggregate_patterns`
 
 ---
 
 ### type: review_rule
 
-团队代码规范条目。
+A team code-standard rule.
 
 ```json
 {
@@ -97,7 +97,7 @@
   "created_at": "2026-03-23T10:00:00Z",
   "updated_at": "2026-03-23T10:00:00Z",
   "content": {
-    "description": "所有数据库查询必须使用参数化查询",
+    "description": "All database queries must use parameterized queries",
     "severity": "error",
     "category": "security",
     "language": "python",
@@ -109,15 +109,15 @@
 }
 ```
 
-**severity 枚举**：`error | warning | info`
-**category 枚举**：`security | style | logic | performance | test`
-**source 枚举**：`team_standard | incident | best_practice | manual`
+**severity values**: `error | warning | info`
+**category values**: `security | style | logic | performance | test`
+**source values**: `team_standard | incident | best_practice | manual`
 
 ---
 
 ### type: known_pattern
 
-已知的问题模式，用于 Review 时的模式匹配。
+A known issue pattern used for matching during review.
 
 ```json
 {
@@ -126,8 +126,8 @@
   "created_at": "2026-03-23T10:00:00Z",
   "updated_at": "2026-03-23T10:00:00Z",
   "content": {
-    "name": "SQL 注入",
-    "description": "使用字符串拼接或 f-string 构造 SQL 查询",
+    "name": "SQL injection",
+    "description": "SQL queries built with string concatenation or f-strings",
     "severity": "critical",
     "category": "security",
     "indicators": [
@@ -146,13 +146,13 @@
 }
 ```
 
-**severity 枚举**：`critical | high | medium | low`
+**severity values**: `critical | high | medium | low`
 
 ---
 
 ### type: false_positive
 
-已知的误报规则，Review 时跳过这些情况。
+A known false-positive rule identifying cases to skip during review.
 
 ```json
 {
@@ -161,8 +161,8 @@
   "created_at": "2026-03-23T10:00:00Z",
   "updated_at": "2026-03-23T10:00:00Z",
   "content": {
-    "pattern": "test 文件中的硬编码凭证",
-    "reason": "测试文件使用 mock 数据，非真实密钥",
+    "pattern": "Hardcoded credentials in test files",
+    "reason": "Test files use mock data, not real secrets",
     "file_patterns": [
       "test_*.py",
       "*_test.py",
@@ -181,7 +181,7 @@
 
 ### type: fix_template
 
-自动修复代码模板。
+An automatic code-fix template.
 
 ```json
 {
@@ -190,8 +190,8 @@
   "created_at": "2026-03-23T10:00:00Z",
   "updated_at": "2026-03-23T10:00:00Z",
   "content": {
-    "name": "参数化 SQL 查询（Python）",
-    "problem_pattern": "SQL 注入",
+    "name": "Parameterized SQL query (Python)",
+    "problem_pattern": "SQL injection",
     "language": "python",
     "before_pattern": "cursor.execute(f'...{var}...')",
     "after_pattern": "cursor.execute('...%s...', (var,))",
@@ -206,40 +206,40 @@
 
 ---
 
-## 查询接口
+## Query interface
 
-### get_all（供 Review 使用）
+### get_all (for reviews)
 
-返回格式化的规则摘要，适合注入 LLM prompt：
+Return a formatted rule summary suitable for an LLM prompt:
 
 ```
-## 团队代码规范
-1. [error][security] 所有数据库查询必须使用参数化查询
-2. [warning][style] 函数不超过 50 行
+## Team code standards
+1. [error][security] All database queries must use parameterized queries
+2. [warning][style] Functions must not exceed 50 lines
 
-## 已知问题模式
-1. [critical] SQL 注入 - 指标: f"SELECT, f'SELECT
-2. [critical] 硬编码密钥 - 指标: password =, api_key =
-3. [high] XSS 漏洞 - 指标: innerHTML =
+## Known issue patterns
+1. [critical] SQL injection - indicators: f"SELECT, f'SELECT
+2. [critical] Hardcoded secrets - indicators: password =, api_key =
+3. [high] XSS vulnerability - indicators: innerHTML =
 
-## 误报排除规则
-1. test 文件中的硬编码值（test_*.py, *_test.py）
-2. migrations 文件中的 SQL（*/migrations/*）
+## False-positive exclusions
+1. Hardcoded values in test files (test_*.py, *_test.py)
+2. SQL in migrations (*/migrations/*)
 ```
 
-### search（关键词检索）
+### search (keyword search)
 
-在所有记录的以下字段中进行大小写不敏感的关键词匹配：
+Match keywords case-insensitively against these fields in all records:
 - `content.description`
 - `content.name`
 - `content.pattern`
-- `content.tags`（数组）
+- `content.tags` (array)
 
 ---
 
-## 文件操作规范
+## File operations
 
-### 读取
+### Read
 
 ```python
 import json
@@ -252,7 +252,7 @@ def load_memory():
         return []
 ```
 
-### 追加
+### Append
 
 ```python
 def append_record(record):
@@ -260,7 +260,7 @@ def append_record(record):
         f.write(json.dumps(record, ensure_ascii=False) + "\n")
 ```
 
-### 更新（重写）
+### Update (rewrite)
 
 ```python
 def update_record(record_id, updated_content):

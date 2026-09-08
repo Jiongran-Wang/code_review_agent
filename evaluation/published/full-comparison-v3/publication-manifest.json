@@ -4,7 +4,8 @@
     "Copied the completed synthetic-fixture run; no inference reruns or score changes.",
     "Mapping run_path fields were relocated for portable score reproduction.",
     "Publication documentation was condensed to describe the project and evaluation; original byte hashes are retained.",
-    "Original human adjudication packets remain pending. Priority packet answers are explicitly assistant-only."
+    "Original human adjudication packets remain pending. Priority packet answers are explicitly assistant-only.",
+    "Original skill text is preserved as original-skills.json and verified against the historical freeze; active skills have been translated to English."
   ],
   "relocated_files": [
     "adjudication/mapping.json",
@@ -703,10 +704,14 @@
     "manifest.json": "f4c774c648b2146c7b79784b981a3b7eac29617d37018647d2d03b7202f83e91",
     "results.jsonl": "177bd1a94b3c629fc3f28eb97f2d6e7646cac1be0934f283164dd0f6dde6ad5a",
     "scoring-sensitivity-v1.json": "d29221947c1217d11720e3df481083e1ba9ee597467676b79da4a2113024dd8b",
-    "scoring-strict-v1.json": "8237a4bf112e43bf8fa6e32e57f7b1d20364a6be05c7430255ab537f192fd9f0"
+    "scoring-strict-v1.json": "8237a4bf112e43bf8fa6e32e57f7b1d20364a6be05c7430255ab537f192fd9f0",
+    "original-skills.json": "22ebb74ad13730cd6801f9bbaf1d24beaba80a9c5976e9f684e34f2b2f6e1b39"
   },
   "documentation_edits": [
     "comparison.md",
     "human-review-priority/START-HERE.md"
+  ],
+  "packaging_additions": [
+    "original-skills.json"
   ]
 }

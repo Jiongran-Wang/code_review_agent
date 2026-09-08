@@ -1,57 +1,57 @@
-# Test Patterns — 各语言测试框架模板与最佳实践
+# Test Patterns — Framework Templates and Best Practices by Language
 
 ## Python — pytest
 
-### 基本结构
+### Basic structure
 
 ```python
 import pytest
 from unittest.mock import patch, MagicMock
 
-# 被测模块
+# Module under test
 from myapp.services.user import UserService
 
 
 class TestUserService:
-    """UserService 单元测试"""
+    """Unit tests for UserService."""
 
     def setup_method(self):
-        """每个测试前初始化"""
+        """Initialize before each test."""
         self.service = UserService()
 
     def test_get_user_success(self):
-        """正常路径：成功获取用户"""
+        """Happy path: retrieve a user successfully."""
         user = self.service.get_user(user_id=1)
         assert user is not None
         assert user.id == 1
 
     def test_get_user_not_found(self):
-        """边界条件：用户不存在"""
+        """Boundary condition: user does not exist."""
         with pytest.raises(UserNotFoundError):
             self.service.get_user(user_id=99999)
 
     def test_get_user_invalid_id(self):
-        """边界条件：无效 ID"""
+        """Boundary condition: invalid ID."""
         with pytest.raises(ValueError):
             self.service.get_user(user_id=-1)
 
     def test_get_user_with_none_id(self):
-        """边界条件：None 值"""
+        """Boundary condition: None value."""
         with pytest.raises(TypeError):
             self.service.get_user(user_id=None)
 
     @patch("myapp.services.user.database")
     def test_get_user_db_error(self, mock_db):
-        """异常路径：数据库错误"""
+        """Error path: database error."""
         mock_db.query.side_effect = DatabaseError("Connection failed")
         with pytest.raises(ServiceError):
             self.service.get_user(user_id=1)
 ```
 
-### Mock 外部依赖
+### Mock external dependencies
 
 ```python
-# Mock 数据库
+# Mock the database
 @patch("myapp.db.session")
 def test_create_user(self, mock_session):
     mock_session.add.return_value = None
@@ -60,7 +60,7 @@ def test_create_user(self, mock_session):
     assert result.name == "Alice"
     mock_session.add.assert_called_once()
 
-# Mock HTTP 请求
+# Mock HTTP requests
 @patch("requests.get")
 def test_fetch_external_data(self, mock_get):
     mock_get.return_value = MagicMock(
@@ -70,7 +70,7 @@ def test_fetch_external_data(self, mock_get):
     result = self.service.fetch_data(url="https://api.example.com")
     assert result == {"data": "value"}
 
-# Mock 文件系统
+# Mock the filesystem
 @patch("builtins.open", create=True)
 def test_read_config(self, mock_open):
     mock_open.return_value.__enter__ = lambda s: s
@@ -85,7 +85,7 @@ def test_read_config(self, mock_open):
 ```python
 @pytest.fixture
 def user_service():
-    """共享 fixture"""
+    """Shared fixture."""
     service = UserService(db_url="sqlite:///:memory:")
     yield service
     service.cleanup()
@@ -134,7 +134,7 @@ if __name__ == "__main__":
 
 ## JavaScript — Jest
 
-### 基本结构
+### Basic structure
 
 ```javascript
 // user.service.test.js
@@ -170,10 +170,10 @@ describe('UserService', () => {
 });
 ```
 
-### Mock 外部依赖
+### Mock external dependencies
 
 ```javascript
-// Mock 模块
+// Mock the module
 jest.mock('../database', () => ({
   query: jest.fn(),
 }));
@@ -304,33 +304,33 @@ func TestGetUser_TableDriven(t *testing.T) {
 
 ---
 
-## 通用最佳实践
+## General best practices
 
-### 测试命名规范
+### Test naming
 
-| 语言 | 格式 | 示例 |
+| Language | Format | Example |
 |------|------|------|
 | Python | `test_<func>_<scenario>` | `test_get_user_not_found` |
 | JS/TS | `should <behavior> when <condition>` | `should throw error when user not found` |
 | Go | `Test<Func>_<Scenario>` | `TestGetUser_NotFound` |
 
-### 覆盖率目标
+### Coverage targets
 
-- 新增业务逻辑代码：≥ 80% 行覆盖率
-- 安全相关代码：≥ 95% 行覆盖率
-- 工具函数：≥ 90% 行覆盖率
+- New business logic: ≥ 80% line coverage
+- Security-related code: ≥ 95% line coverage
+- Utility functions: ≥ 90% line coverage
 
-### 必须覆盖的场景
+### Required scenarios
 
-1. ✅ 正常路径（happy path）
-2. ✅ 空值/零值/None 输入
-3. ✅ 边界值（最大、最小）
-4. ✅ 错误/异常路径
-5. ✅ 并发场景（如适用）
+1. ✅ Happy path
+2. ✅ Null/zero/None input
+3. ✅ Boundary values (maximum and minimum)
+4. ✅ Error/exception paths
+5. ✅ Concurrency scenarios, if applicable
 
-### Mock 原则
+### Mocking principles
 
-1. **只 mock 外部依赖**：数据库、HTTP、文件系统、时间
-2. **不 mock 被测代码本身**
-3. **验证 mock 调用**：确认依赖被正确调用（参数、次数）
-4. **每次测试重置 mock**：避免测试间互相影响
+1. **Mock only external dependencies**: databases, HTTP, filesystem, and time
+2. **Do not mock the code under test**
+3. **Verify mock calls**: confirm correct arguments and call counts
+4. **Reset mocks for each test** to prevent interference between tests

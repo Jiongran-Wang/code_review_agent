@@ -91,6 +91,8 @@ The published GPT-4o-mini comparison contains **48 reviews across 16 synthetic
 fixtures and three configurations**. It measures defect precision, recall, F1,
 clean-case false alarms, workflow completion, and token usage. Scores are
 assistant-adjudicated development results; independent human validation is pending.
+The run used the original Chinese prompts. The active skills are English;
+the published metrics do not measure the translated version.
 
 - [Results and failure analysis](evaluation/published/full-comparison-v3/comparison.md)
 - [Dataset, execution, and scoring](evaluation/README.md)

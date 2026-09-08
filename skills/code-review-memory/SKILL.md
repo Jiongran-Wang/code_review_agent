@@ -1,26 +1,26 @@
 ---
 name: code-review-memory
 description: |
-  管理代码 Review 知识图谱：存储规则、已知问题模式、误报列表、修复模板。
-  内部 skill，由其他 code-review skill 调用。也可单独触发：
+  Manage the code-review knowledge graph: rules, known issue patterns, false positives, and fix templates.
+  Internal skill called by other code-review skills. Also triggered independently by:
   "add review rule", "mark as false positive", "update code review memory",
-  "show review rules", "添加 review 规则", "查看已知问题模式", "查看误报列表",
-  "更新 review 规则", "管理代码审查知识库"。
+  "show review rules", "add a review rule", "show known issue patterns", "show false positives",
+  "update review rules", "manage the code-review knowledge base".
   Make sure to use this skill whenever the user mentions managing review rules,
   false positives, known patterns, or code review memory.
 ---
 
 # Code Review Memory
 
-知识图谱管理 skill，负责持久化存储和检索代码 Review 相关知识。
+Manage persistent storage and retrieval of code-review knowledge.
 
-## 存储位置
+## Storage location
 
-所有数据存储在 `~/.claude/review_memory.jsonl`，每行一个 JSON 对象。
+Store all data in `~/.claude/review_memory.jsonl`, with one JSON object per line.
 
-## 数据结构
+## Data structure
 
-每条记录格式：
+Record format:
 ```json
 {
   "type": "review_rule|known_pattern|false_positive|fix_template",
@@ -31,39 +31,39 @@ description: |
 }
 ```
 
-详细 schema 见 `references/memory-schema.md`。
+See `references/memory-schema.md` for the detailed schema.
 
-## 支持的操作
+## Supported operations
 
-### 查询操作（0 LLM 调用）
+### Queries (0 LLM calls)
 
-**show rules** / **查看规则**：
-- 读取 `~/.claude/review_memory.jsonl`
-- 按 type 分组展示所有条目
-- 格式：表格或列表
+**show rules** / **view rules**:
+- Read `~/.claude/review_memory.jsonl`
+- Display all entries grouped by type
+- Use a table or list
 
 **search `<keyword>`**：
-- 在所有记录的 content 字段中进行关键词匹配
-- 返回匹配的记录列表
+- Match keywords against every record's content field
+- Return the matching records
 
-**get_all**（供其他 skill 调用）：
-- 返回所有规则的摘要（每条 ≤ 50 字）
-- 格式化为适合注入 LLM prompt 的文本
-- **总量上限 3,000 tokens**（约 12,000 字符）：超出时按 `known_pattern > review_rule > false_positive > fix_template` 优先级截断，并标注 `[已截断，共 {n} 条，显示前 {m} 条]`
+**get_all** (called by other skills):
+- Return a summary of all rules, with ≤ 50 characters per entry
+- Format the text for inclusion in an LLM prompt
+- **Maximum 3,000 tokens** (approximately 12,000 characters): truncate in priority order `known_pattern > review_rule > false_positive > fix_template`, adding `[Truncated: {n} entries total, showing the first {m}]`
 
-### 写入操作（0 LLM 调用）
+### Writes (0 LLM calls)
 
 **add_rule `<description>`**：
 ```json
 {
   "type": "review_rule",
   "content": {
-    "description": "规则描述",
+    "description": "rule description",
     "severity": "error|warning|info",
     "category": "security|style|logic|performance",
-    "language": "python|javascript|go|...(可选)",
-    "example_bad": "问题代码示例（可选）",
-    "example_good": "正确代码示例（可选）",
+    "language": "python|javascript|go|... (optional)",
+    "example_bad": "problematic code example (optional)",
+    "example_good": "correct code example (optional)",
     "source": "team_standard|incident|best_practice|manual",
     "tags": ["tag1", "tag2"]
   }
@@ -75,8 +75,8 @@ description: |
 {
   "type": "known_pattern",
   "content": {
-    "name": "SQL注入",
-    "description": "未参数化的 SQL 查询",
+    "name": "SQL injection",
+    "description": "Non-parameterized SQL query",
     "indicators": ["f-string SQL", "string concatenation in query"],
     "severity": "critical"
   }
@@ -88,8 +88,8 @@ description: |
 {
   "type": "false_positive",
   "content": {
-    "pattern": "test_*.py 中的 hardcoded credentials",
-    "reason": "测试文件使用 mock 凭证，非真实密钥",
+    "pattern": "hardcoded credentials in test_*.py",
+    "reason": "Test files use mock credentials, not real secrets",
     "file_patterns": ["test_*.py", "*/tests/*", "*/migrations/*"]
   }
 }
@@ -100,32 +100,32 @@ description: |
 {
   "type": "fix_template",
   "content": {
-    "name": "参数化 SQL 查询",
-    "problem": "SQL 注入",
+    "name": "Parameterized SQL query",
+    "problem": "SQL injection",
     "before": "cursor.execute(f'SELECT * FROM users WHERE id={id}')",
     "after": "cursor.execute('SELECT * FROM users WHERE id=%s', (id,))"
   }
 }
 ```
 
-## 执行步骤
+## Execution steps
 
-1. 解析用户意图（show/search/add_rule/add_pattern/add_false_positive/add_template）
-2. 读取 `~/.claude/review_memory.jsonl`（文件不存在时创建空文件）
-3. 执行对应操作（CRUD）
-4. 写回文件（append 或 rewrite）
-5. 确认操作结果
+1. Parse the requested operation (show/search/add_rule/add_pattern/add_false_positive/add_template)
+2. Read `~/.claude/review_memory.jsonl`; create an empty file if it does not exist
+3. Perform the corresponding CRUD operation
+4. Write the file by appending or rewriting
+5. Confirm the result
 
-## 默认内置规则
+## Built-in defaults
 
-首次运行时，若文件为空，初始化以下默认规则（含完整 created_at/updated_at 字段）：
+On first use, initialize an empty file with these defaults, including complete created_at/updated_at fields:
 
 ```json
-{"type":"known_pattern","id":"builtin-1","created_at":"2026-01-01T00:00:00Z","updated_at":"2026-01-01T00:00:00Z","content":{"name":"SQL注入","description":"使用字符串拼接或 f-string 构造 SQL 查询","severity":"critical","indicators":["f\"SELECT","f'SELECT","+ \" WHERE","+ ' WHERE"]}}
-{"type":"known_pattern","id":"builtin-2","created_at":"2026-01-01T00:00:00Z","updated_at":"2026-01-01T00:00:00Z","content":{"name":"硬编码密钥","description":"代码中直接包含 API key、密码、token","severity":"critical","indicators":["password =","api_key =","secret =","token ="]}}
-{"type":"known_pattern","id":"builtin-3","created_at":"2026-01-01T00:00:00Z","updated_at":"2026-01-01T00:00:00Z","content":{"name":"XSS漏洞","description":"未转义的用户输入直接渲染到 HTML","severity":"high","indicators":["innerHTML =","dangerouslySetInnerHTML","render_template_string"]}}
-{"type":"false_positive","id":"builtin-fp-1","created_at":"2026-01-01T00:00:00Z","updated_at":"2026-01-01T00:00:00Z","content":{"pattern":"test 文件中的硬编码值","reason":"测试文件使用 mock 数据","file_patterns":["test_*.py","*_test.py","*/tests/*","*/test/*"]}}
-{"type":"false_positive","id":"builtin-fp-2","created_at":"2026-01-01T00:00:00Z","updated_at":"2026-01-01T00:00:00Z","content":{"pattern":"migrations 文件中的 SQL","reason":"数据库迁移文件使用原生 SQL 是正常的","file_patterns":["*/migrations/*","*migration*.py"]}}
+{"type":"known_pattern","id":"builtin-1","created_at":"2026-01-01T00:00:00Z","updated_at":"2026-01-01T00:00:00Z","content":{"name":"SQL injection","description":"SQL queries built with string concatenation or f-strings","severity":"critical","indicators":["f\"SELECT","f'SELECT","+ \" WHERE","+ ' WHERE"]}}
+{"type":"known_pattern","id":"builtin-2","created_at":"2026-01-01T00:00:00Z","updated_at":"2026-01-01T00:00:00Z","content":{"name":"Hardcoded secrets","description":"API keys, passwords, or tokens embedded directly in code","severity":"critical","indicators":["password =","api_key =","secret =","token ="]}}
+{"type":"known_pattern","id":"builtin-3","created_at":"2026-01-01T00:00:00Z","updated_at":"2026-01-01T00:00:00Z","content":{"name":"XSS vulnerability","description":"Unescaped user input rendered directly as HTML","severity":"high","indicators":["innerHTML =","dangerouslySetInnerHTML","render_template_string"]}}
+{"type":"false_positive","id":"builtin-fp-1","created_at":"2026-01-01T00:00:00Z","updated_at":"2026-01-01T00:00:00Z","content":{"pattern":"Hardcoded values in test files","reason":"Test files use mock data","file_patterns":["test_*.py","*_test.py","*/tests/*","*/test/*"]}}
+{"type":"false_positive","id":"builtin-fp-2","created_at":"2026-01-01T00:00:00Z","updated_at":"2026-01-01T00:00:00Z","content":{"pattern":"SQL in migration files","reason":"Raw SQL is normal in database migrations","file_patterns":["*/migrations/*","*migration*.py"]}}
 ```
 
-读取 `references/memory-schema.md` 了解完整的数据结构规范。
+Read `references/memory-schema.md` for the complete data-structure specification.

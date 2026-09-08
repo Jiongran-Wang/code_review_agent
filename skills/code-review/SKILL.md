@@ -1,11 +1,11 @@
 ---
 name: code-review
 description: |
-  自动化代码 Review 系统。对 GitHub PR 进行代码质量检查、安全漏洞扫描、
-  规范审查，并对明确问题自动提交修复 PR。
-  触发场景：用户提到 PR review、代码审查、review PR #N、check this PR、
-  代码检查、安全扫描、自动修复代码问题、帮我看看这个 PR。
-  关键词：PR、pull request、review、代码审查、安全漏洞、自动修复、代码检查。
+  Automated code review for GitHub PRs: check code quality, scan for security vulnerabilities,
+  review coding standards, and submit fix PRs for clear issues.
+  Triggers: PR review, code review, review PR #N, check this PR,
+  code checks, security scans, automatic code fixes, or help reviewing a PR.
+  Keywords: PR, pull request, review, code review, security vulnerability, automatic fix, code check.
   Make sure to use this skill whenever the user mentions reviewing a PR,
   checking code quality, scanning for security issues, or auto-fixing code,
   even if they don't explicitly say "code review".
@@ -13,132 +13,132 @@ description: |
 
 # Code Review
 
-自动化代码 Review 系统的主入口。路由到各子 skill 完成完整的 Review 流程。
+Main entry point for the automated code-review system. Route to the subskills to complete the review workflow.
 
-## 快速开始
+## Quick start
 
-**用法**：`/code-review owner/repo PR #42`
-**或**：直接说 "帮我 review 一下 github.com/owner/repo/pull/42"
+**Usage**: `/code-review owner/repo PR #42`
+**Or**: ask "Please review github.com/owner/repo/pull/42"
 
-## 整体流程
+## Workflow overview
 
 ```
-用户输入
+User input
   ↓
-[Step 1] 解析输入 → 提取 owner/repo + pr_number
+[Step 1] Parse input → extract owner/repo + pr_number
   ↓
 [Step 2] /code-review-triage → ReviewPlan
   ↓ human_required?
-  ├── YES → 在 PR 添加说明 comment → 结束
+  ├── YES → Add an explanatory PR comment → End
   └── NO ↓
 [Step 3] /code-review-analyze → AnalysisData
   ↓
-[Step 4] /code-review-act → Review + 可选 Fix PR
+[Step 4] /code-review-act → Review + optional fix PR
   ↓
-[Step 5] /code-review-memory → 更新知识图谱
+[Step 5] /code-review-memory → Update the knowledge graph
   ↓
-输出 Review 摘要
+Output the review summary
 ```
 
-## Step 1：解析输入
+## Step 1: Parse input
 
-从用户输入中提取：
-- `owner`：仓库所有者（用户名或组织）
-- `repo`：仓库名称
-- `pr_number`：PR 编号
+Extract the following from the user's input:
+- `owner`: repository owner (user or organization)
+- `repo`: repository name
+- `pr_number`: pull-request number
 
-支持的输入格式：
+Supported formats:
 - `owner/repo #42`
 - `owner/repo PR 42`
 - `github.com/owner/repo/pull/42`
 - `https://github.com/owner/repo/pull/42`
 
-若无法解析，询问用户：
+If parsing fails, ask the user:
 ```
-请提供 PR 信息，格式：owner/repo #PR编号
-例如：anthropics/claude-code #123
+Please provide the PR as: owner/repo #PR_NUMBER
+For example: anthropics/claude-code #123
 ```
 
-## Step 2：Triage（分类）
+## Step 2: Triage
 
-调用 `/code-review-triage`，传入：
+Call `/code-review-triage` with:
 - `owner/repo`
 - `pr_number`
 
-**若返回 `human_required`**：
+**If it returns `human_required`**:
 ```python
 mcp__github__add_issue_comment(
   owner=owner,
   repo=repo,
   issue_number=pr_number,
-  body=f"""## 🤖 自动 Review 已跳过
+  body=f"""## 🤖 Automatic Review Skipped
 
-**原因**：{skip_reason}
+**Reason**: {skip_reason}
 
-此 PR 需要人工 Review，原因如下：
+This PR requires human review for the following reasons:
 - {human_required_details}
 
-请团队成员手动进行代码审查。"""
+Please ask a team member to review the code manually."""
 )
 ```
-然后结束流程，向用户展示跳过原因。
+End the workflow and show the user why the review was skipped.
 
-## Step 3：数据采集
+## Step 3: Collect data
 
-调用 `/code-review-analyze`，传入：
+Call `/code-review-analyze` with:
 - `owner/repo`
 - `pr_number`
-- `files_to_review`（来自 triage）
-- `focus_areas`（来自 triage）
+- `files_to_review` from triage
+- `focus_areas` from triage
 
-## Step 4：Review + 行动
+## Step 4: Review and act
 
-调用 `/code-review-act`，传入：
-- `analysis_data`（来自 analyze）
-- `review_plan`（来自 triage）
+Call `/code-review-act` with:
+- `analysis_data` from analyze
+- `review_plan` from triage
 - `owner/repo`
 - `pr_number`
 
-## Step 5：更新 Memory
+## Step 5: Update memory
 
-调用 `/code-review-memory` 更新知识图谱（由 code-review-act 内部调用，无需额外步骤）。
+Call `/code-review-memory` to update the knowledge graph. code-review-act calls this internally; no additional step is needed.
 
-## 最终输出格式
+## Final output format
 
 ```
-## ✅ Code Review 完成
+## ✅ Code Review Complete
 
-**仓库**: owner/repo
-**PR**: #42 - {PR 标题}
-**作者**: @{author}
+**Repository**: owner/repo
+**PR**: #42 - {pr_title}
+**Author**: @{author}
 
-### Review 结果
-- **决策**: ✅ APPROVE | 🔄 REQUEST_CHANGES | 💬 COMMENT
-- **发现问题**: {n} 个
-  - 🔴 严重: {n}
-  - 🟠 高危: {n}
-  - 🟡 中等: {n}
-  - 🟢 低危: {n}
+### Review results
+- **Decision**: ✅ APPROVE | 🔄 REQUEST_CHANGES | 💬 COMMENT
+- **Issues found**: {n}
+  - 🔴 Critical: {n}
+  - 🟠 High: {n}
+  - 🟡 Medium: {n}
+  - 🟢 Low: {n}
 
-### 自动修复
-{有修复: "已创建 Fix PR: #{fix_pr_number}" | 无修复: "无可自动修复的问题"}
+### Automatic fixes
+{With fixes: "Created fix PR: #{fix_pr_number}" | Without fixes: "No automatically fixable issues"}
 
-### 摘要
+### Summary
 {review_summary}
 ```
 
-## 参考文档
+## References
 
-- `references/review-checklist.md`：完整的代码审查清单（安全/规范/逻辑/性能）
-- `references/escalation-rules.md`：人工介入规则详情
+- `references/review-checklist.md`: complete checklist for security, standards, logic, and performance
+- `references/escalation-rules.md`: detailed human-escalation rules
 
-## 子 Skill 说明
+## Subskills
 
-| Skill | 职责 | LLM 调用 |
+| Skill | Responsibility | LLM calls |
 |-------|------|----------|
-| `code-review-triage` | PR 分类 | 1次 |
-| `code-review-analyze` | 数据采集 | 0次 |
-| `code-review-act` | Review + 修复 | 1次 |
-| `code-review-memory` | 知识图谱 | 0次 |
+| `code-review-triage` | PR classification | 1 |
+| `code-review-analyze` | Data collection | 0 |
+| `code-review-act` | Review and fixes | 1 |
+| `code-review-memory` | Knowledge graph | 0 |
 
-**总计：≤ 2 次 LLM 调用/PR**（triage 1次 + review 1次）
+**Total: ≤ 2 LLM calls per PR** (1 for triage + 1 for review)

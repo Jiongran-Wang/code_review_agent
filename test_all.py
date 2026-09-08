@@ -371,7 +371,7 @@ try:
     guidelines_path = Path(__file__).parent / "skills/code-review-act/references/coaching-guidelines.md"
     assert guidelines_path.exists()
     content_text = guidelines_path.read_text()
-    assert "新手" in content_text and "资深" in content_text
+    assert "pr_count < 5" in content_text and "pr_count ≥ 20" in content_text
     ok("coaching-guidelines.md 存在且包含经验等级规范")
 
     # 8. memory-schema.md 包含 developer_profile

@@ -17,7 +17,15 @@ accuracy, completion and observed usage together.
 
 ## Launch
 
+The frozen comparison uses the original Chinese skill prompts. The active
+`skills/` directory is now English; the launcher deliberately rejects those
+changed prompts. To rerun the original configuration, use a separate checkout:
+
 ```bash
+git worktree add --detach ../review-v3/code_review_agent c653a8c671273735fda932aac0e17523ef3f5050
+cd ../review-v3/code_review_agent
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
 bash evaluation/run_full_comparison_v3.sh
 ```
 

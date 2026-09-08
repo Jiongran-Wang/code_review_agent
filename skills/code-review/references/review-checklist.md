@@ -1,111 +1,111 @@
 # Code Review Checklist
 
-代码审查完整清单，按优先级排序。
+Complete code-review checklist, ordered by priority.
 
-## 🔴 安全（Security）— 必查
+## 🔴 Security — Required
 
-### SQL 注入
-- [ ] 所有数据库查询使用参数化查询或 ORM
-- [ ] 无 f-string/字符串拼接构造 SQL
-- [ ] 用户输入经过验证和转义
+### SQL injection
+- [ ] All database queries use parameterization or an ORM
+- [ ] No SQL built with f-strings or string concatenation
+- [ ] User input is validated and escaped
 
-### XSS（跨站脚本）
-- [ ] 用户输入不直接渲染到 HTML
-- [ ] 使用模板引擎的自动转义功能
-- [ ] `innerHTML`/`dangerouslySetInnerHTML` 的使用经过审查
+### XSS (cross-site scripting)
+- [ ] User input is not rendered directly as HTML
+- [ ] Template-engine autoescaping is used
+- [ ] Uses of `innerHTML`/`dangerouslySetInnerHTML` are reviewed
 
-### 认证与授权
-- [ ] 所有 API 端点有适当的认证检查
-- [ ] 权限检查在服务层而非仅在 UI 层
-- [ ] 无越权访问漏洞（IDOR）
+### Authentication and authorization
+- [ ] API endpoints have appropriate authentication checks
+- [ ] Permissions are checked in the service layer, not only the UI
+- [ ] No insecure direct object references (IDOR)
 
-### 敏感数据
-- [ ] 无硬编码密码、API Key、Token
-- [ ] 敏感配置通过环境变量或密钥管理服务读取
-- [ ] 日志中不包含敏感信息
+### Sensitive data
+- [ ] No hardcoded passwords, API keys, or tokens
+- [ ] Sensitive configuration is read from environment variables or a secrets manager
+- [ ] Logs contain no sensitive information
 
-### 依赖安全
-- [ ] 新增依赖无已知高危漏洞
-- [ ] 依赖版本锁定（pinned）
-
----
-
-## 🟠 Bug 与逻辑（Bugs & Logic）— 重要
-
-### 空值处理
-- [ ] 可能为 None/null 的变量有空值检查
-- [ ] 数组/列表访问有边界检查
-- [ ] 外部 API 响应有异常处理
-
-### 错误处理
-- [ ] 异常被正确捕获和处理
-- [ ] 错误信息不暴露内部实现细节
-- [ ] 关键操作有事务保护（数据库操作）
-
-### 并发与竞态
-- [ ] 共享资源有适当的锁机制
-- [ ] 数据库操作避免竞态条件
-- [ ] 幂等性设计（重试安全）
-
-### 业务逻辑
-- [ ] 边界条件已考虑（0、负数、极大值）
-- [ ] 状态机转换逻辑正确
-- [ ] 计算逻辑无溢出风险
+### Dependency security
+- [ ] New dependencies have no known high-severity vulnerabilities
+- [ ] Dependency versions are pinned
 
 ---
 
-## 🟡 代码规范（Style & Standards）— 建议
+## 🟠 Bugs and Logic — Important
 
-### 命名规范
-- [ ] 变量/函数名清晰表达意图
-- [ ] 遵循语言/项目命名约定
-- [ ] 无魔法数字（使用常量）
+### Null handling
+- [ ] Potentially None/null variables are checked
+- [ ] Array/list access has boundary checks
+- [ ] External API responses have error handling
 
-### 函数设计
-- [ ] 函数单一职责（≤ 50 行为宜）
-- [ ] 参数数量合理（≤ 5 个为宜）
-- [ ] 返回值类型一致
+### Error handling
+- [ ] Exceptions are caught and handled correctly
+- [ ] Error messages do not expose internal implementation details
+- [ ] Critical database operations are protected by transactions
 
-### 注释与文档
-- [ ] 复杂逻辑有注释说明
-- [ ] 公开 API 有文档注释
-- [ ] TODO/FIXME 有对应 Issue
+### Concurrency and race conditions
+- [ ] Shared resources have appropriate locking
+- [ ] Database operations avoid race conditions
+- [ ] Operations are idempotent and safe to retry
 
-### 测试覆盖
-- [ ] 新功能有对应单元测试
-- [ ] 边界条件有测试覆盖
-- [ ] 测试用例有描述性名称
-
----
-
-## 🟢 性能（Performance）— 可选
-
-### 数据库查询
-- [ ] 无 N+1 查询问题
-- [ ] 适当使用索引
-- [ ] 大数据集使用分页
-
-### 缓存
-- [ ] 频繁读取的数据有缓存策略
-- [ ] 缓存失效逻辑正确
-
-### 资源管理
-- [ ] 文件/连接等资源正确关闭
-- [ ] 大文件使用流式处理
-- [ ] 无内存泄漏风险
+### Business logic
+- [ ] Boundary conditions are considered: zero, negative, and very large values
+- [ ] State-machine transitions are correct
+- [ ] Calculations have no overflow risk
 
 ---
 
-## 自动化检查范围
+## 🟡 Style and Standards — Suggestions
 
-以下问题可以自动修复：
-- SQL 注入（参数化查询替换）
-- 硬编码密钥（替换为环境变量读取）
-- 简单的空值检查缺失
-- 代码风格问题（格式化）
+### Naming
+- [ ] Variable and function names clearly express intent
+- [ ] Names follow language and project conventions
+- [ ] Constants replace magic numbers
 
-以下问题只能人工处理：
-- 业务逻辑错误
-- 架构设计问题
-- 复杂的权限设计
-- 性能优化方案选择
+### Function design
+- [ ] Functions have one responsibility, preferably ≤ 50 lines
+- [ ] Parameter counts are reasonable, preferably ≤ 5
+- [ ] Return types are consistent
+
+### Comments and documentation
+- [ ] Complex logic has explanatory comments
+- [ ] Public APIs have documentation comments
+- [ ] TODO/FIXME comments link to corresponding issues
+
+### Test coverage
+- [ ] New features have unit tests
+- [ ] Boundary conditions are covered
+- [ ] Test names describe their scenarios
+
+---
+
+## 🟢 Performance — Optional
+
+### Database queries
+- [ ] No N+1 queries
+- [ ] Indexes are used appropriately
+- [ ] Large datasets use pagination
+
+### Caching
+- [ ] Frequently read data has a caching strategy
+- [ ] Cache invalidation is correct
+
+### Resource management
+- [ ] Files and connections are closed correctly
+- [ ] Large files are processed as streams
+- [ ] No memory-leak risk
+
+---
+
+## Scope of automatic fixes
+
+The following issues can be fixed automatically:
+- SQL injection: replace with parameterized queries
+- Hardcoded secrets: read from environment variables
+- Simple missing null checks
+- Code-style issues: formatting
+
+The following require manual handling:
+- Business-logic errors
+- Architectural issues
+- Complex permission design
+- Performance-optimization choices
