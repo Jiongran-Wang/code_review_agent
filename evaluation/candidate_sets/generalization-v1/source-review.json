@@ -1,0 +1,150 @@
+{
+  "status": "PENDING",
+  "purpose": "Candidate source identities only; not an active execution allowlist",
+  "sources": [
+    {
+      "sha256": "18e3a10dc1efb9652fba777dc03b1c158758912274f1147c242354206b611fdc",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "1965b095d885f6177ce80dbb9baa8f914136db648b65dd6733a02e63eba86740",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "283285d4b910b9e55322fa616a7bb24d51e005775c6438f63ca2ef482575ab2d",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "2c2c4ccc3ef26167f36ea711b66c96b45aaba3c09290dc12e8e009aee616042b",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "36d68e019a2d8ba0424d68da6ed48683b2675cbdb374ab5d5d93e4d4db6b8485",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "3b232ee4a8743fd62627d82a13b7d202051197eb90262d03612b8efb169dfb0c",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "3d0f5737e16a38d8deb47da2f4e74b1246643e52dd4caedf0700ad9a5cf85f9e",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "41b498035b555214a18a4d452c35307ad77b9d71454034b36f316a587844ddc3",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "4810eef65a7db626d117c8c00f48e2fed149f674ff21a7c58b9a3bc468ccbab8",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "61ec0241602b6afded3b10fb89aecd56de63e0bface79e8c74712b519d28cf8c",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "62b9954ccae1468af32ad6321b6c962fed77e66564fe6c23db4dd7da8a8dc0a5",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "6b503938472e2b7d8b9704e4a81f6651579563faf5d0d9c90f7c55d3154af0bb",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "77f9cb7ba43e76d39e8602098e4cf1d4060bf66a25be1fb25e7a6fb32eb235ab",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "82a636de78eab7682c0e7c0104212006e1f0e8e8a81d56d876b0952cab406ee0",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "a942e7680495621cb4f1d144b9136e0a8f45949b2374ad7f539224fb4cc264a3",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "ab8aa477584421f8f3ea8b5ae7cd7fffb06a07bec0354a80fd190fcc00cb112b",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "afe412a615ad7cf27055fbf272e205bf1c0af7996a9a6c8c66aeafea6a01248c",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "c19169d9b53f279350938b7f93603c7c2876627a3e17b792bc444da609a94943",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "d07ffffe5aeae787a6d05243fdb0dcd65b3b34aa7af37dea6ec2265d96baffaf",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "d143a750ab90867c359d9f287a65f10d9be540d596a7326c3e7b14eb988e156c",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "deda1389293364ec2963b716597a74889349e4a68aaf3cbfd0b67c9285e016bf",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "e02df43fa9ffb0576a64ea9140e72a8792cdeae996377b34600f903555f98673",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "ea3ea3f7f9b9c2a6d072533b458f2de98ca0a6d711d8cdf6be13e8483690ed8d",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    },
+    {
+      "sha256": "ec1ac77e460c21b444eff01951bf83296e99eaf0d2b416a527f4ca4511d262ac",
+      "audit_status": "PENDING",
+      "reviewer": null,
+      "notes": ""
+    }
+  ]
+}

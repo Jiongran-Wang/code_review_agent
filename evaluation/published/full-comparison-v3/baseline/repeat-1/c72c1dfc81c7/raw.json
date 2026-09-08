@@ -1,0 +1,9 @@
+{
+  "final_response": "{\"decision\":\"REQUEST_CHANGES\",\"findings\":[{\"file\":\"module.py\",\"line\":2,\"description\":\"The function incorrectly uses the training data to compute the mean for both training and test datasets, which violates the principle of not fitting on test data.\"}]}",
+  "tool_calls": [],
+  "submitted_reviews": [],
+  "issue_comments": [],
+  "file_writes": [],
+  "fix_prs": [],
+  "memory": []
+}

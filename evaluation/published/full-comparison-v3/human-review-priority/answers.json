@@ -1,0 +1,138 @@
+{
+  "status": "ASSISTANT_REVIEW_COMPLETE",
+  "reviews": [
+    {
+      "task_id": "review-0038",
+      "case_id": "ca048d6a497e",
+      "packet": "priority-01.md",
+      "status": "ASSISTANT_REVIEW_COMPLETE",
+      "reviewer": "Codex (AI assistant)",
+      "decisions": [
+        {
+          "finding_id": "f1",
+          "judgment": "unmatched_defect_claim",
+          "strict_gold_issue_id": null,
+          "rationale": "The alleged missing handling for index < window concerns inputs excluded by the contract."
+        },
+        {
+          "finding_id": "f2",
+          "judgment": "cause_only_partial_match",
+          "strict_gold_issue_id": null,
+          "sensitivity_gold_issue_id": "ca048d6a497e:1",
+          "rationale": "Names the shifted slice, but its consequence explanation concerns invalid inputs. The submitted body mixes a correct equality-window observation with reversed actual/expected values for another example. Retain cause-only credit under the frozen policy."
+        }
+      ],
+      "normalization_notes": "Keep f1 and f2 as separate final claims. Merge repeated inline comments into their corresponding final claims. Preserve the submitted index==window observation as context for f2, the same shifted-mean allegation. Do not silently discard its correct sentence or count it as a third duplicate finding.",
+      "gold_concerns": "The reference look-ahead issue and head line 3 are correct. The review contains mixed evidence, so splitting/merging and strict matching are interpretation-sensitive; this assistant completion does not resolve independent-review uncertainty.",
+      "reviewer_type": "ai_assistant",
+      "human_validated": false,
+      "supporting_evidence": "The contract requires index >= window > 0. Head line 3 uses prices[start+1:index+1], including the current observation and dropping the earliest preceding one. For prices=[100,200,300,400,500], index=3, window=3, base averages [100,200,300] to 200; head averages [200,300,400] to 300. The submitted index=0, window=1 example is outside the contract and reverses the recorded values: base returns 0, head returns 100."
+    },
+    {
+      "task_id": "review-0012",
+      "case_id": "ebc8d8481ffc",
+      "packet": "priority-02.md",
+      "status": "ASSISTANT_REVIEW_COMPLETE",
+      "reviewer": "Codex (AI assistant)",
+      "decisions": [
+        {
+          "finding_id": "f1",
+          "judgment": "cause_only_partial_match",
+          "strict_gold_issue_id": null,
+          "sensitivity_gold_issue_id": "ebc8d8481ffc:1",
+          "rationale": "Identifies the changed stop bound but does not clearly explain the missing-item consequence. The correct proposed repair alone cannot supply primary credit under the frozen rule."
+        }
+      ],
+      "normalization_notes": "Merge the repeated submitted finding with final f1. Treat the suggested code as a repair, not another finding. Retain the incomplete/ambiguous consequence rather than rewriting it into a correct diagnosis.",
+      "gold_concerns": "The gold issue and changed line 3 are correct. The short contract could more explicitly say to return the entire requested slice when enough items exist; the base implementation supplies that context. Do not alter the frozen contract or labels retrospectively.",
+      "reviewer_type": "ai_assistant",
+      "human_validated": false,
+      "supporting_evidence": "Head sets stop=start+size-1 and slices items[start:stop]. With items=[10,20,30,40], number=0 and size=2, base returns [10,20] but head returns [10]. The review instead says the stop should be exclusive and should not include the last item. Its submitted return items[start:stop + 1] is a correct repair for this code, but the diagnosis does not clearly say that an intended page item is omitted."
+    },
+    {
+      "task_id": "review-0039",
+      "case_id": "bca9b18b8e18",
+      "packet": "priority-03.md",
+      "status": "ASSISTANT_REVIEW_COMPLETE",
+      "reviewer": "Codex (AI assistant)",
+      "decisions": [
+        {
+          "finding_id": "f1",
+          "judgment": "strict_match",
+          "strict_gold_issue_id": "bca9b18b8e18:1",
+          "rationale": "Explicitly identifies fitting the mean on train plus test and violating the training-only fitting requirement; that describes the prohibited data-leakage behavior."
+        }
+      ],
+      "normalization_notes": "One final claim and no submitted review. Keep it as one semantic match; the exact word leakage is not required when the prohibited test-fitting behavior is explicitly described.",
+      "gold_concerns": "No identified error in the contract or gold issue. This judgment credits the explicitly stated fitting violation without requiring a numerical example in the model output; the numerical illustration here is reviewer evidence, not text produced by the evaluated model.",
+      "reviewer_type": "ai_assistant",
+      "human_validated": false,
+      "supporting_evidence": "The contract says subtract the training mean without fitting on test data. Head line 2 sets fitting_values=train+test. The finding explicitly states that the new implementation fits on both datasets. For train=[1,3] and test=[100], base uses offset 2 while head uses 104/3; changing the test values changes the transformation of training values."
+    },
+    {
+      "task_id": "review-0010",
+      "case_id": "e33a2e9207b7",
+      "packet": "priority-04.md",
+      "status": "ASSISTANT_REVIEW_COMPLETE",
+      "reviewer": "Codex (AI assistant)",
+      "decisions": [
+        {
+          "finding_id": "f1",
+          "judgment": "unmatched_defect_claim",
+          "strict_gold_issue_id": null,
+          "rationale": "The refactor preserves equality; the review alleges an incorrect base/head difference."
+        }
+      ],
+      "normalization_notes": "Merge final, submitted-body and inline versions of the same equality allegation. Keep it as a false positive; do not delete it because the review is wrong.",
+      "gold_concerns": "The clean label is supported for the intended numeric-timestamp domain. The contract could explicitly name supported numeric types in a future dataset; the present allegation concerns equality and is false for its actual numeric examples. The review also confuses True meaning expired with still valid.",
+      "reviewer_type": "ai_assistant",
+      "human_validated": false,
+      "supporting_evidence": "For same-unit numeric timestamps, expires_at-now <= 0 is equivalent to now >= expires_at. At now=10, expires_at=10, remaining is 0 and both versions return True. The stored execution also reports True for both revisions at equality. The claim that the new code returns False contradicts the code and tool observations."
+    },
+    {
+      "task_id": "review-0025",
+      "case_id": "b3e1a991158b",
+      "packet": "priority-05.md",
+      "status": "ASSISTANT_REVIEW_COMPLETE",
+      "reviewer": "Codex (AI assistant)",
+      "decisions": [
+        {
+          "finding_id": "f1",
+          "judgment": "unmatched_defect_claim",
+          "strict_gold_issue_id": null,
+          "rationale": "Both versions append to an actual list and return a copy. The observed AttributeError comes from a string argument and occurs in both revisions."
+        }
+      ],
+      "normalization_notes": "Merge the body and final versions into one false-positive allegation. Distinguish the invalid string test from the claimed existing-list behavior. No additional defect claim needs splitting.",
+      "gold_concerns": "No identified error in the clean label for the stated list-input contract. List subclasses or arbitrary iterable inputs are not established by this fixture contract; do not invent them to rescue the reported failure.",
+      "reviewer_type": "ai_assistant",
+      "human_validated": false,
+      "supporting_evidence": "Base returns items[:] and head returns list(items); both make a new list for a list argument. With items=[1] and item=2, both append to produce [1,2] and return a copy. The recorded test instead supplies the literal string existing_list. Its missing append method causes AttributeError in both base and head, before either return expression is reached."
+    },
+    {
+      "task_id": "review-0034",
+      "case_id": "85ad40fd5032",
+      "packet": "priority-06.md",
+      "status": "ASSISTANT_REVIEW_COMPLETE",
+      "reviewer": "Codex (AI assistant)",
+      "decisions": [
+        {
+          "finding_id": "f1",
+          "judgment": "strict_match",
+          "strict_gold_issue_id": "85ad40fd5032:1",
+          "rationale": "The final finding identifies the mutable default, and the submitted recommendation explicitly states the shared-state consequence across calls."
+        }
+      ],
+      "normalization_notes": "Merge the final finding and submitted shared-state explanation into one claim. Read the recommendation for its explicit consequence explanation, not merely for the correctness of its proposed repair.",
+      "gold_concerns": "The gold issue and head line 1 are correct. The final wording alone is vague, but the frozen policy requires considering submitted review text as well; that text supplies the concrete consequence.",
+      "reviewer_type": "ai_assistant",
+      "human_validated": false,
+      "supporting_evidence": "Head line 1 defines items=[] once at function definition; an omitted argument reuses that list, bypassing the items is None branch. Consecutive calls collect(\"a\") and collect(\"b\") return [\"a\"] then [\"a\",\"b\"] in head, versus [\"a\"] then [\"b\"] in base. The submitted text explicitly recommends avoiding shared state across calls."
+    }
+  ],
+  "reviewer_type": "ai_assistant",
+  "human_validated": false,
+  "independent_review": false,
+  "completed_at": "2026-09-08T21:20:31.608249+00:00",
+  "notes": "Filled at user request. This is an additional assistant review of the six priority packets, not human validation. Original results, full adjudication packets and published scoring reports are unchanged."
+}

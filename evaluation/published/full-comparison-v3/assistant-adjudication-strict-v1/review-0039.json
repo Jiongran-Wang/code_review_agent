@@ -1,0 +1,64 @@
+{
+  "task_id": "review-0039",
+  "case_id": "bca9b18b8e18",
+  "input": {
+    "case_id": "bca9b18b8e18",
+    "pr": {
+      "title": "Refactor numeric feature centering",
+      "body": "center(train, test): train is nonempty; subtract the training mean from both lists without fitting on test data."
+    },
+    "base_files": {
+      "module.py": "def center(train, test):\n    mean = sum(train) / len(train)\n    return [x - mean for x in train], [x - mean for x in test]\n"
+    },
+    "head_files": {
+      "module.py": "def center(train, test):\n    fitting_values = train + test\n    offset = sum(fitting_values) / len(fitting_values)\n    return [value - offset for value in train], [value - offset for value in test]\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,3 +1,4 @@\n def center(train, test):\n-    mean = sum(train) / len(train)\n-    return [x - mean for x in train], [x - mean for x in test]\n+    fitting_values = train + test\n+    offset = sum(fitting_values) / len(fitting_values)\n+    return [value - offset for value in train], [value - offset for value in test]\n"
+      }
+    ]
+  },
+  "gold_issues": [
+    {
+      "issue_id": "bca9b18b8e18:1",
+      "file": "module.py",
+      "line_start": 2,
+      "line_end": 2,
+      "category": "ml_data_leakage",
+      "severity": "high",
+      "description": "Fitting the centering offset on train plus test leaks held-out information into training features."
+    }
+  ],
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 2,
+      "description": "The calculation of the mean is incorrect. The new implementation fits the mean on both train and test data, which violates the requirement to only fit on the training data."
+    }
+  ],
+  "raw_review": {
+    "final_response": "{\n  \"decision\": \"REQUEST_CHANGES\",\n  \"findings\": [\n    {\n      \"file\": \"module.py\",\n      \"line\": 2,\n      \"description\": \"The calculation of the mean is incorrect. The new implementation fits the mean on both train and test data, which violates the requirement to only fit on the training data.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "submitted_reviews": [],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": true,
+  "decisions": [
+    {
+      "finding_id": "f1",
+      "gold_issue_id": "bca9b18b8e18:1",
+      "rationale": "Identifies fitting on test as well as training data, explicitly violating train-only fitting. This describes the data-leakage behavior even without naming it leakage."
+    }
+  ],
+  "normalization_notes": [
+    "Reviewed final JSON, submitted body and inline comments together. Merged the same allegation across channels; retained all distinct defect allegations."
+  ]
+}

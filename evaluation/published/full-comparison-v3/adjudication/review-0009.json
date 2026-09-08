@@ -1,0 +1,61 @@
+{
+  "task_id": "review-0009",
+  "case_id": "ca048d6a497e",
+  "input": {
+    "case_id": "ca048d6a497e",
+    "pr": {
+      "title": "Refactor historical price feature",
+      "body": "prior_mean(prices, index, window): at the start of index, use only the preceding window prices; index >= window > 0 and index < len(prices)."
+    },
+    "base_files": {
+      "module.py": "def prior_mean(prices, index, window):\n    return sum(prices[index-window:index]) / window\n"
+    },
+    "head_files": {
+      "module.py": "def prior_mean(prices, index, window):\n    start = index - window\n    history = prices[start+1:index+1]\n    return sum(history) / len(history)\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def prior_mean(prices, index, window):\n-    return sum(prices[index-window:index]) / window\n+    start = index - window\n+    history = prices[start+1:index+1]\n+    return sum(history) / len(history)\n"
+      }
+    ]
+  },
+  "gold_issues": [
+    {
+      "issue_id": "ca048d6a497e:1",
+      "file": "module.py",
+      "line_start": 3,
+      "line_end": 3,
+      "category": "temporal_leakage",
+      "severity": "high",
+      "description": "The shifted window includes the current price, which is unavailable at prediction time, introducing look-ahead bias."
+    }
+  ],
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 3,
+      "description": "The calculation of the historical mean is incorrect. The new implementation uses 'start + 1' which causes it to skip the first price in the window, leading to an incorrect average calculation."
+    }
+  ],
+  "raw_review": {
+    "final_response": "{\n  \"decision\": \"REQUEST_CHANGES\",\n  \"findings\": [\n    {\n      \"file\": \"module.py\",\n      \"line\": 3,\n      \"description\": \"The calculation of the historical mean is incorrect. The new implementation uses 'start + 1' which causes it to skip the first price in the window, leading to an incorrect average calculation.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "submitted_reviews": [],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": false,
+  "decisions": [
+    {
+      "finding_id": "f1",
+      "gold_issue_id": "PENDING",
+      "rationale": ""
+    }
+  ]
+}

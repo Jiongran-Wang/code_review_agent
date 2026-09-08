@@ -1,0 +1,9 @@
+{
+  "final_response": "{\n  \"decision\": \"COMMENT\",\n  \"findings\": [\n    {\n      \"file\": \"module.py\",\n      \"line\": 2,\n      \"description\": \"The logic for determining expiration has changed from a direct comparison to calculating remaining time. This could lead to confusion if the timestamps are not in the same unit, as the original implementation directly compared the two timestamps.\"\n    }\n  ]\n}",
+  "tool_calls": [],
+  "submitted_reviews": [],
+  "issue_comments": [],
+  "file_writes": [],
+  "fix_prs": [],
+  "memory": []
+}

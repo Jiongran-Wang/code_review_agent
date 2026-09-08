@@ -1,0 +1,150 @@
+{
+  "task_id": "review-0034",
+  "case_id": "85ad40fd5032",
+  "input": {
+    "case_id": "85ad40fd5032",
+    "pr": {
+      "title": "Simplify collection helper",
+      "body": "collect(item, items=None): append to the provided list, or a fresh list if omitted; return a copy."
+    },
+    "base_files": {
+      "module.py": "def collect(item, items=None):\n    if items is None:\n        items = []\n    items.append(item)\n    return items[:]\n"
+    },
+    "head_files": {
+      "module.py": "def collect(item, items=[]):\n    if items is None:\n        items = list()\n    items.append(item)\n    return list(items)\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,5 +1,5 @@\n-def collect(item, items=None):\n+def collect(item, items=[]):\n     if items is None:\n-        items = []\n+        items = list()\n     items.append(item)\n-    return items[:]\n+    return list(items)\n"
+      }
+    ]
+  },
+  "gold_issues": [
+    {
+      "issue_id": "85ad40fd5032:1",
+      "file": "module.py",
+      "line_start": 1,
+      "line_end": 1,
+      "category": "state_management",
+      "severity": "medium",
+      "description": "The mutable default list retains items across independent calls, mixing caller state."
+    }
+  ],
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 1,
+      "description": "The default argument for `items` in the `collect` function is mutable (a list). This can lead to unexpected behavior when the function is called multiple times without providing a second argument."
+    }
+  ],
+  "raw_review": {
+    "final_response": "{\"decision\":\"COMMENT\",\"findings\":[{\"file\":\"module.py\",\"line\":1,\"description\":\"The default argument for `items` in the `collect` function is mutable (a list). This can lead to unexpected behavior when the function is called multiple times without providing a second argument.\"}]}",
+    "tool_calls": [
+      {
+        "tool": "get_pull_request",
+        "input": {
+          "owner": "benchmark",
+          "repo": "85ad40fd5032",
+          "pull_number": 1
+        },
+        "result": {
+          "number": 1,
+          "title": "Simplify collection helper",
+          "body": "collect(item, items=None): append to the provided list, or a fresh list if omitted; return a copy.",
+          "state": "open",
+          "draft": false,
+          "author": "fixture-author",
+          "base_branch": "main",
+          "head_branch": "candidate",
+          "head_sha": "b2808180575f2a2038588d7100179c903480d3a56a65eb044484a2a9b7ad49b1",
+          "merged": false,
+          "changed_files": 1,
+          "additions": 3,
+          "deletions": 3,
+          "html_url": "https://fixture.invalid/benchmark/85ad40fd5032/pull/1"
+        }
+      },
+      {
+        "tool": "get_pull_request_files",
+        "input": {
+          "owner": "benchmark",
+          "repo": "85ad40fd5032",
+          "pull_number": 1
+        },
+        "result": [
+          {
+            "filename": "module.py",
+            "status": "modified",
+            "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,5 +1,5 @@\n-def collect(item, items=None):\n+def collect(item, items=[]):\n     if items is None:\n-        items = []\n+        items = list()\n     items.append(item)\n-    return items[:]\n+    return list(items)\n",
+            "additions": 3,
+            "deletions": 3,
+            "changes": 6
+          }
+        ]
+      },
+      {
+        "tool": "list_commits",
+        "input": {
+          "owner": "benchmark",
+          "repo": "85ad40fd5032",
+          "sha": "candidate"
+        },
+        "result": [
+          {
+            "sha": "b2808180575f2a2038588d7100179c903480d3a56a65eb044484a2a9b7ad49b1",
+            "message": "Simplify collection helper",
+            "author": "fixture-author",
+            "date": "2026-01-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "tool": "memory_get_all",
+        "input": {
+          "max_tokens": 3000
+        },
+        "result": ""
+      },
+      {
+        "tool": "create_pull_request_review",
+        "input": {
+          "owner": "benchmark",
+          "repo": "85ad40fd5032",
+          "pull_number": 1,
+          "event": "COMMENT",
+          "body": "## Code Review Summary\n\n### Findings\n- **File**: `module.py`\n  - **Issue**: The default argument for `items` in the `collect` function is mutable (a list). This can lead to unexpected behavior when the function is called multiple times without providing a second argument.\n  - **Recommendation**: Change the default value of `items` to `None` and initialize it inside the function to avoid shared state across calls.\n\n### Summary\nThe change simplifies the collection helper, but the use of a mutable default argument can introduce bugs. Please consider the recommendation."
+        },
+        "result": {
+          "id": 1,
+          "state": "COMMENT",
+          "body": "## Code Review Summary\n\n### Findings\n- **File**: `module.py`\n  - **Issue**: The default argument for `items` in the `collect` function is mutable (a list). This can lead to unexpected behavior when the function is called multiple times without providing a second argument.\n  - **Recommendation**: Change the default value of `items` to `None` and initialize it inside the function to avoid shared state across calls.\n\n### Summary\nThe change simplifies the collection helper, but the use of a mutable default argument can introduce bugs. Please consider the recommendation."
+        }
+      }
+    ],
+    "submitted_reviews": [
+      {
+        "owner": "benchmark",
+        "repo": "85ad40fd5032",
+        "pull_number": 1,
+        "event": "COMMENT",
+        "body": "## Code Review Summary\n\n### Findings\n- **File**: `module.py`\n  - **Issue**: The default argument for `items` in the `collect` function is mutable (a list). This can lead to unexpected behavior when the function is called multiple times without providing a second argument.\n  - **Recommendation**: Change the default value of `items` to `None` and initialize it inside the function to avoid shared state across calls.\n\n### Summary\nThe change simplifies the collection helper, but the use of a mutable default argument can introduce bugs. Please consider the recommendation."
+      }
+    ],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": false,
+  "decisions": [
+    {
+      "finding_id": "f1",
+      "gold_issue_id": "PENDING",
+      "rationale": ""
+    }
+  ]
+}

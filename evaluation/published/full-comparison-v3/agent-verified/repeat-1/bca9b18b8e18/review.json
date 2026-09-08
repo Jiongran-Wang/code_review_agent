@@ -1,0 +1,41 @@
+{
+  "case_id": "bca9b18b8e18",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 4,
+      "description": "The refactor calculates the mean using both training and test data, violating the requirement to only fit on training data, leading to incorrect centering of the test data."
+    }
+  ],
+  "decision": "REQUEST_CHANGES",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": true,
+    "review_submitted": true,
+    "example_execution_required": true,
+    "example_executed": true,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 120400,
+    "llm_attempts": 4,
+    "pacing_wait_ms": 113861,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 6387,
+    "llm_responses": 4,
+    "input_tokens": 38501,
+    "output_tokens": 381,
+    "tool_calls": 4,
+    "tool_errors": 0,
+    "submitted_reviews": 1,
+    "example_execution_calls": 1,
+    "example_execution_successes": 1,
+    "example_execution_duration_ms": 103,
+    "fix_prs": 0
+  }
+}

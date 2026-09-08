@@ -1,0 +1,41 @@
+{
+  "case_id": "e33a2e9207b7",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 1,
+      "description": "The function `is_expired` has been refactored to improve clarity and correctness. The new implementation calculates the remaining time until expiration, which is a more intuitive approach. However, ensure that the `now` and `expires_at` timestamps are consistently in the same unit to avoid potential issues."
+    }
+  ],
+  "decision": "COMMENT",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": true,
+    "review_submitted": true,
+    "example_execution_required": false,
+    "example_executed": false,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 120453,
+    "llm_attempts": 4,
+    "pacing_wait_ms": 113184,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 7224,
+    "llm_responses": 4,
+    "input_tokens": 69842,
+    "output_tokens": 344,
+    "tool_calls": 5,
+    "tool_errors": 0,
+    "submitted_reviews": 1,
+    "example_execution_calls": 0,
+    "example_execution_successes": 0,
+    "example_execution_duration_ms": 0,
+    "fix_prs": 0
+  }
+}

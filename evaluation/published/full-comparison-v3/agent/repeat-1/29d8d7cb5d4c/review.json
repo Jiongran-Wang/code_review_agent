@@ -1,0 +1,41 @@
+{
+  "case_id": "29d8d7cb5d4c",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 3,
+      "description": "The new implementation raises a PermissionError if user_id is None, which may not cover all access control scenarios. The original check for the document owner is removed, potentially leading to unauthorized access."
+    }
+  ],
+  "decision": "COMMENT",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": true,
+    "review_submitted": true,
+    "example_execution_required": false,
+    "example_executed": false,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 90405,
+    "llm_attempts": 3,
+    "pacing_wait_ms": 84953,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 5417,
+    "llm_responses": 3,
+    "input_tokens": 52539,
+    "output_tokens": 373,
+    "tool_calls": 4,
+    "tool_errors": 0,
+    "submitted_reviews": 1,
+    "example_execution_calls": 0,
+    "example_execution_successes": 0,
+    "example_execution_duration_ms": 0,
+    "fix_prs": 0
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "task_id": "review-0036",
+  "case_id": "6a75289b0733",
+  "input": {
+    "case_id": "6a75289b0733",
+    "pr": {
+      "title": "Refactor account lookup",
+      "body": "lookup(connection, name): return only rows whose name exactly equals the untrusted input; users has columns id and name."
+    },
+    "base_files": {
+      "module.py": "def lookup(connection, name):\n    return connection.execute('SELECT id FROM users WHERE name = ?', (name,)).fetchall()\n"
+    },
+    "head_files": {
+      "module.py": "def lookup(connection, name):\n    query = 'SELECT id FROM users WHERE name = ?'\n    cursor = connection.execute(query.replace('?', \"'\" + name + \"'\"))\n    return cursor.fetchall()\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def lookup(connection, name):\n-    return connection.execute('SELECT id FROM users WHERE name = ?', (name,)).fetchall()\n+    query = 'SELECT id FROM users WHERE name = ?'\n+    cursor = connection.execute(query.replace('?', \"'\" + name + \"'\"))\n+    return cursor.fetchall()\n"
+      }
+    ]
+  },
+  "gold_issues": [
+    {
+      "issue_id": "6a75289b0733:1",
+      "file": "module.py",
+      "line_start": 3,
+      "line_end": 3,
+      "category": "security",
+      "severity": "high",
+      "description": "Interpolating untrusted input into SQL lets a crafted name return all users instead of an exact match."
+    }
+  ],
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 1,
+      "description": "The `lookup` function constructs a SQL query using string replacement, which can lead to SQL injection vulnerabilities if the `name` parameter contains malicious input."
+    }
+  ],
+  "raw_review": {
+    "final_response": "{\"decision\":\"COMMENT\",\"findings\":[{\"file\":\"module.py\",\"line\":1,\"description\":\"The `lookup` function constructs a SQL query using string replacement, which can lead to SQL injection vulnerabilities if the `name` parameter contains malicious input.\"}]}",
+    "tool_calls": [
+      {
+        "tool": "get_pull_request",
+        "input": {
+          "owner": "benchmark",
+          "repo": "6a75289b0733",
+          "pull_number": 1
+        },
+        "result": {
+          "number": 1,
+          "title": "Refactor account lookup",
+          "body": "lookup(connection, name): return only rows whose name exactly equals the untrusted input; users has columns id and name.",
+          "state": "open",
+          "draft": false,
+          "author": "fixture-author",
+          "base_branch": "main",
+          "head_branch": "candidate",
+          "head_sha": "a097aa428abb828ea9dd751f37280c1d9ae1a048d95816724ff402bcf8d5cefc",
+          "merged": false,
+          "changed_files": 1,
+          "additions": 3,
+          "deletions": 1,
+          "html_url": "https://fixture.invalid/benchmark/6a75289b0733/pull/1"
+        }
+      },
+      {
+        "tool": "get_pull_request_files",
+        "input": {
+          "owner": "benchmark",
+          "repo": "6a75289b0733",
+          "pull_number": 1
+        },
+        "result": [
+          {
+            "filename": "module.py",
+            "status": "modified",
+            "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def lookup(connection, name):\n-    return connection.execute('SELECT id FROM users WHERE name = ?', (name,)).fetchall()\n+    query = 'SELECT id FROM users WHERE name = ?'\n+    cursor = connection.execute(query.replace('?', \"'\" + name + \"'\"))\n+    return cursor.fetchall()\n",
+            "additions": 3,
+            "deletions": 1,
+            "changes": 4
+          }
+        ]
+      },
+      {
+        "tool": "list_commits",
+        "input": {
+          "owner": "benchmark",
+          "repo": "6a75289b0733",
+          "sha": "candidate"
+        },
+        "result": [
+          {
+            "sha": "a097aa428abb828ea9dd751f37280c1d9ae1a048d95816724ff402bcf8d5cefc",
+            "message": "Refactor account lookup",
+            "author": "fixture-author",
+            "date": "2026-01-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "tool": "get_file_contents",
+        "input": {
+          "owner": "benchmark",
+          "repo": "6a75289b0733",
+          "path": "module.py",
+          "branch": "candidate"
+        },
+        "result": {
+          "path": "module.py",
+          "sha": "d3f339621ac5b0d697c017502997b98190a66fdd",
+          "content": "def lookup(connection, name):\n    query = 'SELECT id FROM users WHERE name = ?'\n    cursor = connection.execute(query.replace('?', \"'\" + name + \"'\"))\n    return cursor.fetchall()\n",
+          "encoding": "base64",
+          "size": 179
+        }
+      },
+      {
+        "tool": "memory_get_all",
+        "input": {},
+        "result": ""
+      },
+      {
+        "tool": "create_pull_request_review",
+        "input": {
+          "owner": "benchmark",
+          "repo": "6a75289b0733",
+          "pull_number": 1,
+          "event": "COMMENT",
+          "body": "## Code Review Summary\n\n### Findings\n\n🔴 **Security Vulnerability: SQL Injection**\n\n**Issue**: The `lookup` function constructs a SQL query using string replacement, which can lead to SQL injection vulnerabilities if the `name` parameter contains malicious input.\n\n**Risk**: An attacker could manipulate the input to execute arbitrary SQL commands, potentially compromising the database.\n\n**Suggested Fix**: Use parameterized queries to safely handle user input:\n```python\nquery = 'SELECT id FROM users WHERE name = ?'\nreturn connection.execute(query, (name,)).fetchall()\n```\n\nThis approach ensures that user input is properly escaped and prevents SQL injection attacks."
+        },
+        "result": {
+          "id": 1,
+          "state": "COMMENT",
+          "body": "## Code Review Summary\n\n### Findings\n\n🔴 **Security Vulnerability: SQL Injection**\n\n**Issue**: The `lookup` function constructs a SQL query using string replacement, which can lead to SQL injection vulnerabilities if the `name` parameter contains malicious input.\n\n**Risk**: An attacker could manipulate the input to execute arbitrary SQL commands, potentially compromising the database.\n\n**Suggested Fix**: Use parameterized queries to safely handle user input:\n```python\nquery = 'SELECT id FROM users WHERE name = ?'\nreturn connection.execute(query, (name,)).fetchall()\n```\n\nThis approach ensures that user input is properly escaped and prevents SQL injection attacks."
+        }
+      }
+    ],
+    "submitted_reviews": [
+      {
+        "owner": "benchmark",
+        "repo": "6a75289b0733",
+        "pull_number": 1,
+        "event": "COMMENT",
+        "body": "## Code Review Summary\n\n### Findings\n\n🔴 **Security Vulnerability: SQL Injection**\n\n**Issue**: The `lookup` function constructs a SQL query using string replacement, which can lead to SQL injection vulnerabilities if the `name` parameter contains malicious input.\n\n**Risk**: An attacker could manipulate the input to execute arbitrary SQL commands, potentially compromising the database.\n\n**Suggested Fix**: Use parameterized queries to safely handle user input:\n```python\nquery = 'SELECT id FROM users WHERE name = ?'\nreturn connection.execute(query, (name,)).fetchall()\n```\n\nThis approach ensures that user input is properly escaped and prevents SQL injection attacks."
+      }
+    ],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": true,
+  "decisions": [
+    {
+      "finding_id": "f1",
+      "gold_issue_id": "6a75289b0733:1",
+      "rationale": "Correctly identifies string replacement and SQL injection; submitted impact wording is broader than the executed fixture demonstrates, but the injection diagnosis is correct."
+    }
+  ],
+  "normalization_notes": [
+    "Reviewed final JSON, submitted body and inline comments together. Merged the same allegation across channels; retained all distinct defect allegations."
+  ]
+}

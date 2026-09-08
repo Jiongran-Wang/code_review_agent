@@ -1,0 +1,41 @@
+{
+  "case_id": "c85a607a54b5",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 2,
+      "description": "The logic for determining expiration has changed from a direct comparison to a calculation of remaining time, which may introduce errors if the timestamps are not in the same unit. The original implementation was clearer and directly compared the two timestamps."
+    }
+  ],
+  "decision": "REQUEST_CHANGES",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": false,
+    "review_submitted": false,
+    "example_execution_required": false,
+    "example_executed": false,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 30183,
+    "llm_attempts": 1,
+    "pacing_wait_ms": 28451,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 1720,
+    "llm_responses": 1,
+    "input_tokens": 16293,
+    "output_tokens": 87,
+    "tool_calls": 0,
+    "tool_errors": 0,
+    "submitted_reviews": 0,
+    "example_execution_calls": 0,
+    "example_execution_successes": 0,
+    "example_execution_duration_ms": 0,
+    "fix_prs": 0
+  }
+}

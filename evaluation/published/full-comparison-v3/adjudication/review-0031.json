@@ -1,0 +1,72 @@
+{
+  "task_id": "review-0031",
+  "case_id": "85ad40fd5032",
+  "input": {
+    "case_id": "85ad40fd5032",
+    "pr": {
+      "title": "Simplify collection helper",
+      "body": "collect(item, items=None): append to the provided list, or a fresh list if omitted; return a copy."
+    },
+    "base_files": {
+      "module.py": "def collect(item, items=None):\n    if items is None:\n        items = []\n    items.append(item)\n    return items[:]\n"
+    },
+    "head_files": {
+      "module.py": "def collect(item, items=[]):\n    if items is None:\n        items = list()\n    items.append(item)\n    return list(items)\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,5 +1,5 @@\n-def collect(item, items=None):\n+def collect(item, items=[]):\n     if items is None:\n-        items = []\n+        items = list()\n     items.append(item)\n-    return items[:]\n+    return list(items)\n"
+      }
+    ]
+  },
+  "gold_issues": [
+    {
+      "issue_id": "85ad40fd5032:1",
+      "file": "module.py",
+      "line_start": 1,
+      "line_end": 1,
+      "category": "state_management",
+      "severity": "medium",
+      "description": "The mutable default list retains items across independent calls, mixing caller state."
+    }
+  ],
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 1,
+      "description": "The default mutable argument 'items' can lead to unexpected behavior. If the function is called multiple times without providing a new list, all calls will share the same list, causing items to accumulate across calls."
+    },
+    {
+      "finding_id": "f2",
+      "file": "module.py",
+      "line": 5,
+      "description": "Returning a new list with 'list(items)' is unnecessary since 'items' is already a list. The return statement should simply return 'items' instead."
+    }
+  ],
+  "raw_review": {
+    "final_response": "{\n  \"decision\": \"REQUEST_CHANGES\",\n  \"findings\": [\n    {\n      \"file\": \"module.py\",\n      \"line\": 1,\n      \"description\": \"The default mutable argument 'items' can lead to unexpected behavior. If the function is called multiple times without providing a new list, all calls will share the same list, causing items to accumulate across calls.\"\n    },\n    {\n      \"file\": \"module.py\",\n      \"line\": 5,\n      \"description\": \"Returning a new list with 'list(items)' is unnecessary since 'items' is already a list. The return statement should simply return 'items' instead.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "submitted_reviews": [],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": false,
+  "decisions": [
+    {
+      "finding_id": "f1",
+      "gold_issue_id": "PENDING",
+      "rationale": ""
+    },
+    {
+      "finding_id": "f2",
+      "gold_issue_id": "PENDING",
+      "rationale": ""
+    }
+  ]
+}

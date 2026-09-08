@@ -1,0 +1,41 @@
+{
+  "case_id": "9ec94bab74f0",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 3,
+      "description": "The logic for checking document ownership has been inverted, which is a good practice for clarity."
+    }
+  ],
+  "decision": "COMMENT",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": true,
+    "review_submitted": true,
+    "example_execution_required": false,
+    "example_executed": false,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 89391,
+    "llm_attempts": 3,
+    "pacing_wait_ms": 84343,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 5016,
+    "llm_responses": 3,
+    "input_tokens": 52379,
+    "output_tokens": 277,
+    "tool_calls": 4,
+    "tool_errors": 0,
+    "submitted_reviews": 1,
+    "example_execution_calls": 0,
+    "example_execution_successes": 0,
+    "example_execution_duration_ms": 0,
+    "fix_prs": 0
+  }
+}

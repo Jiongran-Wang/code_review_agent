@@ -1,0 +1,216 @@
+{
+  "task_id": "review-0014",
+  "case_id": "c85a607a54b5",
+  "input": {
+    "case_id": "c85a607a54b5",
+    "pr": {
+      "title": "Refactor expiration comparison",
+      "body": "is_expired(now, expires_at): timestamps use the same unit; validity ends exactly at expires_at."
+    },
+    "base_files": {
+      "module.py": "def is_expired(now, expires_at):\n    return now >= expires_at\n"
+    },
+    "head_files": {
+      "module.py": "def is_expired(now, expires_at):\n    remaining = expires_at - now\n    return remaining < 0\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,3 @@\n def is_expired(now, expires_at):\n-    return now >= expires_at\n+    remaining = expires_at - now\n+    return remaining < 0\n"
+      }
+    ]
+  },
+  "gold_issues": [
+    {
+      "issue_id": "c85a607a54b5:1",
+      "file": "module.py",
+      "line_start": 3,
+      "line_end": 3,
+      "category": "boundary_condition",
+      "severity": "high",
+      "description": "The strict comparison treats a credential as valid at its exact expiration timestamp."
+    }
+  ],
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 3,
+      "description": "The logic for expiration comparison has changed. The original function returned true when now was equal to expires_at, but the new implementation returns false in this case, which is incorrect."
+    }
+  ],
+  "raw_review": {
+    "final_response": "{\"decision\":\"REQUEST_CHANGES\",\"findings\":[{\"file\":\"module.py\",\"line\":3,\"description\":\"The logic for expiration comparison has changed. The original function returned true when now was equal to expires_at, but the new implementation returns false in this case, which is incorrect.\"}]}",
+    "tool_calls": [
+      {
+        "tool": "get_pull_request",
+        "input": {
+          "owner": "benchmark",
+          "repo": "c85a607a54b5",
+          "pull_number": 1
+        },
+        "result": {
+          "number": 1,
+          "title": "Refactor expiration comparison",
+          "body": "is_expired(now, expires_at): timestamps use the same unit; validity ends exactly at expires_at.",
+          "state": "open",
+          "draft": false,
+          "author": "fixture-author",
+          "base_branch": "main",
+          "head_branch": "candidate",
+          "head_sha": "be332c870a44788cc3552c2be792c2120075856a8eedcfb032e8222a1477eb5d",
+          "merged": false,
+          "changed_files": 1,
+          "additions": 2,
+          "deletions": 1,
+          "html_url": "https://fixture.invalid/benchmark/c85a607a54b5/pull/1"
+        }
+      },
+      {
+        "tool": "get_pull_request_files",
+        "input": {
+          "owner": "benchmark",
+          "repo": "c85a607a54b5",
+          "pull_number": 1
+        },
+        "result": [
+          {
+            "filename": "module.py",
+            "status": "modified",
+            "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,3 @@\n def is_expired(now, expires_at):\n-    return now >= expires_at\n+    remaining = expires_at - now\n+    return remaining < 0\n",
+            "additions": 2,
+            "deletions": 1,
+            "changes": 3
+          }
+        ]
+      },
+      {
+        "tool": "execute_example",
+        "input": {
+          "owner": "benchmark",
+          "repo": "c85a607a54b5",
+          "path": "module.py",
+          "calls": [
+            {
+              "function": "is_expired",
+              "args": [
+                10,
+                15
+              ]
+            },
+            {
+              "function": "is_expired",
+              "args": [
+                15,
+                15
+              ]
+            },
+            {
+              "function": "is_expired",
+              "args": [
+                20,
+                15
+              ]
+            }
+          ]
+        },
+        "result": {
+          "base": {
+            "observations": [
+              {
+                "return": false,
+                "exception": null,
+                "values_after": {}
+              },
+              {
+                "return": true,
+                "exception": null,
+                "values_after": {}
+              },
+              {
+                "return": true,
+                "exception": null,
+                "values_after": {}
+              }
+            ]
+          },
+          "head": {
+            "observations": [
+              {
+                "return": false,
+                "exception": null,
+                "values_after": {}
+              },
+              {
+                "return": false,
+                "exception": null,
+                "values_after": {}
+              },
+              {
+                "return": true,
+                "exception": null,
+                "values_after": {}
+              }
+            ]
+          },
+          "basis": "Executed audited fixture code. Check the PR preconditions and base/head difference before alleging an introduced defect; an exception alone is not a defect."
+        }
+      },
+      {
+        "tool": "create_pull_request_review",
+        "input": {
+          "owner": "benchmark",
+          "repo": "c85a607a54b5",
+          "pull_number": 1,
+          "event": "REQUEST_CHANGES",
+          "body": "The refactor of the `is_expired` function introduces a defect in the expiration logic. The original implementation correctly returned `true` when the current time is equal to the expiration time, indicating that the item is expired. However, the new implementation returns `false` in this case, which is incorrect. This change alters the expected behavior of the function, leading to potential issues in the application where this function is used.",
+          "comments": [
+            {
+              "path": "module.py",
+              "line": 3,
+              "body": "The logic for expiration comparison has changed. The original function returned true when now was equal to expires_at, but the new implementation returns false in this case, which is incorrect."
+            }
+          ]
+        },
+        "result": {
+          "id": 1,
+          "state": "REQUEST_CHANGES",
+          "body": "The refactor of the `is_expired` function introduces a defect in the expiration logic. The original implementation correctly returned `true` when the current time is equal to the expiration time, indicating that the item is expired. However, the new implementation returns `false` in this case, which is incorrect. This change alters the expected behavior of the function, leading to potential issues in the application where this function is used."
+        }
+      }
+    ],
+    "submitted_reviews": [
+      {
+        "owner": "benchmark",
+        "repo": "c85a607a54b5",
+        "pull_number": 1,
+        "event": "REQUEST_CHANGES",
+        "body": "The refactor of the `is_expired` function introduces a defect in the expiration logic. The original implementation correctly returned `true` when the current time is equal to the expiration time, indicating that the item is expired. However, the new implementation returns `false` in this case, which is incorrect. This change alters the expected behavior of the function, leading to potential issues in the application where this function is used.",
+        "comments": [
+          {
+            "path": "module.py",
+            "line": 3,
+            "body": "The logic for expiration comparison has changed. The original function returned true when now was equal to expires_at, but the new implementation returns false in this case, which is incorrect."
+          }
+        ]
+      }
+    ],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": true,
+  "decisions": [
+    {
+      "finding_id": "f1",
+      "gold_issue_id": "c85a607a54b5:1",
+      "rationale": "Correctly identifies False at the equality boundary after refactor; reproduced by execution."
+    }
+  ],
+  "normalization_notes": [
+    "Reviewed final JSON, submitted body and inline comments together. Merged the same allegation across channels; retained all distinct defect allegations."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "final_response": "{\n  \"decision\": \"REQUEST_CHANGES\",\n  \"findings\": [\n    {\n      \"file\": \"module.py\",\n      \"line\": 3,\n      \"description\": \"The calculation of the historical mean is incorrect. The new implementation uses 'start + 1' which causes it to skip the first price in the window, leading to an incorrect average calculation.\"\n    }\n  ]\n}",
+  "tool_calls": [],
+  "submitted_reviews": [],
+  "issue_comments": [],
+  "file_writes": [],
+  "fix_prs": [],
+  "memory": []
+}

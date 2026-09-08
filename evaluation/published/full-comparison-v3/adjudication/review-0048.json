@@ -1,0 +1,152 @@
+{
+  "task_id": "review-0048",
+  "case_id": "ad05f7c612a5",
+  "input": {
+    "case_id": "ad05f7c612a5",
+    "pr": {
+      "title": "Refactor account lookup",
+      "body": "lookup(connection, name): return only rows whose name exactly equals the untrusted input; users has columns id and name."
+    },
+    "base_files": {
+      "module.py": "def lookup(connection, name):\n    return connection.execute('SELECT id FROM users WHERE name = ?', (name,)).fetchall()\n"
+    },
+    "head_files": {
+      "module.py": "def lookup(connection, name):\n    query = 'SELECT id FROM users WHERE name = ?'\n    cursor = connection.execute(query, (name,))\n    return cursor.fetchall()\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def lookup(connection, name):\n-    return connection.execute('SELECT id FROM users WHERE name = ?', (name,)).fetchall()\n+    query = 'SELECT id FROM users WHERE name = ?'\n+    cursor = connection.execute(query, (name,))\n+    return cursor.fetchall()\n"
+      }
+    ]
+  },
+  "gold_issues": [],
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 1,
+      "description": "The `lookup` function constructs a SQL query using user input directly, which can lead to SQL injection vulnerabilities if the input is not properly sanitized."
+    }
+  ],
+  "raw_review": {
+    "final_response": "{\"decision\":\"COMMENT\",\"findings\":[{\"file\":\"module.py\",\"line\":1,\"description\":\"The `lookup` function constructs a SQL query using user input directly, which can lead to SQL injection vulnerabilities if the input is not properly sanitized.\"}]}",
+    "tool_calls": [
+      {
+        "tool": "get_pull_request",
+        "input": {
+          "owner": "benchmark",
+          "repo": "ad05f7c612a5",
+          "pull_number": 1
+        },
+        "result": {
+          "number": 1,
+          "title": "Refactor account lookup",
+          "body": "lookup(connection, name): return only rows whose name exactly equals the untrusted input; users has columns id and name.",
+          "state": "open",
+          "draft": false,
+          "author": "fixture-author",
+          "base_branch": "main",
+          "head_branch": "candidate",
+          "head_sha": "47ff44279457b620e14889335dee374ce6d4298f03da01c612ebe54bd69f4ab7",
+          "merged": false,
+          "changed_files": 1,
+          "additions": 3,
+          "deletions": 1,
+          "html_url": "https://fixture.invalid/benchmark/ad05f7c612a5/pull/1"
+        }
+      },
+      {
+        "tool": "get_pull_request_files",
+        "input": {
+          "owner": "benchmark",
+          "repo": "ad05f7f7c612a5",
+          "pull_number": 1
+        },
+        "result": {
+          "error": "Repository outside this case",
+          "tool": "get_pull_request_files"
+        }
+      },
+      {
+        "tool": "list_commits",
+        "input": {
+          "owner": "benchmark",
+          "repo": "ad05f7c612a5",
+          "sha": "candidate"
+        },
+        "result": [
+          {
+            "sha": "47ff44279457b620e14889335dee374ce6d4298f03da01c612ebe54bd69f4ab7",
+            "message": "Refactor account lookup",
+            "author": "fixture-author",
+            "date": "2026-01-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "tool": "get_pull_request_files",
+        "input": {
+          "owner": "benchmark",
+          "repo": "ad05f7c612a5",
+          "pull_number": 1
+        },
+        "result": [
+          {
+            "filename": "module.py",
+            "status": "modified",
+            "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def lookup(connection, name):\n-    return connection.execute('SELECT id FROM users WHERE name = ?', (name,)).fetchall()\n+    query = 'SELECT id FROM users WHERE name = ?'\n+    cursor = connection.execute(query, (name,))\n+    return cursor.fetchall()\n",
+            "additions": 3,
+            "deletions": 1,
+            "changes": 4
+          }
+        ]
+      },
+      {
+        "tool": "memory_get_all",
+        "input": {
+          "max_tokens": 3000
+        },
+        "result": ""
+      },
+      {
+        "tool": "create_pull_request_review",
+        "input": {
+          "owner": "benchmark",
+          "repo": "ad05f7c612a5",
+          "pull_number": 1,
+          "event": "COMMENT",
+          "body": "## Code Review Summary\n\n### Findings\n\n🔴 **Security Vulnerability: SQL Injection**\n\n**Issue**: The `lookup` function constructs a SQL query using user input directly, which can lead to SQL injection vulnerabilities if the input is not properly sanitized.\n\n**Risk**: An attacker could manipulate the `name` parameter to execute arbitrary SQL commands.\n\n**Recommendation**: Ensure that the input is sanitized and consider using parameterized queries to prevent SQL injection.\n\n### Summary\nThe changes made in this PR improve the structure of the SQL query, but the potential for SQL injection remains. Please address the security concern before merging."
+        },
+        "result": {
+          "id": 1,
+          "state": "COMMENT",
+          "body": "## Code Review Summary\n\n### Findings\n\n🔴 **Security Vulnerability: SQL Injection**\n\n**Issue**: The `lookup` function constructs a SQL query using user input directly, which can lead to SQL injection vulnerabilities if the input is not properly sanitized.\n\n**Risk**: An attacker could manipulate the `name` parameter to execute arbitrary SQL commands.\n\n**Recommendation**: Ensure that the input is sanitized and consider using parameterized queries to prevent SQL injection.\n\n### Summary\nThe changes made in this PR improve the structure of the SQL query, but the potential for SQL injection remains. Please address the security concern before merging."
+        }
+      }
+    ],
+    "submitted_reviews": [
+      {
+        "owner": "benchmark",
+        "repo": "ad05f7c612a5",
+        "pull_number": 1,
+        "event": "COMMENT",
+        "body": "## Code Review Summary\n\n### Findings\n\n🔴 **Security Vulnerability: SQL Injection**\n\n**Issue**: The `lookup` function constructs a SQL query using user input directly, which can lead to SQL injection vulnerabilities if the input is not properly sanitized.\n\n**Risk**: An attacker could manipulate the `name` parameter to execute arbitrary SQL commands.\n\n**Recommendation**: Ensure that the input is sanitized and consider using parameterized queries to prevent SQL injection.\n\n### Summary\nThe changes made in this PR improve the structure of the SQL query, but the potential for SQL injection remains. Please address the security concern before merging."
+      }
+    ],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": false,
+  "decisions": [
+    {
+      "finding_id": "f1",
+      "gold_issue_id": "PENDING",
+      "rationale": ""
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "task_id": "review-0015",
+  "case_id": "ad05f7c612a5",
+  "input": {
+    "case_id": "ad05f7c612a5",
+    "pr": {
+      "title": "Refactor account lookup",
+      "body": "lookup(connection, name): return only rows whose name exactly equals the untrusted input; users has columns id and name."
+    },
+    "base_files": {
+      "module.py": "def lookup(connection, name):\n    return connection.execute('SELECT id FROM users WHERE name = ?', (name,)).fetchall()\n"
+    },
+    "head_files": {
+      "module.py": "def lookup(connection, name):\n    query = 'SELECT id FROM users WHERE name = ?'\n    cursor = connection.execute(query, (name,))\n    return cursor.fetchall()\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def lookup(connection, name):\n-    return connection.execute('SELECT id FROM users WHERE name = ?', (name,)).fetchall()\n+    query = 'SELECT id FROM users WHERE name = ?'\n+    cursor = connection.execute(query, (name,))\n+    return cursor.fetchall()\n"
+      }
+    ]
+  },
+  "gold_issues": [],
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 2,
+      "description": "The refactored code introduces an unnecessary variable 'query' which does not enhance readability or functionality. The original implementation was more concise."
+    }
+  ],
+  "raw_review": {
+    "final_response": "{\n  \"decision\": \"COMMENT\",\n  \"findings\": [\n    {\n      \"file\": \"module.py\",\n      \"line\": 2,\n      \"description\": \"The refactored code introduces an unnecessary variable 'query' which does not enhance readability or functionality. The original implementation was more concise.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "submitted_reviews": [],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": true,
+  "decisions": [
+    {
+      "finding_id": "f1",
+      "gold_issue_id": null,
+      "rationale": "Style criticism of the query variable is retained under policy; no actionable introduced defect."
+    }
+  ],
+  "normalization_notes": [
+    "Reviewed final JSON, submitted body and inline comments together. Merged the same allegation across channels; retained all distinct defect allegations."
+  ]
+}

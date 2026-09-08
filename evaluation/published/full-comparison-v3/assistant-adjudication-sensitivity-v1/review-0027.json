@@ -1,0 +1,146 @@
+{
+  "task_id": "review-0027",
+  "case_id": "6acf19efc948",
+  "input": {
+    "case_id": "6acf19efc948",
+    "pr": {
+      "title": "Refactor average calculation",
+      "body": "average(values): finite numeric inputs; return their mean, or None for an empty list."
+    },
+    "base_files": {
+      "module.py": "def average(values):\n    if len(values) == 0:\n        return None\n    return sum(values) / len(values)\n"
+    },
+    "head_files": {
+      "module.py": "def average(values):\n    count = len(values)\n    if count < 0:\n        return None\n    return sum(values) / count\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,4 +1,5 @@\n def average(values):\n-    if len(values) == 0:\n+    count = len(values)\n+    if count < 0:\n         return None\n-    return sum(values) / len(values)\n+    return sum(values) / count\n"
+      }
+    ]
+  },
+  "gold_issues": [
+    {
+      "issue_id": "6acf19efc948:1",
+      "file": "module.py",
+      "line_start": 3,
+      "line_end": 3,
+      "category": "data_handling",
+      "severity": "medium",
+      "description": "The empty-input guard can never be true; averaging an empty list raises ZeroDivisionError."
+    }
+  ],
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 3,
+      "description": "The condition `if count < 0:` is incorrect. The length of a list cannot be negative. This check should be removed."
+    }
+  ],
+  "raw_review": {
+    "final_response": "{\"decision\":\"COMMENT\",\"findings\":[{\"file\":\"module.py\",\"line\":3,\"description\":\"The condition `if count < 0:` is incorrect. The length of a list cannot be negative. This check should be removed.\"}]}",
+    "tool_calls": [
+      {
+        "tool": "get_pull_request",
+        "input": {
+          "owner": "benchmark",
+          "repo": "6acf19efc948",
+          "pull_number": 1
+        },
+        "result": {
+          "number": 1,
+          "title": "Refactor average calculation",
+          "body": "average(values): finite numeric inputs; return their mean, or None for an empty list.",
+          "state": "open",
+          "draft": false,
+          "author": "fixture-author",
+          "base_branch": "main",
+          "head_branch": "candidate",
+          "head_sha": "2474d61fdba54c64c26f3dcdd33837d06283d60ffc8091a623cb509b28c34743",
+          "merged": false,
+          "changed_files": 1,
+          "additions": 3,
+          "deletions": 2,
+          "html_url": "https://fixture.invalid/benchmark/6acf19efc948/pull/1"
+        }
+      },
+      {
+        "tool": "get_pull_request_files",
+        "input": {
+          "owner": "benchmark",
+          "repo": "6acf19efc948",
+          "pull_number": 1
+        },
+        "result": [
+          {
+            "filename": "module.py",
+            "status": "modified",
+            "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,4 +1,5 @@\n def average(values):\n-    if len(values) == 0:\n+    count = len(values)\n+    if count < 0:\n         return None\n-    return sum(values) / len(values)\n+    return sum(values) / count\n",
+            "additions": 3,
+            "deletions": 2,
+            "changes": 5
+          }
+        ]
+      },
+      {
+        "tool": "list_commits",
+        "input": {
+          "owner": "benchmark",
+          "repo": "6acf19efc948",
+          "sha": "candidate"
+        },
+        "result": [
+          {
+            "sha": "2474d61fdba54c64c26f3dcdd33837d06283d60ffc8091a623cb509b28c34743",
+            "message": "Refactor average calculation",
+            "author": "fixture-author",
+            "date": "2026-01-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "tool": "create_pull_request_review",
+        "input": {
+          "owner": "benchmark",
+          "repo": "6acf19efc948",
+          "pull_number": 1,
+          "event": "COMMENT",
+          "body": "## Code Review Summary\n\nThe PR refactors the average calculation function to improve its readability and maintainability.\n\n### Findings\n- **File**: `module.py`\n  - **Line**: 3\n  - **Description**: The condition `if count < 0:` is incorrect. The length of a list cannot be negative. This check should be removed."
+        },
+        "result": {
+          "id": 1,
+          "state": "COMMENT",
+          "body": "## Code Review Summary\n\nThe PR refactors the average calculation function to improve its readability and maintainability.\n\n### Findings\n- **File**: `module.py`\n  - **Line**: 3\n  - **Description**: The condition `if count < 0:` is incorrect. The length of a list cannot be negative. This check should be removed."
+        }
+      }
+    ],
+    "submitted_reviews": [
+      {
+        "owner": "benchmark",
+        "repo": "6acf19efc948",
+        "pull_number": 1,
+        "event": "COMMENT",
+        "body": "## Code Review Summary\n\nThe PR refactors the average calculation function to improve its readability and maintainability.\n\n### Findings\n- **File**: `module.py`\n  - **Line**: 3\n  - **Description**: The condition `if count < 0:` is incorrect. The length of a list cannot be negative. This check should be removed."
+      }
+    ],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": true,
+  "decisions": [
+    {
+      "finding_id": "f1",
+      "gold_issue_id": "6acf19efc948:1",
+      "rationale": "Identifies impossible negative-length guard but omits division by zero on empty input; removing the guard is also an incorrect repair. Repair does not rescue an incomplete diagnosis."
+    }
+  ],
+  "normalization_notes": [
+    "Reviewed final JSON, submitted body and inline comments together. Merged the same allegation across channels; retained all distinct defect allegations."
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "backend": "live",
+  "model_evaluated": true,
+  "abort_reason": null,
+  "systems": {
+    "baseline": {
+      "scheduled": 16,
+      "finished": 16,
+      "ok": 16,
+      "errors": 0,
+      "not_run": 0
+    },
+    "agent": {
+      "scheduled": 16,
+      "finished": 16,
+      "ok": 15,
+      "errors": 1,
+      "not_run": 0
+    },
+    "agent-verified": {
+      "scheduled": 16,
+      "finished": 16,
+      "ok": 15,
+      "errors": 1,
+      "not_run": 0
+    }
+  },
+  "workflow": {
+    "agent": {
+      "attempted": 16,
+      "final_outputs_valid": 15,
+      "reviews_submitted": 15,
+      "reviews_with_executed_examples": 0,
+      "workflow_complete": 15,
+      "workflow_completion_rate": 0.9375
+    },
+    "agent-verified": {
+      "attempted": 16,
+      "final_outputs_valid": 15,
+      "reviews_submitted": 15,
+      "reviews_with_executed_examples": 15,
+      "workflow_complete": 15,
+      "workflow_completion_rate": 0.9375
+    },
+    "baseline": {
+      "attempted": 16,
+      "final_outputs_valid": 16,
+      "reviews_submitted": 0,
+      "reviews_with_executed_examples": 0,
+      "workflow_complete": 16,
+      "workflow_completion_rate": 1.0
+    }
+  },
+  "quality_metrics": "pending independent adjudication"
+}

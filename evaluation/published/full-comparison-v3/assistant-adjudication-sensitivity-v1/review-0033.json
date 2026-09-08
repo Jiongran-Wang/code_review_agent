@@ -1,0 +1,64 @@
+{
+  "task_id": "review-0033",
+  "case_id": "ebc8d8481ffc",
+  "input": {
+    "case_id": "ebc8d8481ffc",
+    "pr": {
+      "title": "Refactor pagination helper",
+      "body": "page(items, number, size): number is zero-based and size is positive; return up to size items."
+    },
+    "base_files": {
+      "module.py": "def page(items, number, size):\n    return items[number * size:(number + 1) * size]\n"
+    },
+    "head_files": {
+      "module.py": "def page(items, number, size):\n    start = number * size\n    stop = start + size - 1\n    return items[start:stop]\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def page(items, number, size):\n-    return items[number * size:(number + 1) * size]\n+    start = number * size\n+    stop = start + size - 1\n+    return items[start:stop]\n"
+      }
+    ]
+  },
+  "gold_issues": [
+    {
+      "issue_id": "ebc8d8481ffc:1",
+      "file": "module.py",
+      "line_start": 3,
+      "line_end": 3,
+      "category": "correctness",
+      "severity": "medium",
+      "description": "The exclusive slice endpoint is reduced by one, omitting the final item of each full page."
+    }
+  ],
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 4,
+      "description": "The slicing logic is incorrect. The stop index should be exclusive, but the current implementation includes the last item due to the '- 1' adjustment."
+    }
+  ],
+  "raw_review": {
+    "final_response": "{\n  \"decision\": \"REQUEST_CHANGES\",\n  \"findings\": [\n    {\n      \"file\": \"module.py\",\n      \"line\": 4,\n      \"description\": \"The slicing logic is incorrect. The stop index should be exclusive, but the current implementation includes the last item due to the '- 1' adjustment.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "submitted_reviews": [],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": true,
+  "decisions": [
+    {
+      "finding_id": "f1",
+      "gold_issue_id": "ebc8d8481ffc:1",
+      "rationale": "Names the mutated -1 stop bound but incorrectly says it includes the last item; the actual result omits an item. Same cause-only calibration as policy v1."
+    }
+  ],
+  "normalization_notes": [
+    "Reviewed final JSON, submitted body and inline comments together. Merged the same allegation across channels; retained all distinct defect allegations."
+  ]
+}

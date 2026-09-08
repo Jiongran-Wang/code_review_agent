@@ -1,0 +1,38 @@
+{
+  "task_id": "review-0042",
+  "case_id": "889012b7e156",
+  "input": {
+    "case_id": "889012b7e156",
+    "pr": {
+      "title": "Refactor pagination helper",
+      "body": "page(items, number, size): number is zero-based and size is positive; return up to size items."
+    },
+    "base_files": {
+      "module.py": "def page(items, number, size):\n    return items[number * size:(number + 1) * size]\n"
+    },
+    "head_files": {
+      "module.py": "def page(items, number, size):\n    start = number * size\n    stop = start + size\n    return items[start:stop]\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def page(items, number, size):\n-    return items[number * size:(number + 1) * size]\n+    start = number * size\n+    stop = start + size\n+    return items[start:stop]\n"
+      }
+    ]
+  },
+  "gold_issues": [],
+  "status": "ok",
+  "findings": [],
+  "raw_review": {
+    "final_response": "{\"decision\":\"APPROVE\",\"findings\":[]}",
+    "tool_calls": [],
+    "submitted_reviews": [],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": false,
+  "decisions": []
+}

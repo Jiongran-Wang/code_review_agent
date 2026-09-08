@@ -1,0 +1,41 @@
+{
+  "case_id": "29d8d7cb5d4c",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 4,
+      "description": "The new implementation allows any user with a non-None user_id to access the document, violating the requirement that only the document owner may read the body."
+    }
+  ],
+  "decision": "REQUEST_CHANGES",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": true,
+    "review_submitted": true,
+    "example_execution_required": true,
+    "example_executed": true,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 120847,
+    "llm_attempts": 4,
+    "pacing_wait_ms": 113286,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 7390,
+    "llm_responses": 4,
+    "input_tokens": 38089,
+    "output_tokens": 403,
+    "tool_calls": 4,
+    "tool_errors": 0,
+    "submitted_reviews": 1,
+    "example_execution_calls": 1,
+    "example_execution_successes": 1,
+    "example_execution_duration_ms": 124,
+    "fix_prs": 0
+  }
+}

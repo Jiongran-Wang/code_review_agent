@@ -1,0 +1,47 @@
+{
+  "case_id": "ca048d6a497e",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 2,
+      "description": "The calculation of `start` does not account for cases where `index` is less than `window`, which leads to incorrect slicing of the `prices` list."
+    },
+    {
+      "finding_id": "f2",
+      "file": "module.py",
+      "line": 3,
+      "description": "The slicing `prices[start+1:index+1]` can lead to an empty list if `index` is less than `window`, resulting in a division by zero when calculating the mean."
+    }
+  ],
+  "decision": "REQUEST_CHANGES",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": true,
+    "review_submitted": true,
+    "example_execution_required": true,
+    "example_executed": true,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 120352,
+    "llm_attempts": 4,
+    "pacing_wait_ms": 112439,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 7764,
+    "llm_responses": 4,
+    "input_tokens": 38378,
+    "output_tokens": 604,
+    "tool_calls": 4,
+    "tool_errors": 0,
+    "submitted_reviews": 1,
+    "example_execution_calls": 1,
+    "example_execution_successes": 1,
+    "example_execution_duration_ms": 106,
+    "fix_prs": 0
+  }
+}

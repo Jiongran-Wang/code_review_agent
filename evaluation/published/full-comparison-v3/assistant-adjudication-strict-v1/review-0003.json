@@ -1,0 +1,64 @@
+{
+  "task_id": "review-0003",
+  "case_id": "6a75289b0733",
+  "input": {
+    "case_id": "6a75289b0733",
+    "pr": {
+      "title": "Refactor account lookup",
+      "body": "lookup(connection, name): return only rows whose name exactly equals the untrusted input; users has columns id and name."
+    },
+    "base_files": {
+      "module.py": "def lookup(connection, name):\n    return connection.execute('SELECT id FROM users WHERE name = ?', (name,)).fetchall()\n"
+    },
+    "head_files": {
+      "module.py": "def lookup(connection, name):\n    query = 'SELECT id FROM users WHERE name = ?'\n    cursor = connection.execute(query.replace('?', \"'\" + name + \"'\"))\n    return cursor.fetchall()\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def lookup(connection, name):\n-    return connection.execute('SELECT id FROM users WHERE name = ?', (name,)).fetchall()\n+    query = 'SELECT id FROM users WHERE name = ?'\n+    cursor = connection.execute(query.replace('?', \"'\" + name + \"'\"))\n+    return cursor.fetchall()\n"
+      }
+    ]
+  },
+  "gold_issues": [
+    {
+      "issue_id": "6a75289b0733:1",
+      "file": "module.py",
+      "line_start": 3,
+      "line_end": 3,
+      "category": "security",
+      "severity": "high",
+      "description": "Interpolating untrusted input into SQL lets a crafted name return all users instead of an exact match."
+    }
+  ],
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 3,
+      "description": "The use of string replacement to construct the SQL query introduces a SQL injection vulnerability. The query should use parameterized queries to safely handle untrusted input."
+    }
+  ],
+  "raw_review": {
+    "final_response": "{\n  \"decision\": \"REQUEST_CHANGES\",\n  \"findings\": [\n    {\n      \"file\": \"module.py\",\n      \"line\": 3,\n      \"description\": \"The use of string replacement to construct the SQL query introduces a SQL injection vulnerability. The query should use parameterized queries to safely handle untrusted input.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "submitted_reviews": [],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": true,
+  "decisions": [
+    {
+      "finding_id": "f1",
+      "gold_issue_id": "6a75289b0733:1",
+      "rationale": "Correctly identifies string replacement instead of parameter binding and the resulting SQL injection."
+    }
+  ],
+  "normalization_notes": [
+    "Reviewed final JSON, submitted body and inline comments together. Merged the same allegation across channels; retained all distinct defect allegations."
+  ]
+}

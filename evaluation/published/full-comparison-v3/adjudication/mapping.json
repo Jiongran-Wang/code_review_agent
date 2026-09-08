@@ -1,0 +1,344 @@
+{
+  "run_path": "evaluation/published/full-comparison-v3",
+  "manifest_sha256": "f9d9e4e31b82f0462b035fd81cdcbd2ee54b9bb37319f64679c071a18ad39335",
+  "results_sha256": "5f95ce61c359795b8452861ae83c38c08fed581d35a58142a00341a8d6e9cede",
+  "labels_sha256": "7093f769eb62b2d331d1772ea6dba67986c7ae48d0f43125ea8e0d47c8713ab7",
+  "tasks": [
+    {
+      "task_id": "review-0001",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "bca9b18b8e18",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0002",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "6a75289b0733",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0003",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "6a75289b0733",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0004",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "ad05f7c612a5",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0005",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "c85a607a54b5",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0006",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "9ec94bab74f0",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0007",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "89de0e22c2f3",
+      "original_status": "error"
+    },
+    {
+      "task_id": "review-0008",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "4d93c32539ce",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0009",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "ca048d6a497e",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0010",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "e33a2e9207b7",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0011",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "9ec94bab74f0",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0012",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "ebc8d8481ffc",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0013",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "29d8d7cb5d4c",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0014",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "c85a607a54b5",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0015",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "ad05f7c612a5",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0016",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "29d8d7cb5d4c",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0017",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "c72c1dfc81c7",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0018",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "889012b7e156",
+      "original_status": "error"
+    },
+    {
+      "task_id": "review-0019",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "ebc8d8481ffc",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0020",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "4d93c32539ce",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0021",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "9ec94bab74f0",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0022",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "6acf19efc948",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0023",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "889012b7e156",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0024",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "e33a2e9207b7",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0025",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "b3e1a991158b",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0026",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "ca048d6a497e",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0027",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "6acf19efc948",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0028",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "c72c1dfc81c7",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0029",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "e33a2e9207b7",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0030",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "4d93c32539ce",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0031",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "85ad40fd5032",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0032",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "bca9b18b8e18",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0033",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "ebc8d8481ffc",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0034",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "85ad40fd5032",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0035",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "b3e1a991158b",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0036",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "6a75289b0733",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0037",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "c72c1dfc81c7",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0038",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "ca048d6a497e",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0039",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "bca9b18b8e18",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0040",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "6acf19efc948",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0041",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "b3e1a991158b",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0042",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "889012b7e156",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0043",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "29d8d7cb5d4c",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0044",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "c85a607a54b5",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0045",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "89de0e22c2f3",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0046",
+      "system": "agent-verified",
+      "repeat": 1,
+      "case_id": "85ad40fd5032",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0047",
+      "system": "baseline",
+      "repeat": 1,
+      "case_id": "89de0e22c2f3",
+      "original_status": "ok"
+    },
+    {
+      "task_id": "review-0048",
+      "system": "agent",
+      "repeat": 1,
+      "case_id": "ad05f7c612a5",
+      "original_status": "ok"
+    }
+  ]
+}

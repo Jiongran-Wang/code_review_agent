@@ -1,0 +1,709 @@
+{
+  "status": "reference_checks_passed",
+  "cases": 16,
+  "families": 8,
+  "revision_checks": 96,
+  "agent_evaluated": false,
+  "human_validated": false,
+  "execution_registry_integrated": false,
+  "source_hashes": [
+    "18e3a10dc1efb9652fba777dc03b1c158758912274f1147c242354206b611fdc",
+    "1965b095d885f6177ce80dbb9baa8f914136db648b65dd6733a02e63eba86740",
+    "283285d4b910b9e55322fa616a7bb24d51e005775c6438f63ca2ef482575ab2d",
+    "2c2c4ccc3ef26167f36ea711b66c96b45aaba3c09290dc12e8e009aee616042b",
+    "36d68e019a2d8ba0424d68da6ed48683b2675cbdb374ab5d5d93e4d4db6b8485",
+    "3b232ee4a8743fd62627d82a13b7d202051197eb90262d03612b8efb169dfb0c",
+    "3d0f5737e16a38d8deb47da2f4e74b1246643e52dd4caedf0700ad9a5cf85f9e",
+    "41b498035b555214a18a4d452c35307ad77b9d71454034b36f316a587844ddc3",
+    "4810eef65a7db626d117c8c00f48e2fed149f674ff21a7c58b9a3bc468ccbab8",
+    "61ec0241602b6afded3b10fb89aecd56de63e0bface79e8c74712b519d28cf8c",
+    "62b9954ccae1468af32ad6321b6c962fed77e66564fe6c23db4dd7da8a8dc0a5",
+    "6b503938472e2b7d8b9704e4a81f6651579563faf5d0d9c90f7c55d3154af0bb",
+    "77f9cb7ba43e76d39e8602098e4cf1d4060bf66a25be1fb25e7a6fb32eb235ab",
+    "82a636de78eab7682c0e7c0104212006e1f0e8e8a81d56d876b0952cab406ee0",
+    "a942e7680495621cb4f1d144b9136e0a8f45949b2374ad7f539224fb4cc264a3",
+    "ab8aa477584421f8f3ea8b5ae7cd7fffb06a07bec0354a80fd190fcc00cb112b",
+    "afe412a615ad7cf27055fbf272e205bf1c0af7996a9a6c8c66aeafea6a01248c",
+    "c19169d9b53f279350938b7f93603c7c2876627a3e17b792bc444da609a94943",
+    "d07ffffe5aeae787a6d05243fdb0dcd65b3b34aa7af37dea6ec2265d96baffaf",
+    "d143a750ab90867c359d9f287a65f10d9be540d596a7326c3e7b14eb988e156c",
+    "deda1389293364ec2963b716597a74889349e4a68aaf3cbfd0b67c9285e016bf",
+    "e02df43fa9ffb0576a64ea9140e72a8792cdeae996377b34600f903555f98673",
+    "ea3ea3f7f9b9c2a6d072533b458f2de98ca0a6d711d8cdf6be13e8483690ed8d",
+    "ec1ac77e460c21b444eff01951bf83296e99eaf0d2b416a527f4ca4511d262ac"
+  ],
+  "checks": [
+    {
+      "case_id": "0573896e2ef2",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "0573896e2ef2",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "0573896e2ef2",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "0573896e2ef2",
+      "revision": "head",
+      "check": "trigger",
+      "passed": false,
+      "expected_pass": false
+    },
+    {
+      "case_id": "0573896e2ef2",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "0573896e2ef2",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "221540e5c718",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "221540e5c718",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "221540e5c718",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "221540e5c718",
+      "revision": "head",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "221540e5c718",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "221540e5c718",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "359a5d763cfa",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "359a5d763cfa",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "359a5d763cfa",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "359a5d763cfa",
+      "revision": "head",
+      "check": "trigger",
+      "passed": false,
+      "expected_pass": false
+    },
+    {
+      "case_id": "359a5d763cfa",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "359a5d763cfa",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "43ef97578bb4",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "43ef97578bb4",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "43ef97578bb4",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "43ef97578bb4",
+      "revision": "head",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "43ef97578bb4",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "43ef97578bb4",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "6f17cd1fc93d",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "6f17cd1fc93d",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "6f17cd1fc93d",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "6f17cd1fc93d",
+      "revision": "head",
+      "check": "trigger",
+      "passed": false,
+      "expected_pass": false
+    },
+    {
+      "case_id": "6f17cd1fc93d",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "6f17cd1fc93d",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "72306f7547f4",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "72306f7547f4",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "72306f7547f4",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "72306f7547f4",
+      "revision": "head",
+      "check": "trigger",
+      "passed": false,
+      "expected_pass": false
+    },
+    {
+      "case_id": "72306f7547f4",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "72306f7547f4",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "7b880c32f492",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "7b880c32f492",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "7b880c32f492",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "7b880c32f492",
+      "revision": "head",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "7b880c32f492",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "7b880c32f492",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "8ccc0d9c72a5",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "8ccc0d9c72a5",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "8ccc0d9c72a5",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "8ccc0d9c72a5",
+      "revision": "head",
+      "check": "trigger",
+      "passed": false,
+      "expected_pass": false
+    },
+    {
+      "case_id": "8ccc0d9c72a5",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "8ccc0d9c72a5",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "9b6717ff20c3",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "9b6717ff20c3",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "9b6717ff20c3",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "9b6717ff20c3",
+      "revision": "head",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "9b6717ff20c3",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "9b6717ff20c3",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "a0409ff2a79f",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "a0409ff2a79f",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "a0409ff2a79f",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "a0409ff2a79f",
+      "revision": "head",
+      "check": "trigger",
+      "passed": false,
+      "expected_pass": false
+    },
+    {
+      "case_id": "a0409ff2a79f",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "a0409ff2a79f",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "b8074f37df14",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "b8074f37df14",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "b8074f37df14",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "b8074f37df14",
+      "revision": "head",
+      "check": "trigger",
+      "passed": false,
+      "expected_pass": false
+    },
+    {
+      "case_id": "b8074f37df14",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "b8074f37df14",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "ce3221263449",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "ce3221263449",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "ce3221263449",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "ce3221263449",
+      "revision": "head",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "ce3221263449",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "ce3221263449",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "d2d495bdf5d0",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "d2d495bdf5d0",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "d2d495bdf5d0",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "d2d495bdf5d0",
+      "revision": "head",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "d2d495bdf5d0",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "d2d495bdf5d0",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "ea9740de4878",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "ea9740de4878",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "ea9740de4878",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "ea9740de4878",
+      "revision": "head",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "ea9740de4878",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "ea9740de4878",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "fa484b727b39",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "fa484b727b39",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "fa484b727b39",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "fa484b727b39",
+      "revision": "head",
+      "check": "trigger",
+      "passed": false,
+      "expected_pass": false
+    },
+    {
+      "case_id": "fa484b727b39",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "fa484b727b39",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "fa6de2b34ecd",
+      "revision": "base",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "fa6de2b34ecd",
+      "revision": "base",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "fa6de2b34ecd",
+      "revision": "head",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "fa6de2b34ecd",
+      "revision": "head",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "fa6de2b34ecd",
+      "revision": "reference",
+      "check": "regression",
+      "passed": true,
+      "expected_pass": true
+    },
+    {
+      "case_id": "fa6de2b34ecd",
+      "revision": "reference",
+      "check": "trigger",
+      "passed": true,
+      "expected_pass": true
+    }
+  ]
+}

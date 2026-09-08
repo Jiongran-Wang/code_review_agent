@@ -1,0 +1,41 @@
+{
+  "case_id": "ebc8d8481ffc",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 3,
+      "description": "The pagination logic has been refactored to include an off-by-one error in the stop index calculation. The stop index should be exclusive, meaning it should not include the last item in the range."
+    }
+  ],
+  "decision": "COMMENT",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": true,
+    "review_submitted": true,
+    "example_execution_required": false,
+    "example_executed": false,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 89845,
+    "llm_attempts": 3,
+    "pacing_wait_ms": 84349,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 5459,
+    "llm_responses": 3,
+    "input_tokens": 52361,
+    "output_tokens": 327,
+    "tool_calls": 4,
+    "tool_errors": 0,
+    "submitted_reviews": 1,
+    "example_execution_calls": 0,
+    "example_execution_successes": 0,
+    "example_execution_duration_ms": 0,
+    "fix_prs": 0
+  }
+}

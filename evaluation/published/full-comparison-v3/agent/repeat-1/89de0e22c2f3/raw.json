@@ -1,0 +1,46 @@
+{
+  "final_response": "{\"decision\":\"COMMENT\",\"findings\":[{\"file\":null,\"description\":\"The repository is not accessible for review.\"}]}",
+  "tool_calls": [
+    {
+      "tool": "get_pull_request",
+      "input": {
+        "owner": "benchmark",
+        "repo": "benchmark",
+        "pull_number": 1
+      },
+      "result": {
+        "error": "Repository outside this case",
+        "tool": "get_pull_request"
+      }
+    },
+    {
+      "tool": "get_pull_request_files",
+      "input": {
+        "owner": "benchmark",
+        "repo": "benchmark",
+        "pull_number": 1
+      },
+      "result": {
+        "error": "Repository outside this case",
+        "tool": "get_pull_request_files"
+      }
+    },
+    {
+      "tool": "list_commits",
+      "input": {
+        "owner": "benchmark",
+        "repo": "benchmark",
+        "sha": "89de0e22c2f3"
+      },
+      "result": {
+        "error": "Repository outside this case",
+        "tool": "list_commits"
+      }
+    }
+  ],
+  "submitted_reviews": [],
+  "issue_comments": [],
+  "file_writes": [],
+  "fix_prs": [],
+  "memory": []
+}

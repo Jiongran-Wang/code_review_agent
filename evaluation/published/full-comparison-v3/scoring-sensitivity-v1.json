@@ -1,0 +1,280 @@
+{
+  "backend": "live",
+  "dataset": "development pilot",
+  "systems": {
+    "agent": {
+      "repeat-1": {
+        "quality": {
+          "cases": 16,
+          "completed": 15,
+          "failed": 1,
+          "completion_rate": 0.9375,
+          "true_positives": 6,
+          "false_positives": 2,
+          "false_negatives": 2,
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1": 0.75,
+          "localized_recall": 0.5,
+          "clean_cases": 8,
+          "clean_completed": 7,
+          "clean_flagged": 2,
+          "clean_pr_false_alarm_rate": 0.2857142857142857,
+          "by_category": {
+            "security": {
+              "detected": 2,
+              "total": 2,
+              "recall": 1.0
+            },
+            "data_handling": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            },
+            "state_management": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            },
+            "ml_data_leakage": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            },
+            "boundary_condition": {
+              "detected": 0,
+              "total": 1,
+              "recall": 0.0
+            },
+            "temporal_leakage": {
+              "detected": 0,
+              "total": 1,
+              "recall": 0.0
+            },
+            "correctness": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            }
+          },
+          "notes": [
+            "Rates are fractions; null means undefined, not zero.",
+            "Failed buggy cases count as misses; clean false-alarm rate uses completed clean cases.",
+            "These metrics depend on independently adjudicated findings and label completeness."
+          ]
+        },
+        "efficiency": {
+          "median_duration_ms": 105002.0,
+          "p95_duration_ms": 150318,
+          "reported_input_tokens": 995289,
+          "reported_output_tokens": 4631,
+          "unknown_usage_runs": 0,
+          "tool_errors": 4,
+          "pacing_wait_ms": 1609037,
+          "rate_limit_retries": 0,
+          "api_duration_ms": 97429,
+          "example_execution_calls": 0,
+          "example_execution_successes": 0,
+          "example_execution_duration_ms": 0
+        }
+      }
+    },
+    "agent-verified": {
+      "repeat-1": {
+        "quality": {
+          "cases": 16,
+          "completed": 15,
+          "failed": 1,
+          "completion_rate": 0.9375,
+          "true_positives": 8,
+          "false_positives": 6,
+          "false_negatives": 0,
+          "precision": 0.5714285714285714,
+          "recall": 1.0,
+          "f1": 0.7272727272727273,
+          "localized_recall": 0.625,
+          "clean_cases": 8,
+          "clean_completed": 7,
+          "clean_flagged": 5,
+          "clean_pr_false_alarm_rate": 0.7142857142857143,
+          "by_category": {
+            "security": {
+              "detected": 2,
+              "total": 2,
+              "recall": 1.0
+            },
+            "data_handling": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            },
+            "state_management": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            },
+            "ml_data_leakage": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            },
+            "boundary_condition": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            },
+            "temporal_leakage": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            },
+            "correctness": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            }
+          },
+          "notes": [
+            "Rates are fractions; null means undefined, not zero.",
+            "Failed buggy cases count as misses; clean false-alarm rate uses completed clean cases.",
+            "These metrics depend on independently adjudicated findings and label completeness."
+          ]
+        },
+        "efficiency": {
+          "median_duration_ms": 119937.0,
+          "p95_duration_ms": 125708,
+          "reported_input_tokens": 606880,
+          "reported_output_tokens": 6182,
+          "unknown_usage_runs": 0,
+          "tool_errors": 2,
+          "pacing_wait_ms": 1740721,
+          "rate_limit_retries": 0,
+          "api_duration_ms": 117817,
+          "example_execution_calls": 18,
+          "example_execution_successes": 18,
+          "example_execution_duration_ms": 1928
+        }
+      }
+    },
+    "baseline": {
+      "repeat-1": {
+        "quality": {
+          "cases": 16,
+          "completed": 16,
+          "failed": 0,
+          "completion_rate": 1.0,
+          "true_positives": 7,
+          "false_positives": 8,
+          "false_negatives": 1,
+          "precision": 0.4666666666666667,
+          "recall": 0.875,
+          "f1": 0.6086956521739131,
+          "localized_recall": 0.75,
+          "clean_cases": 8,
+          "clean_completed": 8,
+          "clean_flagged": 5,
+          "clean_pr_false_alarm_rate": 0.625,
+          "by_category": {
+            "security": {
+              "detected": 2,
+              "total": 2,
+              "recall": 1.0
+            },
+            "data_handling": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            },
+            "state_management": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            },
+            "ml_data_leakage": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            },
+            "boundary_condition": {
+              "detected": 0,
+              "total": 1,
+              "recall": 0.0
+            },
+            "temporal_leakage": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            },
+            "correctness": {
+              "detected": 1,
+              "total": 1,
+              "recall": 1.0
+            }
+          },
+          "notes": [
+            "Rates are fractions; null means undefined, not zero.",
+            "Failed buggy cases count as misses; clean false-alarm rate uses completed clean cases.",
+            "These metrics depend on independently adjudicated findings and label completeness."
+          ]
+        },
+        "efficiency": {
+          "median_duration_ms": 30243.5,
+          "p95_duration_ms": 31650,
+          "reported_input_tokens": 261603,
+          "reported_output_tokens": 1078,
+          "unknown_usage_runs": 0,
+          "tool_errors": 0,
+          "pacing_wait_ms": 430248,
+          "rate_limit_retries": 0,
+          "api_duration_ms": 28126,
+          "example_execution_calls": 0,
+          "example_execution_successes": 0,
+          "example_execution_duration_ms": 0
+        }
+      }
+    }
+  },
+  "workflow": {
+    "agent": {
+      "attempted": 16,
+      "final_outputs_valid": 15,
+      "reviews_submitted": 15,
+      "reviews_with_executed_examples": 0,
+      "workflow_complete": 15,
+      "workflow_completion_rate": 0.9375
+    },
+    "agent-verified": {
+      "attempted": 16,
+      "final_outputs_valid": 15,
+      "reviews_submitted": 15,
+      "reviews_with_executed_examples": 15,
+      "workflow_complete": 15,
+      "workflow_completion_rate": 0.9375
+    },
+    "baseline": {
+      "attempted": 16,
+      "final_outputs_valid": 16,
+      "reviews_submitted": 0,
+      "reviews_with_executed_examples": 0,
+      "workflow_complete": 16,
+      "workflow_completion_rate": 1.0
+    }
+  },
+  "adjudication": {
+    "status": "provisional",
+    "reviewer_type": "coding_assistant",
+    "blinded": false,
+    "human_validated": false,
+    "policy": "scoring-policy-v1",
+    "policy_sha256": "46786e822e6b8f5f29290e75a50c0bc0771e8923d8959238a3a0b0036f8b8024",
+    "matching_mode": "sensitivity",
+    "assessment_sha256": "79ca8588b06fdabde1bc6183c95b83a3a04d0727ff21528f34237cecfa74ac78"
+  },
+  "notes": [
+    "Each repeat is reported separately; repeated cases are not independent samples.",
+    "Latency includes failures. Token totals include only reported usage, not inferred costs.",
+    "Review duration includes pacing; API duration and pacing waits are reported separately when recorded.",
+    "Packet normalization and semantic matches need independent human validation.",
+    "Fix correctness has not been executed or scored."
+  ]
+}

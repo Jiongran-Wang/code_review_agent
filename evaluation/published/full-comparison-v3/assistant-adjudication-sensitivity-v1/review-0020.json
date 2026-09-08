@@ -1,0 +1,123 @@
+{
+  "task_id": "review-0020",
+  "case_id": "4d93c32539ce",
+  "input": {
+    "case_id": "4d93c32539ce",
+    "pr": {
+      "title": "Refactor historical price feature",
+      "body": "prior_mean(prices, index, window): at the start of index, use only the preceding window prices; index >= window > 0 and index < len(prices)."
+    },
+    "base_files": {
+      "module.py": "def prior_mean(prices, index, window):\n    return sum(prices[index-window:index]) / window\n"
+    },
+    "head_files": {
+      "module.py": "def prior_mean(prices, index, window):\n    start = index - window\n    history = prices[start:index]\n    return sum(history) / len(history)\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def prior_mean(prices, index, window):\n-    return sum(prices[index-window:index]) / window\n+    start = index - window\n+    history = prices[start:index]\n+    return sum(history) / len(history)\n"
+      }
+    ]
+  },
+  "gold_issues": [],
+  "status": "ok",
+  "findings": [],
+  "raw_review": {
+    "final_response": "{\"decision\":\"APPROVE\",\"findings\":[]}",
+    "tool_calls": [
+      {
+        "tool": "get_pull_request",
+        "input": {
+          "owner": "benchmark",
+          "repo": "4d93c32539ce",
+          "pull_number": 1
+        },
+        "result": {
+          "number": 1,
+          "title": "Refactor historical price feature",
+          "body": "prior_mean(prices, index, window): at the start of index, use only the preceding window prices; index >= window > 0 and index < len(prices).",
+          "state": "open",
+          "draft": false,
+          "author": "fixture-author",
+          "base_branch": "main",
+          "head_branch": "candidate",
+          "head_sha": "b7f614ce3a7bca8179bd36851ae0dbf409ddfb6447edb01389c424d8813c4516",
+          "merged": false,
+          "changed_files": 1,
+          "additions": 3,
+          "deletions": 1,
+          "html_url": "https://fixture.invalid/benchmark/4d93c32539ce/pull/1"
+        }
+      },
+      {
+        "tool": "get_pull_request_files",
+        "input": {
+          "owner": "benchmark",
+          "repo": "4d93c32539ce",
+          "pull_number": 1
+        },
+        "result": [
+          {
+            "filename": "module.py",
+            "status": "modified",
+            "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def prior_mean(prices, index, window):\n-    return sum(prices[index-window:index]) / window\n+    start = index - window\n+    history = prices[start:index]\n+    return sum(history) / len(history)\n",
+            "additions": 3,
+            "deletions": 1,
+            "changes": 4
+          }
+        ]
+      },
+      {
+        "tool": "list_commits",
+        "input": {
+          "owner": "benchmark",
+          "repo": "4d93c32539ce",
+          "sha": "candidate"
+        },
+        "result": [
+          {
+            "sha": "b7f614ce3a7bca8179bd36851ae0dbf409ddfb6447edb01389c424d8813c4516",
+            "message": "Refactor historical price feature",
+            "author": "fixture-author",
+            "date": "2026-01-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "tool": "create_pull_request_review",
+        "input": {
+          "owner": "benchmark",
+          "repo": "4d93c32539ce",
+          "pull_number": 1,
+          "event": "APPROVE",
+          "body": "## Code Review Summary\n\nThe changes made in this PR improve the `prior_mean` function by ensuring that it correctly handles the historical prices based on the specified window size.\n\n### Findings\n- The function now calculates the mean of the historical prices correctly by using the preceding prices up to the specified index and window size.\n- The code is clean and follows good practices.\n\nOverall, this is a solid improvement to the functionality."
+        },
+        "result": {
+          "id": 1,
+          "state": "APPROVE",
+          "body": "## Code Review Summary\n\nThe changes made in this PR improve the `prior_mean` function by ensuring that it correctly handles the historical prices based on the specified window size.\n\n### Findings\n- The function now calculates the mean of the historical prices correctly by using the preceding prices up to the specified index and window size.\n- The code is clean and follows good practices.\n\nOverall, this is a solid improvement to the functionality."
+        }
+      }
+    ],
+    "submitted_reviews": [
+      {
+        "owner": "benchmark",
+        "repo": "4d93c32539ce",
+        "pull_number": 1,
+        "event": "APPROVE",
+        "body": "## Code Review Summary\n\nThe changes made in this PR improve the `prior_mean` function by ensuring that it correctly handles the historical prices based on the specified window size.\n\n### Findings\n- The function now calculates the mean of the historical prices correctly by using the preceding prices up to the specified index and window size.\n- The code is clean and follows good practices.\n\nOverall, this is a solid improvement to the functionality."
+      }
+    ],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": true,
+  "decisions": [],
+  "normalization_notes": [
+    "Reviewed final JSON, submitted body and inline comments together. Merged the same allegation across channels; retained all distinct defect allegations."
+  ]
+}

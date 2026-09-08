@@ -1,0 +1,1025 @@
+{
+  "assessment_status": "provisional non-blinded coding-assistant assessment; independent human validation pending",
+  "scope": "Frozen 16-case development comparison, one fresh repeat per system",
+  "manifest_sha256": "f9d9e4e31b82f0462b035fd81cdcbd2ee54b9bb37319f64679c071a18ad39335",
+  "results_sha256": "5f95ce61c359795b8452861ae83c38c08fed581d35a58142a00341a8d6e9cede",
+  "policy_sha256": "46786e822e6b8f5f29290e75a50c0bc0771e8923d8959238a3a0b0036f8b8024",
+  "freeze_file_sha256": "18de3389f67e0f6c3d1ba934fdf38ad6c96c602c0fe047b1b112635108731fdf",
+  "freeze_and_run_sources_verified": true,
+  "systems": {
+    "baseline": {
+      "quality": {
+        "cases": 16,
+        "completed": 16,
+        "failed": 0,
+        "completion_rate": 1.0,
+        "true_positives": 5,
+        "false_positives": 10,
+        "false_negatives": 3,
+        "precision": 0.3333333333333333,
+        "recall": 0.625,
+        "f1": 0.43478260869565216,
+        "localized_recall": 0.625,
+        "clean_cases": 8,
+        "clean_completed": 8,
+        "clean_flagged": 5,
+        "clean_pr_false_alarm_rate": 0.625,
+        "by_category": {
+          "security": {
+            "detected": 2,
+            "total": 2,
+            "recall": 1.0
+          },
+          "data_handling": {
+            "detected": 0,
+            "total": 1,
+            "recall": 0.0
+          },
+          "state_management": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "ml_data_leakage": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "boundary_condition": {
+            "detected": 0,
+            "total": 1,
+            "recall": 0.0
+          },
+          "temporal_leakage": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "correctness": {
+            "detected": 0,
+            "total": 1,
+            "recall": 0.0
+          }
+        },
+        "notes": [
+          "Rates are fractions; null means undefined, not zero.",
+          "Failed buggy cases count as misses; clean false-alarm rate uses completed clean cases.",
+          "These metrics depend on independently adjudicated findings and label completeness."
+        ]
+      },
+      "sensitivity_quality": {
+        "cases": 16,
+        "completed": 16,
+        "failed": 0,
+        "completion_rate": 1.0,
+        "true_positives": 7,
+        "false_positives": 8,
+        "false_negatives": 1,
+        "precision": 0.4666666666666667,
+        "recall": 0.875,
+        "f1": 0.6086956521739131,
+        "localized_recall": 0.75,
+        "clean_cases": 8,
+        "clean_completed": 8,
+        "clean_flagged": 5,
+        "clean_pr_false_alarm_rate": 0.625,
+        "by_category": {
+          "security": {
+            "detected": 2,
+            "total": 2,
+            "recall": 1.0
+          },
+          "data_handling": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "state_management": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "ml_data_leakage": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "boundary_condition": {
+            "detected": 0,
+            "total": 1,
+            "recall": 0.0
+          },
+          "temporal_leakage": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "correctness": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          }
+        },
+        "notes": [
+          "Rates are fractions; null means undefined, not zero.",
+          "Failed buggy cases count as misses; clean false-alarm rate uses completed clean cases.",
+          "These metrics depend on independently adjudicated findings and label completeness."
+        ]
+      },
+      "workflow": {
+        "attempted": 16,
+        "final_outputs_valid": 16,
+        "reviews_submitted": 0,
+        "reviews_with_executed_examples": 0,
+        "workflow_complete": 16,
+        "workflow_completion_rate": 1.0
+      },
+      "efficiency": {
+        "median_duration_ms": 30243.5,
+        "p95_duration_ms": 31650,
+        "reported_input_tokens": 261603,
+        "reported_output_tokens": 1078,
+        "unknown_usage_runs": 0,
+        "tool_errors": 0,
+        "pacing_wait_ms": 430248,
+        "rate_limit_retries": 0,
+        "api_duration_ms": 28126,
+        "example_execution_calls": 0,
+        "example_execution_successes": 0,
+        "example_execution_duration_ms": 0
+      },
+      "metrics_totals": {
+        "duration_ms": 458639,
+        "llm_attempts": 16,
+        "pacing_wait_ms": 430248,
+        "rate_limit_retries": 0,
+        "api_duration_ms": 28126,
+        "llm_responses": 16,
+        "input_tokens": 261603,
+        "output_tokens": 1078,
+        "tool_calls": 0,
+        "tool_errors": 0,
+        "submitted_reviews": 0,
+        "example_execution_calls": 0,
+        "example_execution_successes": 0,
+        "example_execution_duration_ms": 0,
+        "fix_prs": 0
+      },
+      "raw_clean_final_positive_count": 5,
+      "raw_clean_completed_count": 8,
+      "reported_models": {
+        "gpt-4o-mini-2024-07-18": 16
+      },
+      "reported_fingerprints": {
+        "fp_8c60972de7": 16
+      }
+    },
+    "agent": {
+      "quality": {
+        "cases": 16,
+        "completed": 15,
+        "failed": 1,
+        "completion_rate": 0.9375,
+        "true_positives": 4,
+        "false_positives": 4,
+        "false_negatives": 4,
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "localized_recall": 0.25,
+        "clean_cases": 8,
+        "clean_completed": 7,
+        "clean_flagged": 2,
+        "clean_pr_false_alarm_rate": 0.2857142857142857,
+        "by_category": {
+          "security": {
+            "detected": 2,
+            "total": 2,
+            "recall": 1.0
+          },
+          "data_handling": {
+            "detected": 0,
+            "total": 1,
+            "recall": 0.0
+          },
+          "state_management": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "ml_data_leakage": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "boundary_condition": {
+            "detected": 0,
+            "total": 1,
+            "recall": 0.0
+          },
+          "temporal_leakage": {
+            "detected": 0,
+            "total": 1,
+            "recall": 0.0
+          },
+          "correctness": {
+            "detected": 0,
+            "total": 1,
+            "recall": 0.0
+          }
+        },
+        "notes": [
+          "Rates are fractions; null means undefined, not zero.",
+          "Failed buggy cases count as misses; clean false-alarm rate uses completed clean cases.",
+          "These metrics depend on independently adjudicated findings and label completeness."
+        ]
+      },
+      "sensitivity_quality": {
+        "cases": 16,
+        "completed": 15,
+        "failed": 1,
+        "completion_rate": 0.9375,
+        "true_positives": 6,
+        "false_positives": 2,
+        "false_negatives": 2,
+        "precision": 0.75,
+        "recall": 0.75,
+        "f1": 0.75,
+        "localized_recall": 0.5,
+        "clean_cases": 8,
+        "clean_completed": 7,
+        "clean_flagged": 2,
+        "clean_pr_false_alarm_rate": 0.2857142857142857,
+        "by_category": {
+          "security": {
+            "detected": 2,
+            "total": 2,
+            "recall": 1.0
+          },
+          "data_handling": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "state_management": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "ml_data_leakage": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "boundary_condition": {
+            "detected": 0,
+            "total": 1,
+            "recall": 0.0
+          },
+          "temporal_leakage": {
+            "detected": 0,
+            "total": 1,
+            "recall": 0.0
+          },
+          "correctness": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          }
+        },
+        "notes": [
+          "Rates are fractions; null means undefined, not zero.",
+          "Failed buggy cases count as misses; clean false-alarm rate uses completed clean cases.",
+          "These metrics depend on independently adjudicated findings and label completeness."
+        ]
+      },
+      "workflow": {
+        "attempted": 16,
+        "final_outputs_valid": 15,
+        "reviews_submitted": 15,
+        "reviews_with_executed_examples": 0,
+        "workflow_complete": 15,
+        "workflow_completion_rate": 0.9375
+      },
+      "efficiency": {
+        "median_duration_ms": 105002.0,
+        "p95_duration_ms": 150318,
+        "reported_input_tokens": 995289,
+        "reported_output_tokens": 4631,
+        "unknown_usage_runs": 0,
+        "tool_errors": 4,
+        "pacing_wait_ms": 1609037,
+        "rate_limit_retries": 0,
+        "api_duration_ms": 97429,
+        "example_execution_calls": 0,
+        "example_execution_successes": 0,
+        "example_execution_duration_ms": 0
+      },
+      "metrics_totals": {
+        "duration_ms": 1707139,
+        "llm_attempts": 57,
+        "pacing_wait_ms": 1609037,
+        "rate_limit_retries": 0,
+        "api_duration_ms": 97429,
+        "llm_responses": 57,
+        "input_tokens": 995289,
+        "output_tokens": 4631,
+        "tool_calls": 73,
+        "tool_errors": 4,
+        "submitted_reviews": 15,
+        "example_execution_calls": 0,
+        "example_execution_successes": 0,
+        "example_execution_duration_ms": 0,
+        "fix_prs": 0
+      },
+      "raw_clean_final_positive_count": 4,
+      "raw_clean_completed_count": 7,
+      "reported_models": {
+        "gpt-4o-mini-2024-07-18": 57
+      },
+      "reported_fingerprints": {
+        "fp_8c60972de7": 57
+      }
+    },
+    "agent-verified": {
+      "quality": {
+        "cases": 16,
+        "completed": 15,
+        "failed": 1,
+        "completion_rate": 0.9375,
+        "true_positives": 7,
+        "false_positives": 7,
+        "false_negatives": 1,
+        "precision": 0.5,
+        "recall": 0.875,
+        "f1": 0.6363636363636364,
+        "localized_recall": 0.5,
+        "clean_cases": 8,
+        "clean_completed": 7,
+        "clean_flagged": 5,
+        "clean_pr_false_alarm_rate": 0.7142857142857143,
+        "by_category": {
+          "security": {
+            "detected": 2,
+            "total": 2,
+            "recall": 1.0
+          },
+          "data_handling": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "state_management": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "ml_data_leakage": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "boundary_condition": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "temporal_leakage": {
+            "detected": 0,
+            "total": 1,
+            "recall": 0.0
+          },
+          "correctness": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          }
+        },
+        "notes": [
+          "Rates are fractions; null means undefined, not zero.",
+          "Failed buggy cases count as misses; clean false-alarm rate uses completed clean cases.",
+          "These metrics depend on independently adjudicated findings and label completeness."
+        ]
+      },
+      "sensitivity_quality": {
+        "cases": 16,
+        "completed": 15,
+        "failed": 1,
+        "completion_rate": 0.9375,
+        "true_positives": 8,
+        "false_positives": 6,
+        "false_negatives": 0,
+        "precision": 0.5714285714285714,
+        "recall": 1.0,
+        "f1": 0.7272727272727273,
+        "localized_recall": 0.625,
+        "clean_cases": 8,
+        "clean_completed": 7,
+        "clean_flagged": 5,
+        "clean_pr_false_alarm_rate": 0.7142857142857143,
+        "by_category": {
+          "security": {
+            "detected": 2,
+            "total": 2,
+            "recall": 1.0
+          },
+          "data_handling": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "state_management": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "ml_data_leakage": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "boundary_condition": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "temporal_leakage": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          },
+          "correctness": {
+            "detected": 1,
+            "total": 1,
+            "recall": 1.0
+          }
+        },
+        "notes": [
+          "Rates are fractions; null means undefined, not zero.",
+          "Failed buggy cases count as misses; clean false-alarm rate uses completed clean cases.",
+          "These metrics depend on independently adjudicated findings and label completeness."
+        ]
+      },
+      "workflow": {
+        "attempted": 16,
+        "final_outputs_valid": 15,
+        "reviews_submitted": 15,
+        "reviews_with_executed_examples": 15,
+        "workflow_complete": 15,
+        "workflow_completion_rate": 0.9375
+      },
+      "efficiency": {
+        "median_duration_ms": 119937.0,
+        "p95_duration_ms": 125708,
+        "reported_input_tokens": 606880,
+        "reported_output_tokens": 6182,
+        "unknown_usage_runs": 0,
+        "tool_errors": 2,
+        "pacing_wait_ms": 1740721,
+        "rate_limit_retries": 0,
+        "api_duration_ms": 117817,
+        "example_execution_calls": 18,
+        "example_execution_successes": 18,
+        "example_execution_duration_ms": 1928
+      },
+      "metrics_totals": {
+        "duration_ms": 1861236,
+        "llm_attempts": 62,
+        "pacing_wait_ms": 1740721,
+        "rate_limit_retries": 0,
+        "api_duration_ms": 117817,
+        "llm_responses": 62,
+        "input_tokens": 606880,
+        "output_tokens": 6182,
+        "tool_calls": 65,
+        "tool_errors": 2,
+        "submitted_reviews": 15,
+        "example_execution_calls": 18,
+        "example_execution_successes": 18,
+        "example_execution_duration_ms": 1928,
+        "fix_prs": 0
+      },
+      "raw_clean_final_positive_count": 5,
+      "raw_clean_completed_count": 7,
+      "reported_models": {
+        "gpt-4o-mini-2024-07-18": 62
+      },
+      "reported_fingerprints": {
+        "fp_8c60972de7": 32,
+        "fp_4abd59899c": 30
+      }
+    }
+  },
+  "paired_cases": [
+    {
+      "case_id": "89de0e22c2f3",
+      "family": "empty_aggregate",
+      "variant": "clean",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent": {
+        "status": "error",
+        "workflow_complete": false,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      }
+    },
+    {
+      "case_id": "6acf19efc948",
+      "family": "empty_aggregate",
+      "variant": "defect",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": true,
+        "strict_false_positive_claims": 2
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": true,
+        "strict_false_positive_claims": 1
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      }
+    },
+    {
+      "case_id": "e33a2e9207b7",
+      "family": "expiration",
+      "variant": "clean",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 1
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 1
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 1
+      }
+    },
+    {
+      "case_id": "c85a607a54b5",
+      "family": "expiration",
+      "variant": "defect",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 1
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      }
+    },
+    {
+      "case_id": "4d93c32539ce",
+      "family": "lookahead_bias",
+      "variant": "clean",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 1
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 1
+      }
+    },
+    {
+      "case_id": "ca048d6a497e",
+      "family": "lookahead_bias",
+      "variant": "defect",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": true,
+        "strict_false_positive_claims": 2
+      }
+    },
+    {
+      "case_id": "b3e1a991158b",
+      "family": "mutable_default",
+      "variant": "clean",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 1
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 1
+      }
+    },
+    {
+      "case_id": "85ad40fd5032",
+      "family": "mutable_default",
+      "variant": "defect",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 1
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      }
+    },
+    {
+      "case_id": "9ec94bab74f0",
+      "family": "ownership_check",
+      "variant": "clean",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 1
+      }
+    },
+    {
+      "case_id": "29d8d7cb5d4c",
+      "family": "ownership_check",
+      "variant": "defect",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      }
+    },
+    {
+      "case_id": "889012b7e156",
+      "family": "pagination",
+      "variant": "clean",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent-verified": {
+        "status": "error",
+        "workflow_complete": false,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      }
+    },
+    {
+      "case_id": "ebc8d8481ffc",
+      "family": "pagination",
+      "variant": "defect",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": true,
+        "strict_false_positive_claims": 1
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": true,
+        "strict_false_positive_claims": 1
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      }
+    },
+    {
+      "case_id": "c72c1dfc81c7",
+      "family": "preprocessing_leakage",
+      "variant": "clean",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 1
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 1
+      }
+    },
+    {
+      "case_id": "bca9b18b8e18",
+      "family": "preprocessing_leakage",
+      "variant": "defect",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      }
+    },
+    {
+      "case_id": "ad05f7c612a5",
+      "family": "sql_parameterization",
+      "variant": "clean",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 1
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 1
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": false,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      }
+    },
+    {
+      "case_id": "6a75289b0733",
+      "family": "sql_parameterization",
+      "variant": "defect",
+      "baseline": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      },
+      "agent-verified": {
+        "status": "ok",
+        "workflow_complete": true,
+        "strict_detected": true,
+        "partial_cause_match": false,
+        "strict_false_positive_claims": 0
+      }
+    }
+  ],
+  "execution_evidence_assessment": {
+    "6acf19efc948": {
+      "gold_reproduced": true,
+      "diagnosis_supported": true,
+      "note": "Empty input returns None in base and raises ZeroDivisionError in head."
+    },
+    "29d8d7cb5d4c": {
+      "gold_reproduced": false,
+      "diagnosis_supported": false,
+      "note": "Malformed document mapping causes shared KeyError. Non-owner diagnosis is correct prose, not an executed witness."
+    },
+    "bca9b18b8e18": {
+      "gold_reproduced": true,
+      "diagnosis_supported": true,
+      "note": "Nonempty training examples show altered centering. Also includes empty train outside the contract."
+    },
+    "6a75289b0733": {
+      "gold_reproduced": false,
+      "diagnosis_supported": false,
+      "note": "Ordinary lookup strings and no database seed rows; all base/head outputs empty."
+    },
+    "ca048d6a497e": {
+      "gold_reproduced": true,
+      "diagnosis_supported": false,
+      "note": "Valid (index=4,window=3) and (3,2) demonstrate shifted means; final explanations focus on out-of-contract failures. Submitted body has mixed correct and incorrect consequences."
+    },
+    "c85a607a54b5": {
+      "gold_reproduced": true,
+      "diagnosis_supported": true,
+      "note": "Equality produces base True, head False."
+    },
+    "ebc8d8481ffc": {
+      "gold_reproduced": true,
+      "diagnosis_supported": true,
+      "note": "Valid positive-size pages reproduce missing items. Also tests size=0 outside the explicit contract."
+    },
+    "85ad40fd5032": {
+      "gold_reproduced": true,
+      "diagnosis_supported": true,
+      "note": "Repeated calls omit optional state and show accumulation only in head."
+    },
+    "e33a2e9207b7": {
+      "gold_reproduced": false,
+      "diagnosis_supported": false,
+      "note": "Clean source and observations preserve equality; final incorrectly claims they do not."
+    },
+    "b3e1a991158b": {
+      "gold_reproduced": false,
+      "diagnosis_supported": false,
+      "note": "String existing_list supplied instead of list; shared AttributeError misattributed to head."
+    },
+    "9ec94bab74f0": {
+      "gold_reproduced": false,
+      "diagnosis_supported": false,
+      "note": "Malformed mapping yields shared KeyError; missing documents also outside existing-document contract."
+    },
+    "c72c1dfc81c7": {
+      "gold_reproduced": false,
+      "diagnosis_supported": false,
+      "note": "Empty train excluded by contract; both versions raise ZeroDivisionError."
+    },
+    "4d93c32539ce": {
+      "gold_reproduced": false,
+      "diagnosis_supported": false,
+      "note": "Clean valid examples agree; false alarm concerns index < window. Duplicate execution plan retained."
+    },
+    "ad05f7c612a5": {
+      "gold_reproduced": false,
+      "diagnosis_supported": false,
+      "note": "Approved clean case; tests ordinary names on an empty database, limited coverage."
+    },
+    "89de0e22c2f3": {
+      "gold_reproduced": false,
+      "diagnosis_supported": false,
+      "note": "Approved clean case; valid empty and nonempty examples agree."
+    },
+    "889012b7e156": {
+      "gold_reproduced": false,
+      "diagnosis_supported": false,
+      "note": "No execution: incorrect repo argument led to premature invalid final output."
+    }
+  },
+  "verified_input_token_reduction_vs_agent": 0.3902474557641047,
+  "verification_witness_counts": {
+    "planted_defects_reproduced": 6,
+    "strict_correct_diagnoses_with_reproduction": 5,
+    "planted_defects_total": 8
+  },
+  "human_review_priorities": [
+    "agent-verified ca048d6a497e f2: mixed wrong out-of-contract explanation and correct submitted index==window observation",
+    "agent ebc8d8481ffc: correct repair but incomplete/contradictory consequence",
+    "baseline bca9b18b8e18: explicit test fitting violates training-only rule without naming leakage"
+  ],
+  "interpretation": "V3 has higher strict development recall/F1 and lower input usage than the original agent, but more clean false alarms; sensitivity F1 favors the original agent slightly. Findings are provisional and do not establish general superiority."
+}

@@ -1,0 +1,32 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+.Rhistory
+evaluation/runs/
+
+# Credentials and machine-local settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.claude/
+.codex/
+.idea/
+.vscode/
+
+# Review data from real repositories stays local
+trajectories/
+exports/
+review_memory.jsonl
+*.log
+
+# Python build artifacts
+venv/
+build/
+dist/
+*.egg-info/
+.coverage
+htmlcov/

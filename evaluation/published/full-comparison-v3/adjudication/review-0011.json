@@ -1,0 +1,38 @@
+{
+  "task_id": "review-0011",
+  "case_id": "9ec94bab74f0",
+  "input": {
+    "case_id": "9ec94bab74f0",
+    "pr": {
+      "title": "Simplify document access helper",
+      "body": "read_document(documents, doc_id, user_id): existing documents are dictionaries; only their owner may read the body; others get PermissionError."
+    },
+    "base_files": {
+      "module.py": "def read_document(documents, doc_id, user_id):\n    document = documents[doc_id]\n    if document['owner_id'] == user_id:\n        return document['body']\n    raise PermissionError('Access denied')\n"
+    },
+    "head_files": {
+      "module.py": "def read_document(documents, doc_id, user_id):\n    document = documents[doc_id]\n    if document['owner_id'] != user_id:\n        raise PermissionError('Access denied')\n    return document['body']\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,5 +1,5 @@\n def read_document(documents, doc_id, user_id):\n     document = documents[doc_id]\n-    if document['owner_id'] == user_id:\n-        return document['body']\n-    raise PermissionError('Access denied')\n+    if document['owner_id'] != user_id:\n+        raise PermissionError('Access denied')\n+    return document['body']\n"
+      }
+    ]
+  },
+  "gold_issues": [],
+  "status": "ok",
+  "findings": [],
+  "raw_review": {
+    "final_response": "{\"decision\":\"APPROVE\",\"findings\":[]}",
+    "tool_calls": [],
+    "submitted_reviews": [],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": false,
+  "decisions": []
+}

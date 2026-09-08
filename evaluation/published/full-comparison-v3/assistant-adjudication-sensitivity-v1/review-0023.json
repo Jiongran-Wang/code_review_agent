@@ -1,0 +1,130 @@
+{
+  "task_id": "review-0023",
+  "case_id": "889012b7e156",
+  "input": {
+    "case_id": "889012b7e156",
+    "pr": {
+      "title": "Refactor pagination helper",
+      "body": "page(items, number, size): number is zero-based and size is positive; return up to size items."
+    },
+    "base_files": {
+      "module.py": "def page(items, number, size):\n    return items[number * size:(number + 1) * size]\n"
+    },
+    "head_files": {
+      "module.py": "def page(items, number, size):\n    start = number * size\n    stop = start + size\n    return items[start:stop]\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def page(items, number, size):\n-    return items[number * size:(number + 1) * size]\n+    start = number * size\n+    stop = start + size\n+    return items[start:stop]\n"
+      }
+    ]
+  },
+  "gold_issues": [],
+  "status": "ok",
+  "findings": [],
+  "raw_review": {
+    "final_response": "{\"decision\":\"COMMENT\",\"findings\":[]}",
+    "tool_calls": [
+      {
+        "tool": "get_pull_request",
+        "input": {
+          "owner": "benchmark",
+          "repo": "889012b7e156",
+          "pull_number": 1
+        },
+        "result": {
+          "number": 1,
+          "title": "Refactor pagination helper",
+          "body": "page(items, number, size): number is zero-based and size is positive; return up to size items.",
+          "state": "open",
+          "draft": false,
+          "author": "fixture-author",
+          "base_branch": "main",
+          "head_branch": "candidate",
+          "head_sha": "2364741359ed375442ca1034aab8cae6fa6fb81cace62bbee291a3ddbffb2502",
+          "merged": false,
+          "changed_files": 1,
+          "additions": 3,
+          "deletions": 1,
+          "html_url": "https://fixture.invalid/benchmark/889012b7e156/pull/1"
+        }
+      },
+      {
+        "tool": "get_pull_request_files",
+        "input": {
+          "owner": "benchmark",
+          "repo": "889012b7e156",
+          "pull_number": 1
+        },
+        "result": [
+          {
+            "filename": "module.py",
+            "status": "modified",
+            "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def page(items, number, size):\n-    return items[number * size:(number + 1) * size]\n+    start = number * size\n+    stop = start + size\n+    return items[start:stop]\n",
+            "additions": 3,
+            "deletions": 1,
+            "changes": 4
+          }
+        ]
+      },
+      {
+        "tool": "list_commits",
+        "input": {
+          "owner": "benchmark",
+          "repo": "889012b7e156",
+          "sha": "candidate"
+        },
+        "result": [
+          {
+            "sha": "2364741359ed375442ca1034aab8cae6fa6fb81cace62bbee291a3ddbffb2502",
+            "message": "Refactor pagination helper",
+            "author": "fixture-author",
+            "date": "2026-01-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "tool": "memory_get_all",
+        "input": {
+          "max_tokens": 3000
+        },
+        "result": ""
+      },
+      {
+        "tool": "create_pull_request_review",
+        "input": {
+          "owner": "benchmark",
+          "repo": "889012b7e156",
+          "pull_number": 1,
+          "event": "COMMENT",
+          "body": "## Code Review Summary\n\n### Findings\n- No actionable defects found."
+        },
+        "result": {
+          "id": 1,
+          "state": "COMMENT",
+          "body": "## Code Review Summary\n\n### Findings\n- No actionable defects found."
+        }
+      }
+    ],
+    "submitted_reviews": [
+      {
+        "owner": "benchmark",
+        "repo": "889012b7e156",
+        "pull_number": 1,
+        "event": "COMMENT",
+        "body": "## Code Review Summary\n\n### Findings\n- No actionable defects found."
+      }
+    ],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": true,
+  "decisions": [],
+  "normalization_notes": [
+    "Reviewed final JSON, submitted body and inline comments together. Merged the same allegation across channels; retained all distinct defect allegations."
+  ]
+}

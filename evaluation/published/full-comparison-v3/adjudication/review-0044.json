@@ -1,0 +1,143 @@
+{
+  "task_id": "review-0044",
+  "case_id": "c85a607a54b5",
+  "input": {
+    "case_id": "c85a607a54b5",
+    "pr": {
+      "title": "Refactor expiration comparison",
+      "body": "is_expired(now, expires_at): timestamps use the same unit; validity ends exactly at expires_at."
+    },
+    "base_files": {
+      "module.py": "def is_expired(now, expires_at):\n    return now >= expires_at\n"
+    },
+    "head_files": {
+      "module.py": "def is_expired(now, expires_at):\n    remaining = expires_at - now\n    return remaining < 0\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,3 @@\n def is_expired(now, expires_at):\n-    return now >= expires_at\n+    remaining = expires_at - now\n+    return remaining < 0\n"
+      }
+    ]
+  },
+  "gold_issues": [
+    {
+      "issue_id": "c85a607a54b5:1",
+      "file": "module.py",
+      "line_start": 3,
+      "line_end": 3,
+      "category": "boundary_condition",
+      "severity": "high",
+      "description": "The strict comparison treats a credential as valid at its exact expiration timestamp."
+    }
+  ],
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 2,
+      "description": "The logic for determining if an item is expired has been changed from a direct comparison to a calculation of remaining time. This is a more precise approach as it accounts for the exact moment of expiration."
+    }
+  ],
+  "raw_review": {
+    "final_response": "{\"decision\":\"COMMENT\",\"findings\":[{\"file\":\"module.py\",\"line\":2,\"description\":\"The logic for determining if an item is expired has been changed from a direct comparison to a calculation of remaining time. This is a more precise approach as it accounts for the exact moment of expiration.\"}]}",
+    "tool_calls": [
+      {
+        "tool": "get_pull_request",
+        "input": {
+          "owner": "benchmark",
+          "repo": "c85a607a54b5",
+          "pull_number": 1
+        },
+        "result": {
+          "number": 1,
+          "title": "Refactor expiration comparison",
+          "body": "is_expired(now, expires_at): timestamps use the same unit; validity ends exactly at expires_at.",
+          "state": "open",
+          "draft": false,
+          "author": "fixture-author",
+          "base_branch": "main",
+          "head_branch": "candidate",
+          "head_sha": "be332c870a44788cc3552c2be792c2120075856a8eedcfb032e8222a1477eb5d",
+          "merged": false,
+          "changed_files": 1,
+          "additions": 2,
+          "deletions": 1,
+          "html_url": "https://fixture.invalid/benchmark/c85a607a54b5/pull/1"
+        }
+      },
+      {
+        "tool": "get_pull_request_files",
+        "input": {
+          "owner": "benchmark",
+          "repo": "c85a607a54b5",
+          "pull_number": 1
+        },
+        "result": [
+          {
+            "filename": "module.py",
+            "status": "modified",
+            "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,3 @@\n def is_expired(now, expires_at):\n-    return now >= expires_at\n+    remaining = expires_at - now\n+    return remaining < 0\n",
+            "additions": 2,
+            "deletions": 1,
+            "changes": 3
+          }
+        ]
+      },
+      {
+        "tool": "list_commits",
+        "input": {
+          "owner": "benchmark",
+          "repo": "c85a607a54b5",
+          "sha": "candidate"
+        },
+        "result": [
+          {
+            "sha": "be332c870a44788cc3552c2be792c2120075856a8eedcfb032e8222a1477eb5d",
+            "message": "Refactor expiration comparison",
+            "author": "fixture-author",
+            "date": "2026-01-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "tool": "create_pull_request_review",
+        "input": {
+          "owner": "benchmark",
+          "repo": "c85a607a54b5",
+          "pull_number": 1,
+          "event": "COMMENT",
+          "body": "## Code Review Summary\n\nThe changes made in this PR are minimal and focus on refactoring the expiration comparison logic in the `is_expired` function.\n\n### Findings\n- **File**: `module.py`\n  - **Line**: 2\n  - **Description**: The logic for determining if an item is expired has been changed from a direct comparison to a calculation of remaining time. This is a more precise approach as it accounts for the exact moment of expiration."
+        },
+        "result": {
+          "id": 1,
+          "state": "COMMENT",
+          "body": "## Code Review Summary\n\nThe changes made in this PR are minimal and focus on refactoring the expiration comparison logic in the `is_expired` function.\n\n### Findings\n- **File**: `module.py`\n  - **Line**: 2\n  - **Description**: The logic for determining if an item is expired has been changed from a direct comparison to a calculation of remaining time. This is a more precise approach as it accounts for the exact moment of expiration."
+        }
+      }
+    ],
+    "submitted_reviews": [
+      {
+        "owner": "benchmark",
+        "repo": "c85a607a54b5",
+        "pull_number": 1,
+        "event": "COMMENT",
+        "body": "## Code Review Summary\n\nThe changes made in this PR are minimal and focus on refactoring the expiration comparison logic in the `is_expired` function.\n\n### Findings\n- **File**: `module.py`\n  - **Line**: 2\n  - **Description**: The logic for determining if an item is expired has been changed from a direct comparison to a calculation of remaining time. This is a more precise approach as it accounts for the exact moment of expiration."
+      }
+    ],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": false,
+  "decisions": [
+    {
+      "finding_id": "f1",
+      "gold_issue_id": "PENDING",
+      "rationale": ""
+    }
+  ]
+}

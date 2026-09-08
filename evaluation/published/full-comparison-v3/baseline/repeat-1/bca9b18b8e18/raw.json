@@ -1,0 +1,9 @@
+{
+  "final_response": "{\n  \"decision\": \"REQUEST_CHANGES\",\n  \"findings\": [\n    {\n      \"file\": \"module.py\",\n      \"line\": 2,\n      \"description\": \"The calculation of the mean is incorrect. The new implementation fits the mean on both train and test data, which violates the requirement to only fit on the training data.\"\n    }\n  ]\n}",
+  "tool_calls": [],
+  "submitted_reviews": [],
+  "issue_comments": [],
+  "file_writes": [],
+  "fix_prs": [],
+  "memory": []
+}

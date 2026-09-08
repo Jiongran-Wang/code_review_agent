@@ -1,0 +1,41 @@
+{
+  "case_id": "29d8d7cb5d4c",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 3,
+      "description": "The condition to check if the user is the owner of the document has been removed, which allows any user (including those who do not own the document) to access the document body if they provide a non-null user_id."
+    }
+  ],
+  "decision": "REQUEST_CHANGES",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": false,
+    "review_submitted": false,
+    "example_execution_required": false,
+    "example_executed": false,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 30229,
+    "llm_attempts": 1,
+    "pacing_wait_ms": 28919,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 1296,
+    "llm_responses": 1,
+    "input_tokens": 16411,
+    "output_tokens": 69,
+    "tool_calls": 0,
+    "tool_errors": 0,
+    "submitted_reviews": 0,
+    "example_execution_calls": 0,
+    "example_execution_successes": 0,
+    "example_execution_duration_ms": 0,
+    "fix_prs": 0
+  }
+}

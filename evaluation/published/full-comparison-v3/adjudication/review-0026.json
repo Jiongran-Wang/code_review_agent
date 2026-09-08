@@ -1,0 +1,137 @@
+{
+  "task_id": "review-0026",
+  "case_id": "ca048d6a497e",
+  "input": {
+    "case_id": "ca048d6a497e",
+    "pr": {
+      "title": "Refactor historical price feature",
+      "body": "prior_mean(prices, index, window): at the start of index, use only the preceding window prices; index >= window > 0 and index < len(prices)."
+    },
+    "base_files": {
+      "module.py": "def prior_mean(prices, index, window):\n    return sum(prices[index-window:index]) / window\n"
+    },
+    "head_files": {
+      "module.py": "def prior_mean(prices, index, window):\n    start = index - window\n    history = prices[start+1:index+1]\n    return sum(history) / len(history)\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def prior_mean(prices, index, window):\n-    return sum(prices[index-window:index]) / window\n+    start = index - window\n+    history = prices[start+1:index+1]\n+    return sum(history) / len(history)\n"
+      }
+    ]
+  },
+  "gold_issues": [
+    {
+      "issue_id": "ca048d6a497e:1",
+      "file": "module.py",
+      "line_start": 3,
+      "line_end": 3,
+      "category": "temporal_leakage",
+      "severity": "high",
+      "description": "The shifted window includes the current price, which is unavailable at prediction time, introducing look-ahead bias."
+    }
+  ],
+  "status": "ok",
+  "findings": [],
+  "raw_review": {
+    "final_response": "{\"decision\":\"COMMENT\",\"findings\":[]}",
+    "tool_calls": [
+      {
+        "tool": "get_pull_request",
+        "input": {
+          "owner": "benchmark",
+          "repo": "ca048d6a497e",
+          "pull_number": 1
+        },
+        "result": {
+          "number": 1,
+          "title": "Refactor historical price feature",
+          "body": "prior_mean(prices, index, window): at the start of index, use only the preceding window prices; index >= window > 0 and index < len(prices).",
+          "state": "open",
+          "draft": false,
+          "author": "fixture-author",
+          "base_branch": "main",
+          "head_branch": "candidate",
+          "head_sha": "d17faa14982cdd7e32af22b831e22b225fead0ed451d7f6c6b1c66e9ab71c83e",
+          "merged": false,
+          "changed_files": 1,
+          "additions": 3,
+          "deletions": 1,
+          "html_url": "https://fixture.invalid/benchmark/ca048d6a497e/pull/1"
+        }
+      },
+      {
+        "tool": "get_pull_request_files",
+        "input": {
+          "owner": "benchmark",
+          "repo": "ca048d6a497e",
+          "pull_number": 1
+        },
+        "result": [
+          {
+            "filename": "module.py",
+            "status": "modified",
+            "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def prior_mean(prices, index, window):\n-    return sum(prices[index-window:index]) / window\n+    start = index - window\n+    history = prices[start+1:index+1]\n+    return sum(history) / len(history)\n",
+            "additions": 3,
+            "deletions": 1,
+            "changes": 4
+          }
+        ]
+      },
+      {
+        "tool": "list_commits",
+        "input": {
+          "owner": "benchmark",
+          "repo": "ca048d6a497e",
+          "sha": "candidate"
+        },
+        "result": [
+          {
+            "sha": "d17faa14982cdd7e32af22b831e22b225fead0ed451d7f6c6b1c66e9ab71c83e",
+            "message": "Refactor historical price feature",
+            "author": "fixture-author",
+            "date": "2026-01-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "tool": "memory_get_all",
+        "input": {
+          "max_tokens": 3000
+        },
+        "result": ""
+      },
+      {
+        "tool": "create_pull_request_review",
+        "input": {
+          "owner": "benchmark",
+          "repo": "ca048d6a497e",
+          "pull_number": 1,
+          "event": "COMMENT",
+          "body": "## Code Review Summary\n\n### Findings\n- No actionable defects found in the code changes."
+        },
+        "result": {
+          "id": 1,
+          "state": "COMMENT",
+          "body": "## Code Review Summary\n\n### Findings\n- No actionable defects found in the code changes."
+        }
+      }
+    ],
+    "submitted_reviews": [
+      {
+        "owner": "benchmark",
+        "repo": "ca048d6a497e",
+        "pull_number": 1,
+        "event": "COMMENT",
+        "body": "## Code Review Summary\n\n### Findings\n- No actionable defects found in the code changes."
+      }
+    ],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": false,
+  "decisions": []
+}

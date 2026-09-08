@@ -1,0 +1,41 @@
+{
+  "case_id": "b3e1a991158b",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 5,
+      "description": "The changes to the return statement of the `collect` function cause an `AttributeError` when an existing list is passed as an argument, breaking the expected behavior."
+    }
+  ],
+  "decision": "REQUEST_CHANGES",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": true,
+    "review_submitted": true,
+    "example_execution_required": true,
+    "example_executed": true,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 120112,
+    "llm_attempts": 4,
+    "pacing_wait_ms": 111933,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 7963,
+    "llm_responses": 4,
+    "input_tokens": 37987,
+    "output_tokens": 373,
+    "tool_calls": 5,
+    "tool_errors": 0,
+    "submitted_reviews": 1,
+    "example_execution_calls": 2,
+    "example_execution_successes": 2,
+    "example_execution_duration_ms": 173,
+    "fix_prs": 0
+  }
+}

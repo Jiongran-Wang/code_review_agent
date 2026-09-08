@@ -1,0 +1,47 @@
+{
+  "case_id": "6acf19efc948",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 3,
+      "description": "The condition 'if count < 0' is incorrect; count should never be negative as it represents the length of the input list."
+    },
+    {
+      "finding_id": "f2",
+      "file": "module.py",
+      "line": 5,
+      "description": "The calculation of the average should use 'len(values)' instead of 'count' since 'count' is incorrectly defined."
+    }
+  ],
+  "decision": "REQUEST_CHANGES",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": false,
+    "review_submitted": false,
+    "example_execution_required": false,
+    "example_executed": false,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 30819,
+    "llm_attempts": 1,
+    "pacing_wait_ms": 28994,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 1813,
+    "llm_responses": 1,
+    "input_tokens": 16329,
+    "output_tokens": 87,
+    "tool_calls": 0,
+    "tool_errors": 0,
+    "submitted_reviews": 0,
+    "example_execution_calls": 0,
+    "example_execution_successes": 0,
+    "example_execution_duration_ms": 0,
+    "fix_prs": 0
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "case_id": "6a75289b0733",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 3,
+      "description": "The refactor introduces a SQL injection vulnerability by directly embedding user input into the SQL query. This can allow an attacker to manipulate the query by providing specially crafted input. The original implementation used parameterized queries, which are safe from SQL injection."
+    }
+  ],
+  "decision": "REQUEST_CHANGES",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": true,
+    "review_submitted": true,
+    "example_execution_required": true,
+    "example_executed": true,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 119939,
+    "llm_attempts": 4,
+    "pacing_wait_ms": 112142,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 7605,
+    "llm_responses": 4,
+    "input_tokens": 38072,
+    "output_tokens": 397,
+    "tool_calls": 4,
+    "tool_errors": 0,
+    "submitted_reviews": 1,
+    "example_execution_calls": 1,
+    "example_execution_successes": 1,
+    "example_execution_duration_ms": 133,
+    "fix_prs": 0
+  }
+}

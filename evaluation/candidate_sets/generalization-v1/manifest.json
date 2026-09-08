@@ -1,0 +1,21 @@
+{
+  "version": "generalization-candidate-v1",
+  "status": "candidate_unrun_pending_human_review",
+  "cases": 16,
+  "families": 8,
+  "clean_cases": 8,
+  "defect_cases": 8,
+  "model_evaluated": false,
+  "human_validated": false,
+  "current_execution_registry_supports_candidates": false,
+  "files_sha256": {
+    "build.py": "4517090e408869ff04751dc05f97bc0613efc47f3cc3f92ec0ed9abf6e72d3a3",
+    "inputs.jsonl": "41c5386a5f87f9e911c34c57ca3ef662087ecbccbc5195772ff8203429f53a31",
+    "labels.jsonl": "02668195fc29fa69628cf621b2af139d29468ccd5f897b4a303502c1512222e9",
+    "validation.json": "af735846faa876a47b86738b244c75c8b24318a3432da9c355cfc269574e9915"
+  },
+  "original_development_inputs_sha256": "8e986d0daf24c97f02f4f778f467e27651bda0802e71e0f68e73d443d444a1b9",
+  "case_id_overlap_with_original": false,
+  "exact_source_overlap_with_original": false,
+  "caveat": "Same assistant author and synthetic construction style; new patterns do not establish independence or held-out generalization."
+}

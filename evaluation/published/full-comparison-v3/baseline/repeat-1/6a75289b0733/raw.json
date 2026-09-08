@@ -1,0 +1,9 @@
+{
+  "final_response": "{\n  \"decision\": \"REQUEST_CHANGES\",\n  \"findings\": [\n    {\n      \"file\": \"module.py\",\n      \"line\": 3,\n      \"description\": \"The use of string replacement to construct the SQL query introduces a SQL injection vulnerability. The query should use parameterized queries to safely handle untrusted input.\"\n    }\n  ]\n}",
+  "tool_calls": [],
+  "submitted_reviews": [],
+  "issue_comments": [],
+  "file_writes": [],
+  "fix_prs": [],
+  "memory": []
+}

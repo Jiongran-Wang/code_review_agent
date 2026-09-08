@@ -1,0 +1,41 @@
+{
+  "case_id": "ebc8d8481ffc",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 3,
+      "description": "The calculation of `stop` should be `start + size` instead of `start + size - 1` to include the last item in the slice, which causes the function to return fewer items than expected."
+    }
+  ],
+  "decision": "REQUEST_CHANGES",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": true,
+    "review_submitted": true,
+    "example_execution_required": true,
+    "example_executed": true,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 125708,
+    "llm_attempts": 4,
+    "pacing_wait_ms": 106526,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 19013,
+    "llm_responses": 4,
+    "input_tokens": 38699,
+    "output_tokens": 605,
+    "tool_calls": 4,
+    "tool_errors": 0,
+    "submitted_reviews": 1,
+    "example_execution_calls": 1,
+    "example_execution_successes": 1,
+    "example_execution_duration_ms": 111,
+    "fix_prs": 0
+  }
+}

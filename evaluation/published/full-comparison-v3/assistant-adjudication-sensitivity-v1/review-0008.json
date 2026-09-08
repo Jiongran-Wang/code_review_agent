@@ -1,0 +1,54 @@
+{
+  "task_id": "review-0008",
+  "case_id": "4d93c32539ce",
+  "input": {
+    "case_id": "4d93c32539ce",
+    "pr": {
+      "title": "Refactor historical price feature",
+      "body": "prior_mean(prices, index, window): at the start of index, use only the preceding window prices; index >= window > 0 and index < len(prices)."
+    },
+    "base_files": {
+      "module.py": "def prior_mean(prices, index, window):\n    return sum(prices[index-window:index]) / window\n"
+    },
+    "head_files": {
+      "module.py": "def prior_mean(prices, index, window):\n    start = index - window\n    history = prices[start:index]\n    return sum(history) / len(history)\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,2 +1,4 @@\n def prior_mean(prices, index, window):\n-    return sum(prices[index-window:index]) / window\n+    start = index - window\n+    history = prices[start:index]\n+    return sum(history) / len(history)\n"
+      }
+    ]
+  },
+  "gold_issues": [],
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 3,
+      "description": "The new implementation does not handle cases where 'index' is less than 'window'. This will lead to an IndexError when trying to access 'prices[start:index]' if 'start' is negative."
+    }
+  ],
+  "raw_review": {
+    "final_response": "{\n  \"decision\": \"REQUEST_CHANGES\",\n  \"findings\": [\n    {\n      \"file\": \"module.py\",\n      \"line\": 3,\n      \"description\": \"The new implementation does not handle cases where 'index' is less than 'window'. This will lead to an IndexError when trying to access 'prices[start:index]' if 'start' is negative.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "submitted_reviews": [],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": true,
+  "decisions": [
+    {
+      "finding_id": "f1",
+      "gold_issue_id": null,
+      "rationale": "index < window is out of contract, and a negative slice start does not by itself raise IndexError."
+    }
+  ],
+  "normalization_notes": [
+    "Reviewed final JSON, submitted body and inline comments together. Merged the same allegation across channels; retained all distinct defect allegations."
+  ]
+}

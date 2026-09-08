@@ -1,0 +1,41 @@
+{
+  "case_id": "e33a2e9207b7",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 2,
+      "description": "The change from `return now >= expires_at` to `return remaining <= 0` alters the expiration logic. The original logic correctly allowed for equality, while the new logic does not."
+    }
+  ],
+  "decision": "REQUEST_CHANGES",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": true,
+    "review_submitted": true,
+    "example_execution_required": true,
+    "example_executed": true,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 119911,
+    "llm_attempts": 4,
+    "pacing_wait_ms": 111753,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 8000,
+    "llm_responses": 4,
+    "input_tokens": 38052,
+    "output_tokens": 423,
+    "tool_calls": 4,
+    "tool_errors": 0,
+    "submitted_reviews": 1,
+    "example_execution_calls": 1,
+    "example_execution_successes": 1,
+    "example_execution_duration_ms": 115,
+    "fix_prs": 0
+  }
+}

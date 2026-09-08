@@ -1,0 +1,41 @@
+{
+  "case_id": "bca9b18b8e18",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 2,
+      "description": "The calculation of the mean is incorrect. The new implementation fits the mean on both train and test data, which violates the requirement to only fit on the training data."
+    }
+  ],
+  "decision": "REQUEST_CHANGES",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": false,
+    "review_submitted": false,
+    "example_execution_required": false,
+    "example_executed": false,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 30258,
+    "llm_attempts": 1,
+    "pacing_wait_ms": 28787,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 1453,
+    "llm_responses": 1,
+    "input_tokens": 16399,
+    "output_tokens": 76,
+    "tool_calls": 0,
+    "tool_errors": 0,
+    "submitted_reviews": 0,
+    "example_execution_calls": 0,
+    "example_execution_successes": 0,
+    "example_execution_duration_ms": 0,
+    "fix_prs": 0
+  }
+}

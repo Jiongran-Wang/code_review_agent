@@ -1,0 +1,34 @@
+{
+  "case_id": "4d93c32539ce",
+  "status": "ok",
+  "findings": [],
+  "decision": "APPROVE",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": true,
+    "review_submitted": true,
+    "example_execution_required": false,
+    "example_executed": false,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 89483,
+    "llm_attempts": 3,
+    "pacing_wait_ms": 83388,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 6056,
+    "llm_responses": 3,
+    "input_tokens": 52321,
+    "output_tokens": 248,
+    "tool_calls": 4,
+    "tool_errors": 0,
+    "submitted_reviews": 1,
+    "example_execution_calls": 0,
+    "example_execution_successes": 0,
+    "example_execution_duration_ms": 0,
+    "fix_prs": 0
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "final_response": "{\"decision\":\"APPROVE\",\"findings\":[]}",
+  "tool_calls": [],
+  "submitted_reviews": [],
+  "issue_comments": [],
+  "file_writes": [],
+  "fix_prs": [],
+  "memory": []
+}

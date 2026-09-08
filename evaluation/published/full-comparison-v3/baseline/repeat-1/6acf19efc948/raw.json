@@ -1,0 +1,9 @@
+{
+  "final_response": "{\"decision\":\"REQUEST_CHANGES\",\"findings\":[{\"file\":\"module.py\",\"line\":3,\"description\":\"The condition 'if count < 0' is incorrect; count should never be negative as it represents the length of the input list.\"},{\"file\":\"module.py\",\"line\":5,\"description\":\"The calculation of the average should use 'len(values)' instead of 'count' since 'count' is incorrectly defined.\"}]}",
+  "tool_calls": [],
+  "submitted_reviews": [],
+  "issue_comments": [],
+  "file_writes": [],
+  "fix_prs": [],
+  "memory": []
+}

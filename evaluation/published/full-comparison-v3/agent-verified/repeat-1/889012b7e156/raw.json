@@ -1,0 +1,34 @@
+{
+  "final_response": "{\"decision\":\"COMMENT\",\"findings\":[{\"file\":null,\"description\":\"The specified repository 'benchmark' is not accessible for review.\"}]}",
+  "tool_calls": [
+    {
+      "tool": "get_pull_request",
+      "input": {
+        "owner": "benchmark",
+        "repo": "repo",
+        "pull_number": 1
+      },
+      "result": {
+        "error": "Repository outside this case",
+        "tool": "get_pull_request"
+      }
+    },
+    {
+      "tool": "get_pull_request_files",
+      "input": {
+        "owner": "benchmark",
+        "repo": "repo",
+        "pull_number": 1
+      },
+      "result": {
+        "error": "Repository outside this case",
+        "tool": "get_pull_request_files"
+      }
+    }
+  ],
+  "submitted_reviews": [],
+  "issue_comments": [],
+  "file_writes": [],
+  "fix_prs": [],
+  "memory": []
+}

@@ -1,0 +1,223 @@
+{
+  "task_id": "review-0045",
+  "case_id": "89de0e22c2f3",
+  "input": {
+    "case_id": "89de0e22c2f3",
+    "pr": {
+      "title": "Refactor average calculation",
+      "body": "average(values): finite numeric inputs; return their mean, or None for an empty list."
+    },
+    "base_files": {
+      "module.py": "def average(values):\n    if len(values) == 0:\n        return None\n    return sum(values) / len(values)\n"
+    },
+    "head_files": {
+      "module.py": "def average(values):\n    count = len(values)\n    if count == 0:\n        return None\n    return sum(values) / count\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,4 +1,5 @@\n def average(values):\n-    if len(values) == 0:\n+    count = len(values)\n+    if count == 0:\n         return None\n-    return sum(values) / len(values)\n+    return sum(values) / count\n"
+      }
+    ]
+  },
+  "gold_issues": [],
+  "status": "ok",
+  "findings": [],
+  "raw_review": {
+    "final_response": "{\"decision\":\"APPROVE\",\"findings\":[]}",
+    "tool_calls": [
+      {
+        "tool": "get_pull_request",
+        "input": {
+          "owner": "benchmark",
+          "repo": "89de0e22c2f3",
+          "pull_number": 1
+        },
+        "result": {
+          "number": 1,
+          "title": "Refactor average calculation",
+          "body": "average(values): finite numeric inputs; return their mean, or None for an empty list.",
+          "state": "open",
+          "draft": false,
+          "author": "fixture-author",
+          "base_branch": "main",
+          "head_branch": "candidate",
+          "head_sha": "30f0e6b688858fcad36f465044484cd5c66dbc9ed739ec93986ce65f2b308f1c",
+          "merged": false,
+          "changed_files": 1,
+          "additions": 3,
+          "deletions": 2,
+          "html_url": "https://fixture.invalid/benchmark/89de0e22c2f3/pull/1"
+        }
+      },
+      {
+        "tool": "get_pull_request_files",
+        "input": {
+          "owner": "benchmark",
+          "repo": "89de0e22c2f3",
+          "pull_number": 1
+        },
+        "result": [
+          {
+            "filename": "module.py",
+            "status": "modified",
+            "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,4 +1,5 @@\n def average(values):\n-    if len(values) == 0:\n+    count = len(values)\n+    if count == 0:\n         return None\n-    return sum(values) / len(values)\n+    return sum(values) / count\n",
+            "additions": 3,
+            "deletions": 2,
+            "changes": 5
+          }
+        ]
+      },
+      {
+        "tool": "execute_example",
+        "input": {
+          "owner": "benchmark",
+          "repo": "89de0e22c2f3",
+          "path": "module.py",
+          "calls": [
+            {
+              "function": "average",
+              "args": [
+                [
+                  1,
+                  2,
+                  3
+                ]
+              ]
+            },
+            {
+              "function": "average",
+              "args": [
+                []
+              ]
+            },
+            {
+              "function": "average",
+              "args": [
+                [
+                  5,
+                  10,
+                  15
+                ]
+              ]
+            },
+            {
+              "function": "average",
+              "args": [
+                [
+                  0,
+                  0,
+                  0
+                ]
+              ]
+            },
+            {
+              "function": "average",
+              "args": [
+                [
+                  1.5,
+                  2.5,
+                  3.5
+                ]
+              ]
+            }
+          ]
+        },
+        "result": {
+          "base": {
+            "observations": [
+              {
+                "return": 2.0,
+                "exception": null,
+                "values_after": {}
+              },
+              {
+                "return": null,
+                "exception": null,
+                "values_after": {}
+              },
+              {
+                "return": 10.0,
+                "exception": null,
+                "values_after": {}
+              },
+              {
+                "return": 0.0,
+                "exception": null,
+                "values_after": {}
+              },
+              {
+                "return": 2.5,
+                "exception": null,
+                "values_after": {}
+              }
+            ]
+          },
+          "head": {
+            "observations": [
+              {
+                "return": 2.0,
+                "exception": null,
+                "values_after": {}
+              },
+              {
+                "return": null,
+                "exception": null,
+                "values_after": {}
+              },
+              {
+                "return": 10.0,
+                "exception": null,
+                "values_after": {}
+              },
+              {
+                "return": 0.0,
+                "exception": null,
+                "values_after": {}
+              },
+              {
+                "return": 2.5,
+                "exception": null,
+                "values_after": {}
+              }
+            ]
+          },
+          "basis": "Executed audited fixture code. Check the PR preconditions and base/head difference before alleging an introduced defect; an exception alone is not a defect."
+        }
+      },
+      {
+        "tool": "create_pull_request_review",
+        "input": {
+          "owner": "benchmark",
+          "repo": "89de0e22c2f3",
+          "pull_number": 1,
+          "event": "APPROVE",
+          "body": "",
+          "comments": []
+        },
+        "result": {
+          "id": 1,
+          "state": "APPROVE",
+          "body": ""
+        }
+      }
+    ],
+    "submitted_reviews": [
+      {
+        "owner": "benchmark",
+        "repo": "89de0e22c2f3",
+        "pull_number": 1,
+        "event": "APPROVE",
+        "body": "",
+        "comments": []
+      }
+    ],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": false,
+  "decisions": []
+}

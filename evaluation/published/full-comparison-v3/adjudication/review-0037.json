@@ -1,0 +1,51 @@
+{
+  "task_id": "review-0037",
+  "case_id": "c72c1dfc81c7",
+  "input": {
+    "case_id": "c72c1dfc81c7",
+    "pr": {
+      "title": "Refactor numeric feature centering",
+      "body": "center(train, test): train is nonempty; subtract the training mean from both lists without fitting on test data."
+    },
+    "base_files": {
+      "module.py": "def center(train, test):\n    mean = sum(train) / len(train)\n    return [x - mean for x in train], [x - mean for x in test]\n"
+    },
+    "head_files": {
+      "module.py": "def center(train, test):\n    fitting_values = train\n    offset = sum(fitting_values) / len(fitting_values)\n    return [value - offset for value in train], [value - offset for value in test]\n"
+    },
+    "changed_files": [
+      {
+        "filename": "module.py",
+        "status": "modified",
+        "patch": "--- a/module.py\n+++ b/module.py\n@@ -1,3 +1,4 @@\n def center(train, test):\n-    mean = sum(train) / len(train)\n-    return [x - mean for x in train], [x - mean for x in test]\n+    fitting_values = train\n+    offset = sum(fitting_values) / len(fitting_values)\n+    return [value - offset for value in train], [value - offset for value in test]\n"
+      }
+    ]
+  },
+  "gold_issues": [],
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 2,
+      "description": "The function incorrectly uses the training data to compute the mean for both training and test datasets, which violates the principle of not fitting on test data."
+    }
+  ],
+  "raw_review": {
+    "final_response": "{\"decision\":\"REQUEST_CHANGES\",\"findings\":[{\"file\":\"module.py\",\"line\":2,\"description\":\"The function incorrectly uses the training data to compute the mean for both training and test datasets, which violates the principle of not fitting on test data.\"}]}",
+    "tool_calls": [],
+    "submitted_reviews": [],
+    "issue_comments": [],
+    "file_writes": [],
+    "fix_prs": [],
+    "memory": []
+  },
+  "normalization_reviewed": false,
+  "decisions": [
+    {
+      "finding_id": "f1",
+      "gold_issue_id": "PENDING",
+      "rationale": ""
+    }
+  ]
+}

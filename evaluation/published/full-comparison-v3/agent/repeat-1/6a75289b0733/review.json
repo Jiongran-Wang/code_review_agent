@@ -1,0 +1,41 @@
+{
+  "case_id": "6a75289b0733",
+  "status": "ok",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "file": "module.py",
+      "line": 1,
+      "description": "The `lookup` function constructs a SQL query using string replacement, which can lead to SQL injection vulnerabilities if the `name` parameter contains malicious input."
+    }
+  ],
+  "decision": "COMMENT",
+  "error": null,
+  "termination_reason": "end_turn",
+  "api_error": {},
+  "workflow": {
+    "final_output_valid": true,
+    "review_submission_required": true,
+    "review_submitted": true,
+    "example_execution_required": false,
+    "example_executed": false,
+    "complete": true
+  },
+  "metrics": {
+    "duration_ms": 149522,
+    "llm_attempts": 5,
+    "pacing_wait_ms": 141494,
+    "rate_limit_retries": 0,
+    "api_duration_ms": 7972,
+    "llm_responses": 5,
+    "input_tokens": 87953,
+    "output_tokens": 388,
+    "tool_calls": 6,
+    "tool_errors": 0,
+    "submitted_reviews": 1,
+    "example_execution_calls": 0,
+    "example_execution_successes": 0,
+    "example_execution_duration_ms": 0,
+    "fix_prs": 0
+  }
+}
